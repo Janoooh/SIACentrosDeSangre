@@ -1,9 +1,125 @@
 package com.mycompany.siacentrosdesangre;
 
+import java.io.*;
+
 public class SIACentrosDeSangre {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-        System.out.printf("Este es el main");
+    public static void main(String[] args) throws IOException {
+        SIACentrosDeSangre sistema = new SIACentrosDeSangre();
+        CentroDeSangre centro = sistema.crearCentroSangre();
+        sistema.agregarCampania(centro);
+        //sistema.agregarCampania(centro);
+        sistema.crearStockSangre(centro);
+        sistema.mostrarStockSangre(centro);
+        sistema.agregarDonacion(centro);
+        sistema.agregarDonacion(centro);
+        sistema.mostrarDonaciones(centro);
+        sistema.mostrarStockSangre(centro);
+    }
+    
+    public String[] leerArchivo()throws FileNotFoundException, IOException{
+        String ruta = "C:\\Users\\cokej\\OneDrive\\Escritorio\\ejemplo.txt";
+        BufferedReader lector = new BufferedReader(new FileReader(ruta));
+        String cadena [] = new String[10];
+        String linea = lector.readLine();
+        int i = 0;
+        while (linea != null) {
+            cadena[i] = linea;
+            linea = lector.readLine();
+            i ++;
+        }
+        return cadena;
+    }
+    
+    public String lector(String mensaje) throws IOException{
+        System.out.println(mensaje);
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        String cadena = lector.readLine();
+        return cadena;
+    }
+    
+    public CentroDeSangre crearCentroSangre() throws IOException{
+        CentroDeSangre centro = new CentroDeSangre(lector("Ingrese nombre del nuevo centro de sangre : "));
+        return centro;
+    }
+    
+    public void agregarCampania(CentroDeSangre centro) throws IOException{
+        String localidad = lector("ingrese localidad de la campania : ");
+        Campania buscado = centro.buscarCampania(localidad);
+        if(buscado == null){
+            Campania nuevo= new Campania(localidad);
+            centro.agregarCampania(nuevo);
+        }
+    }
+    
+    public void crearStockSangre(CentroDeSangre centro) throws IOException{
+        int i;
+        String cadena[] = leerArchivo();
+        for(i= 0; cadena[i] != null ; i ++){
+            centro.agregarStockSangre(cadena[i], 0);
+        }
+    }
+    
+    public void mostrarStockSangre(CentroDeSangre centro) throws IOException{
+        int i;
+        String cadena[] = leerArchivo();
+        for(i= 0; cadena[i] != null ; i ++){
+            System.out.println(cadena[i] + " " + centro.getStockSangre(cadena[i]));
+        }
+    }
+    
+    public void agregarDonacion(CentroDeSangre centro) throws IOException{
+        String aux = lector("ingrese la locacion de la campania : ");
+        Campania camp = centro.buscarCampania(aux);
+        if(camp != null){
+            aux = lector("ingrese el rut del donante : ");
+            Donacion donante = camp.buscarDonacion(aux);
+            if(donante == null){
+                Donacion nuevo = crearDonacion(aux);
+                camp.agregarDonacion(nuevo);
+                centro.agregarStockSangre(nuevo.getDonador().getTipoSangre(), 1);
+            }
+        }
+        
+    }
+    
+    public Donacion crearDonacion(String rut) throws IOException{
+        String nombre = lector("Ingrese el nombre del donante: ");
+        int edad = Integer.parseInt(lector("ingrese la edad del donante: "));
+        String tipoSangre = lector("Ingrese el tipo de sangre del donante: ");
+        String numeroTelefonico = lector("Ingrese el numero de telefono del donante: ");
+        
+        Donante persona = new Donante(rut, nombre, edad, tipoSangre, numeroTelefonico);
+        
+        String fecha = lector("Ingrese fecha: ");
+        Donacion donacion = new Donacion(fecha, 1, persona);
+        return donacion;
+    }
+    
+    public void mostrarCampanias(CentroDeSangre centro){
+        System.out.println("El centro " + centro.getNombre() + " tiene campanias en : ");
+        String locaciones [] = centro.conseguirNombresCampanias();
+        int i;
+        for (i = 0; i < locaciones.length; i ++){
+            System.out.println("    - "+ locaciones[i]);
+        }
+    }
+    
+    public void mostrarDonaciones(CentroDeSangre centro){
+        System.out.println("El centro " + centro.getNombre() + " tiene campanias en : ");
+        String locaciones [] = centro.conseguirNombresCampanias();
+        String donantes [];
+        Campania ll;
+        
+        int i, j;
+        for (i = 0; i < locaciones.length; i ++){
+            System.out.println("    - "+ locaciones[i]);
+            ll = centro.buscarCampania(locaciones[i]);
+            donantes = ll.obtenerInfoDonadores();
+            
+            for(j = 0; j < donantes.length; j ++){
+                System.out.println("            - "+ donantes[j]);
+            }
+        }
     }
 }
