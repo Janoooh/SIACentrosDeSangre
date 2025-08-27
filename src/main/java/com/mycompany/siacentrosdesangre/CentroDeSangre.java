@@ -1,9 +1,7 @@
-
 package com.mycompany.siacentrosdesangre;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class CentroDeSangre {
     private String nombre;
@@ -25,24 +23,45 @@ public class CentroDeSangre {
         this.nombre = nombre;
     }
 
-    public void setCampanias(ArrayList<Campania> campanias) {
-        this.campanias = campanias;
+    public void agregarCampania(Campania nuevo) {
+        campanias.add(nuevo);
     }
 
-    public void setStockSangre(HashMap<String, Integer> stockSangre) {
-        this.stockSangre = stockSangre;
+    public void agregarStockSangre(String nombre) {
+        stockSangre.put(nombre, (stockSangre.get(nombre) + 1));
     }
 
+    public void agregarStockSangre(String nombre, int cantidad) {
+        stockSangre.put(nombre, cantidad);
+    }
+    
     public String getNombre() {
         return nombre;
     }
-
-    public ArrayList<Campania> getCampanias() {
-        return campanias;
+    
+    public Integer getStockSangre(String clave) {
+        if(stockSangre.containsKey(clave) == true)
+            return stockSangre.get(clave);
+        else
+            return null;
     }
 
-    public HashMap<String, Integer> getStockSangre() {
-        return stockSangre;
+    public Campania buscarCampania(String nombre) {
+        int i;
+        for(i = 0; i < campanias.size(); i ++){
+            if(nombre.equals(campanias.get(i).getLocalidad()))
+                return campanias.get(i);
+        }
+        return null;
     }
     
+    public String []conseguirNombresCampanias(){
+        String localidades[] = new String[campanias.size()];
+        int i;
+        
+        for (i = 0; i < campanias.size(); i ++){
+            localidades[i] = campanias.get(i).getLocalidad();
+        }
+        return localidades;
+    }
 }

@@ -1,4 +1,3 @@
-
 package com.mycompany.siacentrosdesangre;
 
 public class Donacion {
