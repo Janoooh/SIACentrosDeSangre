@@ -18,7 +18,7 @@ public class SIACentrosDeSangre {
     }
     
     public String[] leerArchivo()throws FileNotFoundException, IOException{
-        String ruta = "C:\\Users\\cokej\\OneDrive\\Escritorio\\ejemplo.txt";
+        String ruta = "tiposDeSangre.txt";
         BufferedReader lector = new BufferedReader(new FileReader(ruta));
         String cadena [] = new String[10];
         String linea = lector.readLine();
