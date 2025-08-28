@@ -7,10 +7,35 @@ public class SIACentrosDeSangre {
     public static void main(String[] args) throws IOException {
         SIACentrosDeSangre sistema = new SIACentrosDeSangre();
         CentroDeSangre centro = sistema.crearCentroSangre();
-       
+        String opLeida;
+        int op;
+        do{
+            System.out.println("SISTEMA DE INFORMACION PARA CENTROS DE SANGRE");
+            System.out.println("=============================================");
+            System.out.println("1# Agregar registros");
+            System.out.println("2# Mostrar registros");
+            System.out.println("3# Cerrar programa");
+            System.out.println("=============================================");
+            opLeida = sistema.lector("Ingrese una opcion:");
+            op = Integer.parseInt(opLeida);
+            
+            switch(op){
+                case 1:
+                    sistema.menuAgregar(centro);
+                    break;
+                case 2:
+                    sistema.menuMostrar(centro);
+                    break;
+                case 3:
+                    break;
+                default:
+                    System.out.println("Opcion invalida.");
+            }
+
+        }while(op != 3);
     }
     
-    public void MenuAgregar(CentroDeSangre centro) throws IOException {
+    public void menuAgregar(CentroDeSangre centro) throws IOException {
         while(true){
             System.out.println("\n===== Menu agregar =====");
             System.out.println("1. Agregar Campania");
@@ -33,16 +58,19 @@ public class SIACentrosDeSangre {
                    System.out.println("Volviendo a menu principal..");
                    return;
                 
+                default:
+                    System.out.println("Opcion invalida.");
             }
         }
     } 
     
-    public void MenuMostrar(CentroDeSangre centro) throws IOException {
+    public void menuMostrar(CentroDeSangre centro) throws IOException {
         while(true){
             System.out.println("\n===== Menu mostrar =====");
             System.out.println("1. Mostrar Campania");
             System.out.println("2. Mostrar Donacion");
-            System.out.println("3. Volver");
+            System.out.println("3. Mostrar stock de sangre del centro.");
+            System.out.println("4. Volver");
             System.out.println("==========================");
             String entrada = lector("Seleccione una opcion: ");
             int opcion = Integer.parseInt(entrada);
@@ -55,10 +83,16 @@ public class SIACentrosDeSangre {
                 case 2:
                     mostrarDonaciones(centro);
                     break;
-                
+                    
                 case 3:
+                    mostrarStockSangre(centro);
+                
+                case 4:
                    System.out.println("Volviendo a menu principal..");
                    return;
+                
+                default:
+                    System.out.println("Opcion invalida.");
                 
             }
         }
