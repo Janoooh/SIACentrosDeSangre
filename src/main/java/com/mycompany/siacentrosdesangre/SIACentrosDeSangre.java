@@ -7,15 +7,63 @@ public class SIACentrosDeSangre {
     public static void main(String[] args) throws IOException {
         SIACentrosDeSangre sistema = new SIACentrosDeSangre();
         CentroDeSangre centro = sistema.crearCentroSangre();
-        sistema.agregarCampania(centro);
-        //sistema.agregarCampania(centro);
-        sistema.crearStockSangre(centro);
-        sistema.mostrarStockSangre(centro);
-        sistema.agregarDonacion(centro);
-        sistema.agregarDonacion(centro);
-        sistema.mostrarDonaciones(centro);
-        sistema.mostrarStockSangre(centro);
+       
     }
+    
+    public void MenuAgregar(CentroDeSangre centro) throws IOException {
+        while(true){
+            System.out.println("\n===== Menu agregar =====");
+            System.out.println("1. Agregar Campania");
+            System.out.println("2. Agregar Donacion");
+            System.out.println("3. Volver");
+            System.out.println("==========================");
+            String entrada = lector("Seleccione una opcion: ");
+            int opcion = Integer.parseInt(entrada);
+            
+            switch(opcion){
+                case 1:
+                    agregarCampania(centro);
+                    break;
+                
+                case 2:
+                    agregarDonacion(centro);
+                    break;
+                
+                case 3:
+                   System.out.println("Volviendo a menu principal..");
+                   return;
+                
+            }
+        }
+    } 
+    
+    public void MenuMostrar(CentroDeSangre centro) throws IOException {
+        while(true){
+            System.out.println("\n===== Menu mostrar =====");
+            System.out.println("1. Mostrar Campania");
+            System.out.println("2. Mostrar Donacion");
+            System.out.println("3. Volver");
+            System.out.println("==========================");
+            String entrada = lector("Seleccione una opcion: ");
+            int opcion = Integer.parseInt(entrada);
+            
+            switch(opcion){
+                case 1:
+                    mostrarCampanias(centro);
+                    break;
+                
+                case 2:
+                    mostrarDonaciones(centro);
+                    break;
+                
+                case 3:
+                   System.out.println("Volviendo a menu principal..");
+                   return;
+                
+            }
+        }
+    } 
+    
     
     public String[] leerArchivo()throws FileNotFoundException, IOException{
         String ruta = "tiposDeSangre.txt";
