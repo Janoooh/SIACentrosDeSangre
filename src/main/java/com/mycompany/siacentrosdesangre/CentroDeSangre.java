@@ -28,11 +28,11 @@ public class CentroDeSangre {
     }
 
     public void agregarStockSangre(String nombre) {
-        stockSangre.put(nombre, (stockSangre.get(nombre) + 1));
+        stockSangre.put(nombre, 0);
     }
 
     public void agregarStockSangre(String nombre, int cantidad) {
-        stockSangre.put(nombre, cantidad);
+        stockSangre.put(nombre, (stockSangre.get(nombre) + cantidad));
     }
     
     public String getNombre() {

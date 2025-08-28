@@ -7,6 +7,7 @@ public class SIACentrosDeSangre {
     public static void main(String[] args) throws IOException {
         SIACentrosDeSangre sistema = new SIACentrosDeSangre();
         CentroDeSangre centro = sistema.crearCentroSangre();
+        sistema.crearStockSangre(centro);
         String opLeida;
         int op;
         do{
@@ -138,7 +139,7 @@ public class SIACentrosDeSangre {
         int i;
         String cadena[] = leerArchivo();
         for(i= 0; cadena[i] != null ; i ++){
-            centro.agregarStockSangre(cadena[i], 0);
+            centro.agregarStockSangre(cadena[i]);
         }
     }
     
