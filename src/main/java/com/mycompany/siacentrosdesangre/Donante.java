@@ -5,15 +5,15 @@ public class Donante {
     private String nombre;
     private int edad;
     private String tipoSangre;
-    private String numeroTelefonico;
+    private String telefono;
     
     
-    public Donante(String rut, String nombre, int edad, String tipoSangre, String numeroTelefonico){
+    public Donante(String rut, String nombre, int edad, String tipoSangre, String telefono){
         this.rut = rut;
         this.nombre = nombre;
         this.edad = edad;
         this.tipoSangre = tipoSangre;
-        this.numeroTelefonico = numeroTelefonico;
+        this.telefono = telefono;
     }
 
     public void setRut(String rut) {
@@ -32,8 +32,8 @@ public class Donante {
         this.tipoSangre = tipoSangre;
     }
 
-    public void setNumeroTelefonico(String numeroTelefonico) {
-        this.numeroTelefonico = numeroTelefonico;
+    public void setNumeroTelefonico(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getRut() {
@@ -53,6 +53,10 @@ public class Donante {
     }
 
     public String getNumeroTelefonico() {
-        return numeroTelefonico;
+        return telefono;
+    }
+    public void mostrarDonante(){
+        System.out.println("Rut:"+rut+"   Nombre:"+nombre+"   Edad:"+edad);
+        System.out.println("Tipo Sangre:"+tipoSangre+"    Telefono:"+telefono);
     }
 }

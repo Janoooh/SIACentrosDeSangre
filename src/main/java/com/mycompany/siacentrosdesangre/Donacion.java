@@ -2,38 +2,43 @@ package com.mycompany.siacentrosdesangre;
 
 
 public class Donacion {
+    private int id;
     private String fecha;
-    private int cantidad;
     private Donante donador;
     
-    public Donacion(String fecha, int cantidad, Donante donador){
+    public Donacion(int id, String fecha, Donante donador){
+        this.id = id;
         this.fecha = fecha;
-        this.cantidad = cantidad;
         this.donador = donador;
+    }
+    
+    public void setId(int id){
+        this.id = id;
     }
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     public void setDonador(Donante donador) {
         this.donador = donador;
     }
 
+    public int getId(){
+        return id;
+    }
+    
     public String getFecha() {
         return fecha;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
     public Donante getDonador() {
         return donador;
+    }
+    
+    public void mostrarDonacion(){
+        System.out.println("Donacion ID "+id+"     Fecha:"+fecha);
+        donador.mostrarDonante();
     }
 }
     

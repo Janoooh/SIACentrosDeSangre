@@ -10,7 +10,7 @@ public class Controlador {
     public void iniciar()throws IOException{
         CentroDeSangre centro = this.crearCentroSangre();
         Menu menuPrincipal = new Menu();
-        this.crearStockSangre(centro);
+        centro.crearStockSangre();
         menuPrincipal.mostrarMenuPrincipal(this,centro);
     }
     
@@ -19,7 +19,7 @@ public class Controlador {
         return centro;
     }
     
-    public void crearStockSangre(CentroDeSangre centro) throws IOException{
+    /*public void crearStockSangre(CentroDeSangre centro) throws IOException{
         int i;
         String cadena[] = Herramientas.leerArchivo();
         for(i= 0; cadena[i] != null ; i ++){
@@ -33,31 +33,25 @@ public class Controlador {
         for(i= 0; cadena[i] != null ; i ++){
             System.out.println(cadena[i] + " " + centro.getStockSangre(cadena[i]));
         }
-    }
+    }*/
     
-    public void agregarCampania(CentroDeSangre centro) throws IOException{
-        String localidad = Herramientas.lector("ingrese localidad de la campania : ");
-        Campania buscado = centro.buscarCampania(localidad);
+    /*public void agregarCampania(CentroDeSangre centro) throws IOException{
+        int id;
+        String localidad;
+        id = Integer.parseInt(Herramientas.lector("Ingrese ID para campania : "));
+        localidad = Herramientas.lector("Ingrese localidad de la campania : ");
+        Campania buscado = centro.buscarCampania(id);
         if(buscado == null){
-            Campania nuevo= new Campania(localidad);
+            Campania nuevo= new Campania(id ,localidad);
             centro.agregarCampania(nuevo);
         }
-    }
+    }*/
     
-    public void mostrarCampanias(CentroDeSangre centro){
-        System.out.println("El centro " + centro.getNombre() + " tiene campanias en : ");
-        String locaciones [] = centro.conseguirNombresCampanias();
-        int i;
-        for (i = 0; i < locaciones.length; i ++){
-            System.out.println("    - "+ locaciones[i]);
-        }
-    }
-    
-    public void agregarDonacion(CentroDeSangre centro) throws IOException{
-        String aux = Herramientas.lector("ingrese la locacion de la campania : ");
+    /*public void agregarDonacion(CentroDeSangre centro) throws IOException{
+        String aux = Herramientas.lector("Ingrese la locacion de la campania : ");
         Campania camp = centro.buscarCampania(aux);
         if(camp != null){
-            aux = Herramientas.lector("ingrese el rut del donante : ");
+            aux = Herramientas.lector("Ingrese el rut del donante : ");
             Donacion donante = camp.buscarDonacion(aux);
             if(donante == null){
                 Donacion nuevo = crearDonacion(aux);
@@ -65,27 +59,29 @@ public class Controlador {
                 centro.agregarStockSangre(nuevo.getDonador().getTipoSangre(), 1);
             }
         }
-    }
+    }*/
     
-    public Donacion crearDonacion(String rut) throws IOException{
+    /*public Donacion crearDonacion(String rut) throws IOException{
+        String idLeida = Herramientas.lector("Ingrese ID: ");
+        String fecha = Herramientas.lector("Ingrese fecha: ");
         String nombre = Herramientas.lector("Ingrese el nombre del donante: ");
-        int edad = Integer.parseInt(Herramientas.lector("ingrese la edad del donante: "));
+        int edad = Integer.parseInt(Herramientas.lector("Ingrese la edad del donante: "));
         String tipoSangre = Herramientas.lector("Ingrese el tipo de sangre del donante: ");
         String numeroTelefonico = Herramientas.lector("Ingrese el numero de telefono del donante: ");
         
         Donante persona = new Donante(rut, nombre, edad, tipoSangre, numeroTelefonico);
         
-        String fecha = Herramientas.lector("Ingrese fecha: ");
-        Donacion donacion = new Donacion(fecha, 1, persona);
+        Donacion donacion = new Donacion(Integer.parseInt(idLeida), fecha, persona);
         return donacion;
     }
+*/
     
-    public void mostrarDonaciones(CentroDeSangre centro){
+    /*public void mostrarDonaciones(CentroDeSangre centro){
         System.out.println("El centro " + centro.getNombre() + " tiene campanias en : ");
         String locaciones [] = centro.conseguirNombresCampanias();
         String donantes [];
         Campania ll;
-        
+    
         int i, j;
         for (i = 0; i < locaciones.length; i ++){
             System.out.println("    - "+ locaciones[i]);
@@ -96,7 +92,7 @@ public class Controlador {
                 System.out.println("            - "+ donantes[j]);
             }
         }
-    }
+    }*/
 }
     
 

@@ -51,11 +51,11 @@ public void menuAgregar(Controlador controlador, CentroDeSangre centro) throws I
             
             switch(opcion){
                 case 1:
-                    controlador.agregarCampania(centro);
+                    centro.agregarCampaniaNueva();
                     break;
                 
                 case 2:
-                    controlador.agregarDonacion(centro);
+                    centro.agregarDonacion();
                     break;
                 
                 case 3:
@@ -83,16 +83,17 @@ public void menuMostrar(Controlador controlador, CentroDeSangre centro) throws I
             
             switch(opcion){
                 case 1:
-                    controlador.mostrarCampanias(centro);
+                    centro.mostrarCampanias();
                     break;
                 
                 case 2:
-                    controlador.mostrarDonaciones(centro);
+                    centro.mostrarDonacionesDeCampanias();
                     break;
                     
                 case 3:
-                    controlador.mostrarStockSangre(centro);
-                
+                    centro.mostrarStockSangre(centro);
+                    break;
+                    
                 case 4:
                    System.out.println("Volviendo a menu principal..");
                    return;

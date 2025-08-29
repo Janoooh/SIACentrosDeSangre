@@ -24,7 +24,7 @@ public class Herramientas {
     }
     
     public static String lector(String mensaje) throws IOException{
-        System.out.println(mensaje);
+        System.out.print(mensaje);
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         String cadena = lector.readLine();
         return cadena;
