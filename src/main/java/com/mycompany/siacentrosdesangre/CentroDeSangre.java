@@ -1,5 +1,6 @@
 package com.mycompany.siacentrosdesangre;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -64,4 +65,23 @@ public class CentroDeSangre {
         }
         return localidades;
     }
+    public  CentroDeSangre crearCentroSangre() throws IOException{
+        CentroDeSangre centro = new CentroDeSangre(Herramientas.lector("Ingrese nombre del nuevo centro de sangre : "));
+        return centro;
+    }
+    public void crearStockSangre(CentroDeSangre centro) throws IOException{
+        int i;
+        String cadena[] = Herramientas.leerArchivo();
+        for(i= 0; cadena[i] != null ; i ++){
+            centro.agregarStockSangre(cadena[i]);
+        }
+    }
+    public void mostrarStockSangre(CentroDeSangre centro) throws IOException{
+        int i;
+        String cadena[] = Herramientas.leerArchivo();
+        for(i= 0; cadena[i] != null ; i ++){
+            System.out.println(cadena[i] + " " + centro.getStockSangre(cadena[i]));
+        }
+    }
 }
+

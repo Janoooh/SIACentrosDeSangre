@@ -1,5 +1,6 @@
 package com.mycompany.siacentrosdesangre;
 
+
 public class Donacion {
     private String fecha;
     private int cantidad;
@@ -34,5 +35,5 @@ public class Donacion {
     public Donante getDonador() {
         return donador;
     }
-    
 }
+    
