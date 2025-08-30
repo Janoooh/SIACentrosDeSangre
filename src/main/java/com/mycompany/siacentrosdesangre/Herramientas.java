@@ -6,21 +6,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Herramientas {
     
-    public static String[] leerArchivo()throws FileNotFoundException, IOException{
+    public static ArrayList<String> leerArchivo()throws FileNotFoundException, IOException{
+        int nLineas, x;
         String ruta = "tiposDeSangre.txt";
         BufferedReader lector = new BufferedReader(new FileReader(ruta));
-        String cadena [] = new String[10];
+        ArrayList<String> datosArchivo = new ArrayList<>();
         String linea = lector.readLine();
-        int i = 0;
         while (linea != null) {
-            cadena[i] = linea;
+            datosArchivo.add(linea);
             linea = lector.readLine();
-            i ++;
         }
-        return cadena;
+        
+        return datosArchivo;
     }
     
     public static String lector(String mensaje) throws IOException{

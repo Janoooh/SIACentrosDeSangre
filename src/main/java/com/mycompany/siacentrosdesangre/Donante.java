@@ -56,7 +56,7 @@ public class Donante {
         return telefono;
     }
     public void mostrarDonante(){
-        System.out.println("Rut:"+rut+"   Nombre:"+nombre+"   Edad:"+edad);
-        System.out.println("Tipo Sangre:"+tipoSangre+"    Telefono:"+telefono);
+        System.out.println("Rut: "+rut+"   Nombre: "+nombre+"   Edad: "+edad);
+        System.out.println("Tipo Sangre: "+tipoSangre+"    Telefono: "+telefono);
     }
 }

@@ -60,32 +60,18 @@ public class CentroDeSangre {
         Campania aux;
         String localCamp;
         int x, idCamp;
-        System.out.println("El centro " + nombre + " tiene campanias en : ");
+        if(campanias.isEmpty())
+            System.out.println("No existen campanias en el centro de sangre.");
+        else
+            System.out.println("\nEl centro " + nombre + " tiene campanias en : ");
+        
         for(x = 0; x < campanias.size() ; x++){
             aux = campanias.get(x);
             idCamp = aux.getId();
             localCamp = aux.getLocalidad();
-            System.out.println(idCamp + "   - "+ localCamp);
+            System.out.println("Campania en "+localCamp + "   -  ID "+ idCamp);
         }
     }
-    
-    /*public void mostrarDonaciones(){
-        int x, y;
-        
-        System.out.println("El centro " + nombre + " tiene campanias en : ");
-        
-        
-        
-        for (x = 0; x < campanias.size(); x++){
-            System.out.println("    - "+ locaciones[i]);
-            ll = centro.buscarCampania(locaciones[i]);
-            donantes = ll.obtenerInfoDonadores();
-            
-            for(y = 0; y < donantes.length; y ++){
-                System.out.println("            - "+ donantes[j]);
-            }
-        }
-    }*/
     
     public String []conseguirNombresCampanias(){
         String localidades[] = new String[campanias.size()];
@@ -100,25 +86,31 @@ public class CentroDeSangre {
         CentroDeSangre centro = new CentroDeSangre(Herramientas.lector("Ingrese nombre del nuevo centro de sangre : "));
         return centro;
     }
-    public void crearStockSangre(CentroDeSangre centro) throws IOException{
-        int i;
-        String cadena[] = Herramientas.leerArchivo();
-        for(i= 0; cadena[i] != null ; i ++){
-            centro.agregarStockSangre(cadena[i]);
+    public void crearStockSangre() throws IOException{
+        int x;
+        ArrayList<String> datosArchivo = Herramientas.leerArchivo();
+        for(x = 0; x < datosArchivo.size() ; x ++){
+            this.agregarStockSangre(datosArchivo.get(x));
         }
     }
     public void mostrarStockSangre(CentroDeSangre centro) throws IOException{
         int i;
-        String cadena[] = Herramientas.leerArchivo();
-        for(i= 0; cadena[i] != null ; i ++){
-            System.out.println(cadena[i] + " " + centro.getStockSangre(cadena[i]));
+        ArrayList<String> datosArchivo = Herramientas.leerArchivo();
+        String sangre;
+        for(i= 0; i < datosArchivo.size() ; i ++){
+            sangre = datosArchivo.get(i);
+            System.out.println(sangre + " " + this.getStockSangre(sangre));
         }
     }
     
     public void mostrarDonacionesDeCampanias(){
         int x;
         Campania aux;
-        System.out.println(campanias.size());
+        if(campanias.isEmpty())
+            System.out.println("No existen campanias en el centro de sangre.");
+        else
+            System.out.println("Donaciones por campania.\n");
+        
         for(x = 0; x < campanias.size() ; x++){
             aux = campanias.get(x);
             aux.mostrarDonaciones();
@@ -126,8 +118,8 @@ public class CentroDeSangre {
     }
     
     public Donacion crearDonacion(String rut) throws IOException{
-        String idLeida = Herramientas.lector("Ingrese ID: ");
-        String fecha = Herramientas.lector("Ingrese fecha: ");
+        String idLeida = Herramientas.lector("Ingrese ID de donacion(Numerica): ");
+        String fecha = Herramientas.lector("Ingrese fecha de la donacion: ");
         String nombre = Herramientas.lector("Ingrese el nombre del donante: ");
         int edad = Integer.parseInt(Herramientas.lector("Ingrese la edad del donante: "));
         String tipoSangre = Herramientas.lector("Ingrese el tipo de sangre del donante: ");
@@ -140,7 +132,7 @@ public class CentroDeSangre {
     }
     
     public void agregarDonacion() throws IOException{
-        String idLeida = Herramientas.lector("Ingrese la ID de la campania : ");
+        String idLeida = Herramientas.lector("Ingrese la ID de la campania(Numerica): ");
         String rutLeido;
         Donacion donante, nuevo;
         Campania camp = this.buscarCampania(Integer.parseInt(idLeida));
@@ -158,7 +150,7 @@ public class CentroDeSangre {
     public void agregarCampaniaNueva() throws IOException{
         int id;
         String localidad;
-        id = Integer.parseInt(Herramientas.lector("Ingrese ID para campania : "));
+        id = Integer.parseInt(Herramientas.lector("Ingrese ID para campania(Numerica): "));
         localidad = Herramientas.lector("Ingrese localidad de la campania : ");
         Campania buscado = buscarCampania(id);
         if(buscado == null){
@@ -166,21 +158,6 @@ public class CentroDeSangre {
             agregarCampania(nuevo);
         }
     }
-    
-    public void crearStockSangre() throws IOException{
-        int i;
-        String cadena[] = Herramientas.leerArchivo();
-        for(i= 0; cadena[i] != null ; i ++){
-            agregarStockSangre(cadena[i]);
-        }
-    }
-    
-    public void mostrarStockSangre() throws IOException{
-        int i;
-        String cadena[] = Herramientas.leerArchivo();
-        for(i= 0; cadena[i] != null ; i ++){
-            System.out.println(cadena[i] + " " + getStockSangre(cadena[i]));
-        }
-    }
+ 
 }
 

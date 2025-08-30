@@ -37,7 +37,7 @@ public class Donacion {
     }
     
     public void mostrarDonacion(){
-        System.out.println("Donacion ID "+id+"     Fecha:"+fecha);
+        System.out.println("\nDonacion ID "+id+"     Fecha:"+fecha);
         donador.mostrarDonante();
     }
 }

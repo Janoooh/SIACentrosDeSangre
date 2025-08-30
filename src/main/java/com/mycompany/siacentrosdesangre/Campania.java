@@ -15,7 +15,7 @@ public class Campania {
         this.localidad = localidad;
         this.donaciones = new ArrayList<>();
     }
-
+ 
     public void setId(int id){
         this.id = id;
     }
@@ -48,7 +48,7 @@ public class Campania {
     public void mostrarDonaciones(){
         int x;
         Donacion aux;
-        System.out.println("Campania "+id+" - Localidad "+localidad);
+        System.out.println("\nCampania en "+localidad+" - ID "+id);
         if(donaciones.isEmpty())
             System.out.println("No existen donaciones en esta campania.");
         
@@ -57,18 +57,6 @@ public class Campania {
             aux.mostrarDonacion();
             
         }
-    }
-    
-    public String[] obtenerInfoDonadores(){
-        String info[] = new String [donaciones.size()];
-        int i;
-        
-        for (i = 0; i < donaciones.size(); i ++){
-            info[i] = "Fecha: " + donaciones.get(i).getFecha()+ " Nombre: " + donaciones.get(i).getDonador().getNombre() + "\n" + 
-                    "              Rut : " + donaciones.get(i).getDonador().getRut() + " Tipo de sangre : " + donaciones.get(i).getDonador().getTipoSangre() + "\n" +
-                    "              Numero de telefono: " + donaciones.get(i).getDonador().getNumeroTelefonico();
-        }
-        return info;
     }
     
 }
