@@ -103,14 +103,14 @@ public class CentroDeSangre {
     }
     public void crearStockSangre() throws IOException{
         int x;
-        ArrayList<String> datosArchivo = Herramientas.leerArchivo();
+        ArrayList<String> datosArchivo = Herramientas.leerArchivo("tiposDeSangre.txt");
         for(x = 0; x < datosArchivo.size() ; x ++){
             this.agregarStockSangre(datosArchivo.get(x));
         }
     }
     public void mostrarStockSangre(CentroDeSangre centro) throws IOException{
         int i;
-        ArrayList<String> datosArchivo = Herramientas.leerArchivo();
+        ArrayList<String> datosArchivo = Herramientas.leerArchivo("tiposDeSangre.txt");
         String sangre;
         for(i= 0; i < datosArchivo.size() ; i ++){
             sangre = datosArchivo.get(i);
@@ -134,7 +134,7 @@ public class CentroDeSangre {
     
     public Donacion crearDonacion(String rut) throws IOException{
         String idLeida = Herramientas.lector("Ingrese ID de donacion(Numerica): ");
-        String fecha = Herramientas.lector("Ingrese fecha de la donacion: ");
+        String fecha = Herramientas.lector("Ingrese fecha de la donacion(Formato DD/MM/AAAA): ");
         String nombre = Herramientas.lector("Ingrese el nombre del donante: ");
         int edad = Integer.parseInt(Herramientas.lector("Ingrese la edad del donante: "));
         String tipoSangre = Herramientas.lector("Ingrese el tipo de sangre del donante: ");
@@ -149,6 +149,7 @@ public class CentroDeSangre {
         return donacion;
     }
     
+    //Metodo para agregar una donacion nueva que sera ingresada por el usuario.
     public void agregarDonacion() throws IOException{
         String idLeida = Herramientas.lector("Ingrese la ID de la campania(Numerica): ");
         String rutLeido;
@@ -160,10 +161,25 @@ public class CentroDeSangre {
             if(donante == null){
                 nuevo = crearDonacion(rutLeido);
                 camp.agregarDonacion(nuevo);
-                agregarStockSangre(nuevo.getDonador().getTipoSangre(), 1);
+                this.agregarStockSangre(nuevo.getDonador().getTipoSangre(), 1);
+            }else{
+                System.out.println("El rut ingresado ya existe.");
             }
         }else{
             System.out.println("La campania con id "+idLeida+" no existe.");
+        }
+    }
+    
+    //Metodo para agregar una donacion que ya se encuentra registrada en el txt
+    public void agregarDonacion(Donacion nueva, int id, String tipoSangre){
+        Campania aux;
+        int x;
+        for(x = 0; x < campanias.size(); x++){
+            aux = campanias.get(x);
+            if(id == aux.getId()){
+                aux.agregarDonacion(nueva);
+                this.agregarStockSangre(tipoSangre, 1);
+            }
         }
     }
     

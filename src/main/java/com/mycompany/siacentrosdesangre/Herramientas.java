@@ -10,9 +10,8 @@ import java.util.ArrayList;
 
 public class Herramientas {
     
-    public static ArrayList<String> leerArchivo()throws FileNotFoundException, IOException{
+    public static ArrayList<String> leerArchivo(String ruta)throws FileNotFoundException, IOException{
         int nLineas, x;
-        String ruta = "tiposDeSangre.txt";
         BufferedReader lector = new BufferedReader(new FileReader(ruta));
         ArrayList<String> datosArchivo = new ArrayList<>();
         String linea = lector.readLine();
@@ -22,6 +21,32 @@ public class Herramientas {
         }
         
         return datosArchivo;
+    }
+    
+    public static void cargarDatos(CentroDeSangre centro, String ruta)throws IOException{
+        ArrayList<String> datos = Herramientas.leerArchivo(ruta);
+        Campania auxCampania;
+        Donacion auxDonacion;
+        Donante auxDonante;
+        String[] datosLinea;
+        int x = 1; //Parte en 1 por que el 0 es el nombre del centro.
+        centro.setNombre(datos.get(0));
+        
+        while(!datos.get(x).equals("DONACIONES")){
+            datosLinea = datos.get(x).split("\\*");
+            auxCampania = new Campania(Integer.parseInt(datosLinea[0]), datosLinea[1]);
+            centro.agregarCampania(auxCampania);
+            x++;
+        }
+        x++;//Pasamos la linea que dice DONACIONES
+        while(!datos.get(x).equals("FIN")){
+            datosLinea = datos.get(x).split("\\*");
+            auxDonante = new Donante(datosLinea[2],datosLinea[3],Integer.parseInt(datosLinea[4]),datosLinea[5],datosLinea[6]);
+            auxDonacion = new Donacion(Integer.parseInt(datosLinea[0]),datosLinea[1],auxDonante);
+            centro.agregarDonacion(auxDonacion,Integer.parseInt(datosLinea[7]),datosLinea[5]);
+            x++;
+        }
+        
     }
     
     public static String lector(String mensaje) throws IOException{
