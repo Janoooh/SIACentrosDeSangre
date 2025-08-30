@@ -55,6 +55,17 @@ public class Donante {
     public String getNumeroTelefonico() {
         return telefono;
     }
+    
+    public String[] getDatosDonante(){
+        String[] datos = new String[5];
+        datos[0] = rut;
+        datos[1] = nombre;
+        datos[2] = String.valueOf(edad);
+        datos[3] = tipoSangre;
+        datos[4] = telefono;
+        return datos;
+    }
+    
     public void mostrarDonante(){
         System.out.println("Rut: "+rut+"   Nombre: "+nombre+"   Edad: "+edad);
         System.out.println("Tipo Sangre: "+tipoSangre+"    Telefono: "+telefono);

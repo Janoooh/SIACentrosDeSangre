@@ -36,6 +36,21 @@ public class Donacion {
         return donador;
     }
     
+    public String[] getDatosDonacionCompleta(){
+        String[] datos = new String[7];
+        String[] datosDonante;
+        datosDonante = donador.getDatosDonante();
+        datos[0] = String.valueOf(id);
+        datos[1] = fecha;
+        datos[2] = datosDonante[0];
+        datos[3] = datosDonante[1];
+        datos[4] = datosDonante[2];
+        datos[5] = datosDonante[3];
+        datos[6] = datosDonante[4];
+        
+        return datos;
+    }
+    
     public void mostrarDonacion(){
         System.out.println("\nDonacion ID "+id+"     Fecha:"+fecha);
         donador.mostrarDonante();

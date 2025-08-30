@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class CentroDeSangre {
     private String nombre;
     private ArrayList<Campania> campanias;
@@ -152,7 +153,8 @@ public class CentroDeSangre {
     //Metodo para agregar una donacion nueva que sera ingresada por el usuario.
     public void agregarDonacion() throws IOException{
         String idLeida = Herramientas.lector("Ingrese la ID de la campania(Numerica): ");
-        String rutLeido;
+        String rutLeido, cadena;
+        String[] dDonacion;
         Donacion donante, nuevo;
         Campania camp = this.buscarCampania(Integer.parseInt(idLeida));
         if(camp != null){
@@ -161,6 +163,10 @@ public class CentroDeSangre {
             if(donante == null){
                 nuevo = crearDonacion(rutLeido);
                 camp.agregarDonacion(nuevo);
+                dDonacion = nuevo.getDatosDonacionCompleta(); 
+                cadena = dDonacion[0]+"*"+dDonacion[1]+"*"+dDonacion[2]+"*"+dDonacion[3]+"*"+dDonacion[4]+"*"+dDonacion[5]+"*"+dDonacion[6]+"*"+idLeida;
+                Herramientas.guardarEnArchivo(cadena, "datosDonaciones.txt");
+                System.out.println("Donacion agregada correctamente al sistema.");
                 this.agregarStockSangre(nuevo.getDonador().getTipoSangre(), 1);
             }else{
                 System.out.println("El rut ingresado ya existe.");
@@ -185,13 +191,16 @@ public class CentroDeSangre {
     
     public void agregarCampaniaNueva() throws IOException{
         int id;
-        String localidad;
+        String localidad, cadena;
         id = Integer.parseInt(Herramientas.lector("Ingrese ID para campania(Numerica): "));
         localidad = Herramientas.lector("Ingrese localidad de la campania : ");
         Campania buscado = buscarCampania(id);
         if(buscado == null){
             Campania nuevo= new Campania(id ,localidad);
-            agregarCampania(nuevo);
+            this.agregarCampania(nuevo);
+            cadena = id + "*" + localidad;
+            Herramientas.guardarEnArchivo(cadena, "datosCampania.txt");
+            System.out.println("Campania agregadda correctamente al sistema.");
         }
     }
  

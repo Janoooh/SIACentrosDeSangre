@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class Herramientas {
@@ -23,23 +25,28 @@ public class Herramientas {
         return datosArchivo;
     }
     
-    public static void cargarDatos(CentroDeSangre centro, String ruta)throws IOException{
-        ArrayList<String> datos = Herramientas.leerArchivo(ruta);
+    public static void cargarDatos(CentroDeSangre centro, String rutaCamp, String rutaDona)throws IOException{
+        ArrayList<String> datos;
+        datos = Herramientas.leerArchivo(rutaCamp);
         Campania auxCampania;
         Donacion auxDonacion;
         Donante auxDonante;
         String[] datosLinea;
         int x = 1; //Parte en 1 por que el 0 es el nombre del centro.
+        //Lectura del nombre del centro de sangre.
         centro.setNombre(datos.get(0));
-        
-        while(!datos.get(x).equals("DONACIONES")){
+        //Lectura de las campanias.
+        while(x < datos.size()){
             datosLinea = datos.get(x).split("\\*");
             auxCampania = new Campania(Integer.parseInt(datosLinea[0]), datosLinea[1]);
             centro.agregarCampania(auxCampania);
             x++;
         }
-        x++;//Pasamos la linea que dice DONACIONES
-        while(!datos.get(x).equals("FIN")){
+        
+        //Lectura de las donaciones
+        datos = Herramientas.leerArchivo(rutaDona);
+        x = 0;//Reiniciamos el indice.
+        while(x < datos.size()){
             datosLinea = datos.get(x).split("\\*");
             auxDonante = new Donante(datosLinea[2],datosLinea[3],Integer.parseInt(datosLinea[4]),datosLinea[5],datosLinea[6]);
             auxDonacion = new Donacion(Integer.parseInt(datosLinea[0]),datosLinea[1],auxDonante);
@@ -47,6 +54,13 @@ public class Herramientas {
             x++;
         }
         
+    }
+    
+    public static void guardarEnArchivo(String linea, String ruta)throws IOException{
+        BufferedWriter escritor = new BufferedWriter(new FileWriter(ruta,true));
+        escritor.newLine();
+        escritor.write(linea);
+        escritor.close();
     }
     
     public static String lector(String mensaje) throws IOException{
