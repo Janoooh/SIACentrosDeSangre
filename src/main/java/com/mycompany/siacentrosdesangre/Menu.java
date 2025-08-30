@@ -10,12 +10,12 @@ public class Menu {
         int op = 0;
 
         do {
-            System.out.println("\nSISTEMA DE INFORMACION PARA CENTROS DE SANGRE");
-            System.out.println("=============================================");
-            System.out.println("1. Agregar registros");
-            System.out.println("2. Mostrar registros");
-            System.out.println("3. Cerrar programa");
-            System.out.println("=============================================");
+            System.out.println("\nSISTEMA DE INFORMACION CENTRO DE SANGRE "+centro.getNombre().toUpperCase());
+            System.out.println("===================================================");
+            System.out.println("1. Agregar registros.");
+            System.out.println("2. Mostrar registros.");
+            System.out.println("3. Cerrar programa.");
+            System.out.println("===================================================");
 
 
             opLeida = Herramientas.lector("Ingrese una opcion: ");
@@ -40,12 +40,13 @@ public class Menu {
 
     public void menuAgregar(CentroDeSangre centro) throws IOException {
         while(true){
-            System.out.println("\n=========    AGREGAR REGISTRO    ==========");
-            System.out.println("=============================================");
-            System.out.println("1. Agregar Campania");
-            System.out.println("2. Agregar Donacion");
-            System.out.println("3. Volver");
-            System.out.println("=============================================");
+            System.out.println("\n=========    AGREGAR REGISTRO    ================");
+            System.out.println("===================================================");
+            System.out.println("1. Agregar Campania.");
+            System.out.println("2. Agregar Donacion.");
+            System.out.println("3. Agregar sangre al inventario.");
+            System.out.println("4. Volver.");
+            System.out.println("===================================================");
             String entrada = Herramientas.lector("Seleccione una opcion: ");
             int opcion = Integer.parseInt(entrada);
 
@@ -59,6 +60,10 @@ public class Menu {
                     break;
 
                 case 3:
+                    centro.agregarSangre();
+                    break;
+                    
+                case 4:
                    System.out.println("Volviendo a menu principal..");
                    return;
 
@@ -71,13 +76,13 @@ public class Menu {
 
     public void menuMostrar(CentroDeSangre centro) throws IOException {
         while(true){
-            System.out.println("\n========    MOSTRAR REGISTROS    ==========");
-            System.out.println("=============================================");
-            System.out.println("1. Mostrar Campania");
-            System.out.println("2. Mostrar Donacion");
+            System.out.println("\n========    MOSTRAR REGISTROS    ================");
+            System.out.println("===================================================");
+            System.out.println("1. Mostrar Campania.");
+            System.out.println("2. Mostrar Donacion.");
             System.out.println("3. Mostrar stock de sangre del centro.");
-            System.out.println("4. Volver");
-            System.out.println("=============================================");
+            System.out.println("4. Volver.");
+            System.out.println("===================================================");
             String entrada = Herramientas.lector("Seleccione una opcion: ");
             int opcion = Integer.parseInt(entrada);
 

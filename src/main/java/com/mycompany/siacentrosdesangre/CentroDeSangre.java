@@ -33,7 +33,7 @@ public class CentroDeSangre {
     }
 
     public void agregarStockSangre(String nombre, int cantidad) {
-        stockSangre.put(nombre, (stockSangre.get(nombre) + cantidad));
+        stockSangre.put(nombre.toUpperCase(), (stockSangre.get(nombre.toUpperCase()) + cantidad));
     }
     
     public String getNombre() {
@@ -45,6 +45,21 @@ public class CentroDeSangre {
             return stockSangre.get(clave);
         else
             return null;
+    }
+    
+    public void agregarSangre()throws IOException{
+        int nSangres;
+        String tipoSangre;
+        tipoSangre = Herramientas.lector("Ingrese el tipo de sangre: ");
+        while(!stockSangre.containsKey(tipoSangre.toUpperCase()))
+            tipoSangre = Herramientas.lector("El tipo de sangre no existe, ingrese un tipo correcto: ");
+        
+        nSangres = Integer.parseInt(Herramientas.lector("Ingrese la cantidad de bolsas de sangre: "));
+        if(nSangres <= 0)
+            System.out.println("El valor ingresado es invalido.");
+        else
+            this.agregarStockSangre(tipoSangre, nSangres);
+         
     }
 
     public Campania buscarCampania(int id) {
@@ -123,6 +138,9 @@ public class CentroDeSangre {
         String nombre = Herramientas.lector("Ingrese el nombre del donante: ");
         int edad = Integer.parseInt(Herramientas.lector("Ingrese la edad del donante: "));
         String tipoSangre = Herramientas.lector("Ingrese el tipo de sangre del donante: ");
+        while(!stockSangre.containsKey(tipoSangre.toUpperCase()))
+            tipoSangre = Herramientas.lector("El tipo de sangre no existe, ingrese un tipo correcto: ");
+        
         String numeroTelefonico = Herramientas.lector("Ingrese el numero de telefono del donante: ");
         
         Donante persona = new Donante(rut, nombre, edad, tipoSangre, numeroTelefonico);
@@ -144,6 +162,8 @@ public class CentroDeSangre {
                 camp.agregarDonacion(nuevo);
                 agregarStockSangre(nuevo.getDonador().getTipoSangre(), 1);
             }
+        }else{
+            System.out.println("La campania con id "+idLeida+" no existe.");
         }
     }
     
