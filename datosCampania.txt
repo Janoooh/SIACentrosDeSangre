@@ -4,3 +4,4 @@ Puppy
 15*Viña del mar
 40*Casablanca
 22*Santiago
+369*Puerto Montt

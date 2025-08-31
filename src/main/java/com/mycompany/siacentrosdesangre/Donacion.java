@@ -36,6 +36,9 @@ public class Donacion {
         return donador;
     }
     
+    /*Metodo getDatosDonacionCompleta: Encargado de retornar un
+    arreglo de String con toda la informacion de la donacion, osea,
+    los datos del donante tambien se guardan uno a uno en el arreglo.*/
     public String[] getDatosDonacionCompleta(){
         String[] datos = new String[7];
         String[] datosDonante;
@@ -51,6 +54,8 @@ public class Donacion {
         return datos;
     }
     
+    /*Metodo mostrarDonacion: Encargado de mostrar la id y fecha de la
+    donacion, ademas de la informacion del donante.*/
     public void mostrarDonacion(){
         System.out.println("\nDonacion ID "+id+"     Fecha:"+fecha);
         donador.mostrarDonante();

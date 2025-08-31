@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class Herramientas {
     
+    /*Metodo leerArchivo: Encargado de leer un archivo de una ruta dada, pasando todas sus lineas
+    de texto a un ArrayList de String, el cual es retornado.*/
     public static ArrayList<String> leerArchivo(String ruta)throws FileNotFoundException, IOException{
         int nLineas, x;
         BufferedReader lector = new BufferedReader(new FileReader(ruta));
@@ -25,6 +27,10 @@ public class Herramientas {
         return datosArchivo;
     }
     
+    /*Metodo cargarDatos: Encargado de procesar los distintos archivos de datos
+    que usa el sistema, pasando la informacion de ahi a el objeto CentroDeSangre.
+    Primero obtiene el nombre y las campanias de datosCampania, para despues obtener
+    las donaciones de datosDonaciones.*/
     public static void cargarDatos(CentroDeSangre centro, String rutaCamp, String rutaDona)throws IOException{
         ArrayList<String> datos;
         datos = Herramientas.leerArchivo(rutaCamp);
@@ -56,6 +62,9 @@ public class Herramientas {
         
     }
     
+    /*Metodo guardarEnArchivo: Encargado de escribir en un archivo con ruta dada
+    una cadena pasada por parametro. Su funcion es traspasar los datos del sistema a
+    los documentos .txt.*/
     public static void guardarEnArchivo(String linea, String ruta)throws IOException{
         BufferedWriter escritor = new BufferedWriter(new FileWriter(ruta,true));
         escritor.newLine();
@@ -63,6 +72,9 @@ public class Herramientas {
         escritor.close();
     }
     
+    /*Metodo lector: Encargado de leer una entrada por consola del usuario,
+    indicandole lo que tiene que ingresar por medio de un String recibido
+    por parametro.*/
     public static String lector(String mensaje) throws IOException{
         String cadena;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));

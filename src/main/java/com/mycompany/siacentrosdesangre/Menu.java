@@ -5,6 +5,9 @@ import java.io.IOException;
 
 public class Menu {
     
+    /*Metodo mostrarMenuPrincipal: Encargado de mostrar las opciones
+    principales del sistema, permitiendo interactuar con este para poder
+    moverse por el programa.*/
     public void mostrarMenuPrincipal(CentroDeSangre centro) throws IOException {
         String opLeida;
         int op = 0;
@@ -37,7 +40,8 @@ public class Menu {
         } while (op != 3);
        }
 
-
+    /*Metodo menuAgregar: Representa el menu donde se encuentran todas las
+    opciones para agregar datos al sistema.*/
     public void menuAgregar(CentroDeSangre centro) throws IOException {
         while(true){
             System.out.println("\n=========    AGREGAR REGISTRO    ================");
@@ -73,7 +77,9 @@ public class Menu {
             }
     } 
 
-
+    
+    /*Metodo menuMostrar: Representa el menu donde se encuentran todas las
+    opciones para mostrar datos registrados en el sistema.*/
     public void menuMostrar(CentroDeSangre centro) throws IOException {
         while(true){
             System.out.println("\n========    MOSTRAR REGISTROS    ================");

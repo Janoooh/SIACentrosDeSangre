@@ -36,19 +36,24 @@ public class Campania {
         return localidad;
     }
     
-    public Donacion buscarDonacion(String buscado){
+    /*Metodo buscarDonacion: Encargado de buscar una donacion en el 
+    ArrayList de donaciones, con una id pasada por parametro. Si la encuentra,
+    retorna una referencia a ese objeto, sino, un null.*/
+    public Donacion buscarDonacion(int buscado){
         int i;
         for(i = 0; i < donaciones.size(); i ++){
-            if(donaciones.get(i).getDonador().getRut().equals(buscado))
+            if(buscado == id)
                 return donaciones.get(i);
         }
         return null;
     }
     
+    /*Metodo mostrarDonaciones: Encargado de mostrar por consola
+    todas las donaciones existentes en esta campania.*/
     public void mostrarDonaciones(){
         int x;
         Donacion aux;
-        System.out.println("\nCampania en "+localidad+" - ID "+id);
+        System.out.println("\nCampania en "+localidad+" - ID "+id +" - "+donaciones.size()+" Registro(s)");
         if(donaciones.isEmpty())
             System.out.println("No existen donaciones en esta campania.");
         

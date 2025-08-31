@@ -56,6 +56,8 @@ public class Donante {
         return telefono;
     }
     
+    /*Metodo getDatosDonante: Encargado de retornar un arreglo de String
+    en donde se guardan todos los datos del donante, uno a uno.*/
     public String[] getDatosDonante(){
         String[] datos = new String[5];
         datos[0] = rut;
@@ -66,6 +68,8 @@ public class Donante {
         return datos;
     }
     
+    /*Metodo mostrarDonante: Encargado de mostrar la informacion del
+    donante por consola.*/
     public void mostrarDonante(){
         System.out.println("Rut: "+rut+"   Nombre: "+nombre+"   Edad: "+edad);
         System.out.println("Tipo Sangre: "+tipoSangre+"    Telefono: "+telefono);

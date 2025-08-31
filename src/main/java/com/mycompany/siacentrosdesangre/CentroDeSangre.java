@@ -48,6 +48,8 @@ public class CentroDeSangre {
             return null;
     }
     
+    /*Metodo agregarSangre: Encargado de dar la opcion al usuario para
+    agregar manualmente bolsas de sangre al inventario.*/
     public void agregarSangre()throws IOException{
         int nSangres;
         String tipoSangre;
@@ -63,6 +65,9 @@ public class CentroDeSangre {
          
     }
 
+    /*Metodo buscarCampania: Encargado de buscar una campania
+    con cierto id, dentro del ArrayList de campanias. Si la encuentra,
+    retorna una referencia a esa campania, sino, un null.*/
     public Campania buscarCampania(int id) {
         int i;
         for(i = 0; i < campanias.size(); i ++){
@@ -72,6 +77,8 @@ public class CentroDeSangre {
         return null;
     }
     
+    /*Metodo mostrarCampanias: Encargada de mostrar por consola todas
+    las campanias existentes en el ArrayList de campanias.*/
     public void mostrarCampanias(){
         Campania aux;
         String localCamp;
@@ -89,7 +96,8 @@ public class CentroDeSangre {
         }
     }
     
-    public String []conseguirNombresCampanias(){
+    /**/
+    /*public String []conseguirNombresCampanias(){
         String localidades[] = new String[campanias.size()];
         int i;
         
@@ -97,11 +105,15 @@ public class CentroDeSangre {
             localidades[i] = campanias.get(i).getLocalidad();
         }
         return localidades;
-    }
-    public  CentroDeSangre crearCentroSangre() throws IOException{
+    }*/
+    /*public  CentroDeSangre crearCentroSangre() throws IOException{
         CentroDeSangre centro = new CentroDeSangre(Herramientas.lector("Ingrese nombre del nuevo centro de sangre : "));
         return centro;
-    }
+    }*/
+    
+    /*Metodo crearStockSangre: Encargado de procesar los datos del
+    archivo tiposDeSangre para guardar cada tipo como una clave
+    del HashMap stockSangre.*/
     public void crearStockSangre() throws IOException{
         int x;
         ArrayList<String> datosArchivo = Herramientas.leerArchivo("tiposDeSangre.txt");
@@ -109,23 +121,30 @@ public class CentroDeSangre {
             this.agregarStockSangre(datosArchivo.get(x));
         }
     }
+    
+    /*Metodo mostrarStockSangre: Encargado de mostrar los tipos de 
+    sangre y la cantidad respectiva de bolsas disponibles para ese
+    tipo.*/
     public void mostrarStockSangre(CentroDeSangre centro) throws IOException{
         int i;
         ArrayList<String> datosArchivo = Herramientas.leerArchivo("tiposDeSangre.txt");
         String sangre;
+        System.out.println("Cantidad de bolsas de sangre disponible por tipo:");
         for(i= 0; i < datosArchivo.size() ; i ++){
             sangre = datosArchivo.get(i);
             System.out.println(sangre + " " + this.getStockSangre(sangre));
         }
     }
     
+    /*Metodo mostrarDonacionesDeCampanias: Encargado de mostrar todas las
+    donaciones existentes, campania por campania.*/
     public void mostrarDonacionesDeCampanias(){
         int x;
         Campania aux;
         if(campanias.isEmpty())
             System.out.println("No existen campanias en el centro de sangre.");
         else
-            System.out.println("Donaciones por campania.\n");
+            System.out.println("Donaciones por campania en centro "+nombre+".");
         
         for(x = 0; x < campanias.size() ; x++){
             aux = campanias.get(x);
@@ -133,9 +152,12 @@ public class CentroDeSangre {
         }
     }
     
-    public Donacion crearDonacion(String rut) throws IOException{
-        String idLeida = Herramientas.lector("Ingrese ID de donacion(Numerica): ");
+    /*Metodo crearDonacion: Encargado de crear una nueva donacion a traves
+    de datos solicitados al usuario por consola. Tras tomar todos los datos,
+    retorna un objeto de clase Donacion con sus atributos rellenos.*/
+    public Donacion crearDonacion(int idDonacion) throws IOException{
         String fecha = Herramientas.lector("Ingrese fecha de la donacion(Formato DD/MM/AAAA): ");
+        String rut = Herramientas.lector("Ingrese RUT del donante: ");
         String nombre = Herramientas.lector("Ingrese el nombre del donante: ");
         int edad = Integer.parseInt(Herramientas.lector("Ingrese la edad del donante: "));
         String tipoSangre = Herramientas.lector("Ingrese el tipo de sangre del donante: ");
@@ -146,22 +168,29 @@ public class CentroDeSangre {
         
         Donante persona = new Donante(rut, nombre, edad, tipoSangre, numeroTelefonico);
         
-        Donacion donacion = new Donacion(Integer.parseInt(idLeida), fecha, persona);
+        Donacion donacion = new Donacion(idDonacion, fecha, persona);
         return donacion;
     }
     
-    //Metodo para agregar una donacion nueva que sera ingresada por el usuario.
+    /*Metodo agregarDonacion: Encargado de ofrecer la opcion al usuario
+    para agregar una nueva donacion a una campania en especifico. Si
+    la campania existe, y la donacion presenta un id nuevo, se
+    procedera a crear el objeto clase Donacion. Finalmente, la donacion
+    se agrega en la campania correspondiente, ademas de guardar el nuevo
+    registro en el documento de datos.*/
     public void agregarDonacion() throws IOException{
         String idLeida = Herramientas.lector("Ingrese la ID de la campania(Numerica): ");
-        String rutLeido, cadena;
+        String idDonacion, cadena;
         String[] dDonacion;
+        int idTransformada;
         Donacion donante, nuevo;
         Campania camp = this.buscarCampania(Integer.parseInt(idLeida));
         if(camp != null){
-            rutLeido = Herramientas.lector("Ingrese el rut del donante : ");
-            donante = camp.buscarDonacion(rutLeido);
+            idDonacion = Herramientas.lector("Ingrese la ID de la donacion(Numerica): ");
+            idTransformada = Integer.parseInt(idDonacion);
+            donante = camp.buscarDonacion(idTransformada);
             if(donante == null){
-                nuevo = crearDonacion(rutLeido);
+                nuevo = crearDonacion(idTransformada);
                 camp.agregarDonacion(nuevo);
                 dDonacion = nuevo.getDatosDonacionCompleta(); 
                 cadena = dDonacion[0]+"*"+dDonacion[1]+"*"+dDonacion[2]+"*"+dDonacion[3]+"*"+dDonacion[4]+"*"+dDonacion[5]+"*"+dDonacion[6]+"*"+idLeida;
@@ -176,7 +205,9 @@ public class CentroDeSangre {
         }
     }
     
-    //Metodo para agregar una donacion que ya se encuentra registrada en el txt
+    /*Metodo agregarDonacion: A diferencia del anterior agregarDonacion, este
+    no solicita datos al usuario, pues ya le llegan por parametors la informacion
+    completa del registro.*/
     public void agregarDonacion(Donacion nueva, int id, String tipoSangre){
         Campania aux;
         int x;
@@ -189,6 +220,9 @@ public class CentroDeSangre {
         }
     }
     
+    /*Metodo agregarCampaniaNueva: Encargado de crear y agregar una
+    campania nueva, ingresada por el usuario a traves de la consola.
+    Tambien guarda el nuevo registro en el documento de datos.*/
     public void agregarCampaniaNueva() throws IOException{
         int id;
         String localidad, cadena;

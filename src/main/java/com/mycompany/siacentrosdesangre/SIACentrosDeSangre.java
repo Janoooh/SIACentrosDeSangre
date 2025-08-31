@@ -5,11 +5,12 @@ import java.io.*;
 public class SIACentrosDeSangre {
 
     public static void main(String[] args) throws IOException {
-        CentroDeSangre centro = new CentroDeSangre("");
-        centro.crearStockSangre();
-        Herramientas.cargarDatos(centro, "datosCampania.txt","datosDonaciones.txt");
-        Menu menusConsola = new Menu();
-        menusConsola.mostrarMenuPrincipal(centro);
+        CentroDeSangre centro = new CentroDeSangre(""); 
+        Menu menusConsola = new Menu(); 
+        centro.crearStockSangre(); //Se crea el stock de sangre del centro.
+        //Se cargan la informacion guardada en los archivos de texto.
+        Herramientas.cargarDatos(centro, "datosCampania.txt","datosDonaciones.txt"); 
+        menusConsola.mostrarMenuPrincipal(centro); //Se ejecutan los menu.
         
     }
 }
