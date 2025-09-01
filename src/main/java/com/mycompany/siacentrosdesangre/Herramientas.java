@@ -67,8 +67,7 @@ public class Herramientas {
     los documentos .txt.*/
     public static void guardarEnArchivo(String linea, String ruta)throws IOException{
         BufferedWriter escritor = new BufferedWriter(new FileWriter(ruta,true));
-        escritor.newLine();
-        escritor.write(linea);
+        escritor.write(linea+"\n");
         escritor.close();
     }
     
