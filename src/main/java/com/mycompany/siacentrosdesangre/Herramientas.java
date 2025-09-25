@@ -1,4 +1,3 @@
-
 package com.mycompany.siacentrosdesangre;
 
 import java.io.BufferedReader;

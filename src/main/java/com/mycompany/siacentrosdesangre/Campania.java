@@ -32,6 +32,12 @@ public class Campania {
         donaciones.add(nuevo);
     }
     
+    //necesario para crear por ventana
+    public void agregarDonacion(int id, String fecha, String rut, String nombre, int edad, String tipoSangre, String telefono){
+        Donacion nuevo = new Donacion (id, fecha, rut, nombre, edad, tipoSangre, telefono);
+        donaciones.add(nuevo);
+    }
+    
     public String getLocalidad() {
         return localidad;
     }
@@ -42,7 +48,7 @@ public class Campania {
     public Donacion buscarDonacion(int buscado){
         int i;
         for(i = 0; i < donaciones.size(); i ++){
-            if(buscado == id)
+            if(buscado == donaciones.get(i).getId())
                 return donaciones.get(i);
         }
         return null;

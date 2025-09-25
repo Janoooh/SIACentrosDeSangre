@@ -56,7 +56,7 @@ public class Menu {
 
             switch(opcion){
                 case 1:
-                    centro.agregarCampaniaNueva();
+                    
                     break;
 
                 case 2:

@@ -96,16 +96,6 @@ public class CentroDeSangre {
         }
     }
     
-    /**/
-    /*public String []conseguirNombresCampanias(){
-        String localidades[] = new String[campanias.size()];
-        int i;
-        
-        for (i = 0; i < campanias.size(); i ++){
-            localidades[i] = campanias.get(i).getLocalidad();
-        }
-        return localidades;
-    }*/
     /*public  CentroDeSangre crearCentroSangre() throws IOException{
         CentroDeSangre centro = new CentroDeSangre(Herramientas.lector("Ingrese nombre del nuevo centro de sangre : "));
         return centro;
@@ -134,6 +124,22 @@ public class CentroDeSangre {
             sangre = datosArchivo.get(i);
             System.out.println(sangre + " " + this.getStockSangre(sangre));
         }
+    }
+    
+    
+    //metodo para mostrar la tabla del stock de sangre
+    public ArrayList<String> mostrStockSangre(CentroDeSangre centro) throws IOException{
+        int i;
+        ArrayList<String> datosArchivo = Herramientas.leerArchivo("tiposDeSangre.txt");
+        ArrayList<String> retorno = new ArrayList<>();
+        String sangre;
+        int cantidad;
+        for(i= 0; i < datosArchivo.size() ; i ++){
+            sangre = datosArchivo.get(i);
+            cantidad = getStockSangre(sangre);
+            retorno.add(sangre + "*" + Integer.toString(cantidad));
+        }
+        return retorno;
     }
     
     /*Metodo mostrarDonacionesDeCampanias: Encargado de mostrar todas las
@@ -223,20 +229,30 @@ public class CentroDeSangre {
     /*Metodo agregarCampaniaNueva: Encargado de crear y agregar una
     campania nueva, ingresada por el usuario a traves de la consola.
     Tambien guarda el nuevo registro en el documento de datos.*/
-    public void agregarCampaniaNueva() throws IOException{
-        int id;
-        String localidad, cadena;
-        id = Integer.parseInt(Herramientas.lector("Ingrese ID para campania(Numerica): "));
-        localidad = Herramientas.lector("Ingrese localidad de la campania : ");
+    public boolean agregarCampaniaNueva(int id, String localidad) throws IOException{
+        String cadena;
         Campania buscado = buscarCampania(id);
         if(buscado == null){
             Campania nuevo= new Campania(id ,localidad);
-            this.agregarCampania(nuevo);
+            agregarCampania(nuevo);
             cadena = id + "*" + localidad;
             Herramientas.guardarEnArchivo(cadena, "datosCampania.txt");
-            System.out.println("Campania agregadda correctamente al sistema.");
+            return true;
         }
+        return false;
     }
- 
+    
+    
+    //metodo que toma todos los valores para crear una donacion, ademas de una campania, necesario para ventana
+    public boolean agregarDonacionACampania(Campania campania, int id, String fecha, String rut, String nombre, int edad, String tipoSangre, String telefono) throws IOException{
+        if(campania.buscarDonacion(id) == null){
+            campania.agregarDonacion(id, fecha, rut, nombre, edad, tipoSangre, telefono);
+            String cadena = id + "*" + fecha + "*" + rut + "*" + nombre + "*" + edad + "*" + tipoSangre + "*" + telefono + "*" + campania.getId(); 
+            Herramientas.guardarEnArchivo(cadena, "datosDonaciones.txt");
+            agregarStockSangre(tipoSangre, 1);
+            return true;
+        }
+        return false;
+    }
 }
 

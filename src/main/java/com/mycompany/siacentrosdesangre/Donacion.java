@@ -12,6 +12,13 @@ public class Donacion {
         this.donador = donador;
     }
     
+    //metodo constructor que toma todos los datos duros, necesario para crear por ventana
+    public Donacion(int id, String fecha, String rut, String nombre, int edad, String tipoSangre, String telefono){
+        this.id = id;
+        this.fecha = fecha;
+        donador = new Donante(rut, nombre, edad, tipoSangre, telefono);
+    }
+    
     public void setId(int id){
         this.id = id;
     }
