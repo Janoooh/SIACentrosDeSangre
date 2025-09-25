@@ -8,10 +8,12 @@ import java.util.HashMap;
 public class CentroDeSangre {
     private String nombre;
     private ArrayList<Campania> campanias;
+    private ArrayList<Persona> personas;
     private HashMap<String, Integer> stockSangre;
     
     public CentroDeSangre(){
         this.campanias = new ArrayList<>();
+        this.personas = new ArrayList<>();
         this.stockSangre = new HashMap<>();
     }
     
@@ -47,6 +49,49 @@ public class CentroDeSangre {
         else
             return null;
     }
+ 
+    /*Metodo buscarPersona: encargado de buscar a una persona
+    en el arrayList de persona, con un rut y un tipo dados.*/
+    public Persona buscarPersona(String rut, int tipoPersona){
+        int x;
+        Persona aux;
+        
+        for(x = 0; x < personas.size(); x++){
+            aux = personas.get(x);
+            if ((aux.getRut().equals(rut)) &&(aux.getTipoPersona() == tipoPersona))
+                return aux;
+        }
+        return null;
+    }
+    
+    /*Metodo agregarPersona para donante: Encargado de agregar
+    una persona al arrayList de personas, especificamente un donante.
+    Se encarga de validar que ese donante aun no exista, si es asi, se 
+    creara el objeto donante y se guardara en el arrayList de Persona.*/
+    public void agregarPersona(String rut, String nom, String tel, int edad, int tipoPersona, String tipoSangre){
+        Persona buscado, nuevo;
+        
+        buscado = buscarPersona(rut,tipoPersona);
+        
+        if(buscado == null){
+            nuevo = new Donante(rut,nom,tel,edad,tipoPersona,tipoSangre);
+            personas.add(nuevo);
+        }
+        
+    }
+    
+    /*Metodo agregarPersona para flebotomista: Encargado de agregar una
+    persona al arrayList de personas, especificamente un flebotomista.
+    Se encarga de validar que ese flebotomista no exista, en ese caso,
+    crea el objeto flebotomista y lo agrega en el arrayList de persona.*/
+    public void agregarPersona(String rut, String nom, String tel, int edad, int tipoPersona, String especialidad, String correo){
+        Persona buscado, nuevo;
+        buscado = buscarPersona(rut,tipoPersona);
+        if(buscado == null){
+            nuevo = new Flebotomista(rut,nom,tel,edad,tipoPersona,especialidad,correo);
+            personas.add(nuevo);
+        }
+    }
     
     /*Metodo agregarSangre: Encargado de dar la opcion al usuario para
     agregar manualmente bolsas de sangre al inventario.*/
@@ -68,13 +113,14 @@ public class CentroDeSangre {
     /*Metodo buscarCampania: Encargado de buscar una campania
     con cierto id, dentro del ArrayList de campanias. Si la encuentra,
     retorna una referencia a esa campania, sino, un null.*/
-    public Campania buscarCampania(int id) {
+    public Campania buscarCampania(int id){
         int i;
         for(i = 0; i < campanias.size(); i ++){
             if(id == campanias.get(i).getId())
                 return campanias.get(i);
         }
-        return null;
+        
+       return null;
     }
     
     /*Metodo mostrarCampanias: Encargada de mostrar por consola todas
@@ -161,7 +207,7 @@ public class CentroDeSangre {
     /*Metodo crearDonacion: Encargado de crear una nueva donacion a traves
     de datos solicitados al usuario por consola. Tras tomar todos los datos,
     retorna un objeto de clase Donacion con sus atributos rellenos.*/
-    public Donacion crearDonacion(int idDonacion) throws IOException{
+    /*public Donacion crearDonacion(int idDonacion) throws IOException{
         String fecha = Herramientas.lector("Ingrese fecha de la donacion(Formato DD/MM/AAAA): ");
         String rut = Herramientas.lector("Ingrese RUT del donante: ");
         String nombre = Herramientas.lector("Ingrese el nombre del donante: ");
@@ -176,7 +222,8 @@ public class CentroDeSangre {
         
         Donacion donacion = new Donacion(idDonacion, fecha, persona);
         return donacion;
-    }
+    }*/
+    
     
     /*Metodo agregarDonacion: Encargado de ofrecer la opcion al usuario
     para agregar una nueva donacion a una campania en especifico. Si
@@ -184,7 +231,7 @@ public class CentroDeSangre {
     procedera a crear el objeto clase Donacion. Finalmente, la donacion
     se agrega en la campania correspondiente, ademas de guardar el nuevo
     registro en el documento de datos.*/
-    public void agregarDonacion() throws IOException{
+    /*public void agregarDonacion() throws IOException{
         String idLeida = Herramientas.lector("Ingrese la ID de la campania(Numerica): ");
         String idDonacion, cadena;
         String[] dDonacion;
@@ -209,7 +256,7 @@ public class CentroDeSangre {
         }else{
             System.out.println("La campania con id "+idLeida+" no existe.");
         }
-    }
+    }*/
     
     /*Metodo agregarDonacion: A diferencia del anterior agregarDonacion, este
     no solicita datos al usuario, pues ya le llegan por parametors la informacion

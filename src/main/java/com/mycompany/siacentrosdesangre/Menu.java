@@ -60,7 +60,7 @@ public class Menu {
                     break;
 
                 case 2:
-                    centro.agregarDonacion();
+                    //centro.agregarDonacion();
                     break;
 
                 case 3:

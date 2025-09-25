@@ -77,7 +77,7 @@ public class ControladorVentanas implements ActionListener{
                     aviso.setAlwaysOnTop(true);
                     aviso.setVisible(true);
                 }
-            } catch (IOException ex) {
+            }catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }
             
@@ -111,16 +111,14 @@ public class ControladorVentanas implements ActionListener{
         if(buscarCamp != null && evento.getSource() == buscarCamp.getBotonConfirmarBuscarCamp()){
             int id = Integer.parseInt(buscarCamp.getLlenadoCampania().getText());
             campania = centro.buscarCampania(id);
-            
             if(campania != null){
                 agregarDonacion = new VentanaAgregarDonacion();
                 agregarDonacion.getBotonConfirmarAgreDonacion().addActionListener(this);
                 agregarDonacion.getBotonCancelarAgreDonacion().addActionListener(this);
                 agregarDonacion.setAlwaysOnTop(true);
                 agregarDonacion.setVisible(true);
-            }
-            else{
-                aviso = new VentanaAviso("La campania no existe en el sistema.");
+            }else{
+                aviso = new VentanaAviso("La campania "+id+" no se encontro.");
                 aviso.getBotonAceptarAviso().addActionListener(this);
                 aviso.setAlwaysOnTop(true);
                 aviso.setVisible(true);
@@ -143,6 +141,7 @@ public class ControladorVentanas implements ActionListener{
             int edad = Integer.parseInt(agregarDonacion.getLlenadoEdad().getText());
             String tipoSangre = agregarDonacion.getLlenadoTipoSangre().getText();
             String telefono = agregarDonacion.getLlenadoTelefono().getText();
+            Donacion aux = new Donacion()
             
             try {
                 if(centro.agregarDonacionACampania(campania, id, fecha, rut, nombre, edad, tipoSangre, telefono)){

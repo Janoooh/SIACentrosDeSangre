@@ -4,19 +4,21 @@ package com.mycompany.siacentrosdesangre;
 public class Donacion {
     private int id;
     private String fecha;
-    private Donante donador;
+    private Persona donador;
+    private Persona flebotomista;
     
-    public Donacion(int id, String fecha, Donante donador){
+    public Donacion(int id, String fecha, Persona donador, Persona flebotomista){
         this.id = id;
         this.fecha = fecha;
         this.donador = donador;
+        this.flebotomista = flebotomista;
     }
     
     //metodo constructor que toma todos los datos duros, necesario para crear por ventana
-    public Donacion(int id, String fecha, String rut, String nombre, int edad, String tipoSangre, String telefono){
+    public Donacion(int id, String fecha, String rut, String nombre, int edad, String tipoSangre, String telefono, int tipoPersona){
         this.id = id;
         this.fecha = fecha;
-        donador = new Donante(rut, nombre, edad, tipoSangre, telefono);
+        donador = new Donante(rut, nombre, telefono, edad, tipoPersona, tipoSangre);
     }
     
     public void setId(int id){
@@ -30,6 +32,10 @@ public class Donacion {
     public void setDonador(Donante donador) {
         this.donador = donador;
     }
+    
+    public void setFlebotomista(Persona flebotomista){
+        this.flebotomista = flebotomista;
+    }
 
     public int getId(){
         return id;
@@ -39,8 +45,12 @@ public class Donacion {
         return fecha;
     }
 
-    public Donante getDonador() {
+    public Persona getDonador() {
         return donador;
+    }
+    
+    public Persona getFlebotomista(){
+        return flebotomista;
     }
     
     /*Metodo getDatosDonacionCompleta: Encargado de retornar un
@@ -49,7 +59,7 @@ public class Donacion {
     public String[] getDatosDonacionCompleta(){
         String[] datos = new String[7];
         String[] datosDonante;
-        datosDonante = donador.getDatosDonante();
+        datosDonante = ((Donante)donador).getDatosDonante();
         datos[0] = String.valueOf(id);
         datos[1] = fecha;
         datos[2] = datosDonante[0];
@@ -65,7 +75,7 @@ public class Donacion {
     donacion, ademas de la informacion del donante.*/
     public void mostrarDonacion(){
         System.out.println("\nDonacion ID "+id+"     Fecha:"+fecha);
-        donador.mostrarDonante();
+        ((Donante)donador).mostrarDonante();
     }
 }
     
