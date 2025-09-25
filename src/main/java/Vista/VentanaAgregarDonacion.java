@@ -21,21 +21,14 @@ public class VentanaAgregarDonacion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        llenadoRut = new javax.swing.JTextField();
-        llenadoNombre = new javax.swing.JTextField();
-        llenadoEdad = new javax.swing.JTextField();
-        llenadoTipoSangre = new javax.swing.JTextField();
-        llenadoTelefono = new javax.swing.JTextField();
         botonConfirmarAgreDonacion = new javax.swing.JButton();
         botonCancelarAgreDonacion = new javax.swing.JButton();
         llenadoId = new javax.swing.JTextField();
         llenadoFecha = new javax.swing.JTextField();
+        llenadoRutDonante = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        llenadoRutFlebotomista = new javax.swing.JTextField();
         menuBar = new javax.swing.JMenuBar();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -79,21 +72,37 @@ public class VentanaAgregarDonacion extends javax.swing.JFrame {
 
         jLabel3.setText("fecha");
 
-        jLabel4.setText("rut");
-
-        jLabel5.setText("nombre");
-
-        jLabel6.setText("Datos del donante");
-
-        jLabel7.setText("edad");
-
-        jLabel8.setText("tipo sangre");
-
-        jLabel9.setText("telefono");
-
         botonConfirmarAgreDonacion.setText("Aceptar");
 
         botonCancelarAgreDonacion.setText("Cancelar");
+
+        llenadoId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                llenadoIdActionPerformed(evt);
+            }
+        });
+
+        llenadoFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                llenadoFechaActionPerformed(evt);
+            }
+        });
+
+        llenadoRutDonante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                llenadoRutDonanteActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Rut Donante:");
+
+        jLabel5.setText("Rut Flebotomista:");
+
+        llenadoRutFlebotomista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                llenadoRutFlebotomistaActionPerformed(evt);
+            }
+        });
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,46 +115,35 @@ public class VentanaAgregarDonacion extends javax.swing.JFrame {
                         .addGap(166, 166, 166)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel9))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5))
-                            .addComponent(jLabel8))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addComponent(jLabel6))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(llenadoFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(llenadoId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(llenadoRut, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(llenadoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(llenadoEdad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(llenadoTipoSangre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(llenadoTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonConfirmarAgreDonacion, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonCancelarAgreDonacion, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel1))
+                                        .addGap(232, 232, 232)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(botonConfirmarAgreDonacion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(botonCancelarAgreDonacion, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(llenadoRutFlebotomista, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 3, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(llenadoRutDonante, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(llenadoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(llenadoId, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(85, 85, 85)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -153,51 +151,47 @@ public class VentanaAgregarDonacion extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(llenadoId, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(llenadoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel6)
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(llenadoRut, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(llenadoRutDonante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(llenadoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonConfirmarAgreDonacion)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(llenadoEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(botonCancelarAgreDonacion)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(llenadoTipoSangre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel9))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(llenadoTelefono)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(llenadoRutFlebotomista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addComponent(botonConfirmarAgreDonacion)
+                .addGap(32, 32, 32)
+                .addComponent(botonCancelarAgreDonacion)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void llenadoFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llenadoFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_llenadoFechaActionPerformed
+
+    private void llenadoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llenadoIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_llenadoIdActionPerformed
+
+    private void llenadoRutDonanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llenadoRutDonanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_llenadoRutDonanteActionPerformed
+
+    private void llenadoRutFlebotomistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llenadoRutFlebotomistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_llenadoRutFlebotomistaActionPerformed
 
     public JButton getBotonConfirmarAgreDonacion(){
         return botonConfirmarAgreDonacion;
@@ -215,24 +209,12 @@ public class VentanaAgregarDonacion extends javax.swing.JFrame {
         return llenadoFecha;
     }
     
-    public JTextField getLlenadoRut(){
-        return llenadoRut;
+    public JTextField getLlenadoRutDonante(){
+        return llenadoRutDonante;
     }
     
-    public JTextField getLlenadoNombre(){
-        return llenadoNombre;
-    }
-    
-    public JTextField getLlenadoEdad(){
-        return llenadoEdad;
-    }
-    
-    public JTextField getLlenadoTipoSangre(){
-        return llenadoTipoSangre;
-    }
-    
-    public JTextField getLlenadoTelefono(){
-        return llenadoTelefono;
+    public JTextField getLlenadoRutFlebotomista(){
+        return llenadoRutFlebotomista;
     }
     
     public static void main(String args[]) {
@@ -267,17 +249,10 @@ public class VentanaAgregarDonacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField llenadoEdad;
     private javax.swing.JTextField llenadoFecha;
     private javax.swing.JTextField llenadoId;
-    private javax.swing.JTextField llenadoNombre;
-    private javax.swing.JTextField llenadoRut;
-    private javax.swing.JTextField llenadoTelefono;
-    private javax.swing.JTextField llenadoTipoSangre;
+    private javax.swing.JTextField llenadoRutDonante;
+    private javax.swing.JTextField llenadoRutFlebotomista;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 

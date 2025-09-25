@@ -30,7 +30,7 @@ public class Herramientas {
     que usa el sistema, pasando la informacion de ahi a el objeto CentroDeSangre.
     Primero obtiene el nombre y las campanias de datosCampania, para despues obtener
     las donaciones de datosDonaciones.*/
-    public static void cargarDatos(CentroDeSangre centro, String rutaCamp, String rutaDona)throws IOException{
+    /*public static void cargarDatos(CentroDeSangre centro, String rutaCamp, String rutaDona)throws IOException{
         ArrayList<String> datos;
         datos = Herramientas.leerArchivo(rutaCamp);
         Campania auxCampania;
@@ -59,7 +59,7 @@ public class Herramientas {
             x++;
         }
         
-    }
+    }*/
     
     /*Metodo guardarEnArchivo: Encargado de escribir en un archivo con ruta dada
     una cadena pasada por parametro. Su funcion es traspasar los datos del sistema a

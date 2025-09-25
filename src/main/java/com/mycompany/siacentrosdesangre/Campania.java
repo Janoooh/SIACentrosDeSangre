@@ -33,10 +33,10 @@ public class Campania {
     }
     
     //necesario para crear por ventana
-    public void agregarDonacion(int id, String fecha, String rut, String nombre, int edad, String tipoSangre, String telefono){
-        Donacion nuevo = new Donacion (id, fecha, rut, nombre, edad, tipoSangre, telefono);
-        donaciones.add(nuevo);
-    }
+    /*public void agregarDonacion(int id, String fecha, String rut, String nombre, int edad, String tipoSangre, String telefono){
+        //Donacion nuevo = new Donacion (id, fecha, rut, nombre, edad, tipoSangre, telefono);
+        //donaciones.add(nuevo);
+    }*/
     
     public String getLocalidad() {
         return localidad;

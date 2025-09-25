@@ -20,6 +20,7 @@ public class CentroDeSangre {
     public CentroDeSangre(String nombre){
         this.nombre = nombre;
         this.campanias = new ArrayList<>();
+        this.personas = new ArrayList<>();
         this.stockSangre = new HashMap<>();
     }
 
@@ -290,13 +291,23 @@ public class CentroDeSangre {
     }
     
     
+    //public void agregarDonacionEnCampania(Cam)
+    
     //metodo que toma todos los valores para crear una donacion, ademas de una campania, necesario para ventana
-    public boolean agregarDonacionACampania(Campania campania, int id, String fecha, String rut, String nombre, int edad, String tipoSangre, String telefono) throws IOException{
+    public boolean agregarDonacionACampania(Campania campania, int id, String fecha, String rutDonante, String rutFlebotomista) throws IOException{
+        Persona donante, flebotomista;
+        Donacion nueva;
         if(campania.buscarDonacion(id) == null){
-            campania.agregarDonacion(id, fecha, rut, nombre, edad, tipoSangre, telefono);
-            String cadena = id + "*" + fecha + "*" + rut + "*" + nombre + "*" + edad + "*" + tipoSangre + "*" + telefono + "*" + campania.getId(); 
-            Herramientas.guardarEnArchivo(cadena, "datosDonaciones.txt");
-            agregarStockSangre(tipoSangre, 1);
+            donante = buscarPersona(rutDonante, 1);
+            if(donante == null)return false;
+            flebotomista = buscarPersona(rutFlebotomista, 2);
+            if(flebotomista == null)return false;
+            
+            nueva = new Donacion(id,fecha,donante,flebotomista);
+            campania.agregarDonacion(nueva);
+            //String cadena = id + "*" + fecha + "*" + rut + "*" + nombre + "*" + edad + "*" + tipoSangre + "*" + telefono + "*" + campania.getId(); 
+            //Herramientas.guardarEnArchivo(cadena, "datosDonaciones.txt");
+            agregarStockSangre(((Donante)donante).getTipoSangre(), 1);
             return true;
         }
         return false;

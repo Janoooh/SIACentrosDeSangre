@@ -10,7 +10,7 @@ public class SIACentrosDeSangre {
         //Menu menusConsola = new Menu(); 
         centro.crearStockSangre(); //Se crea el stock de sangre del centro.
         //Se cargan la informacion guardada en los archivos de texto.
-        Herramientas.cargarDatos(centro, "datosCampania.txt","datosDonaciones.txt"); 
+        //Herramientas.cargarDatos(centro, "datosCampania.txt","datosDonaciones.txt"); 
         //menusConsola.mostrarMenuPrincipal(centro); //Se ejecutan los menu.
         
         ControladorVentanas ventanas = new ControladorVentanas();

@@ -134,17 +134,17 @@ public class ControladorVentanas implements ActionListener{
         
         //evento pulsar el boton agregar en la ventana agregar donacion
         if(agregarDonacion != null && evento.getSource() == agregarDonacion.getBotonConfirmarAgreDonacion()){
-            int id = Integer.parseInt(agregarDonacion.getLlenadoId().getText());
-            String fecha = agregarDonacion.getLlenadoFecha().getText();
-            String rut = agregarDonacion.getLlenadoRut().getText();
-            String nombre = agregarDonacion.getLlenadoNombre().getText();
-            int edad = Integer.parseInt(agregarDonacion.getLlenadoEdad().getText());
-            String tipoSangre = agregarDonacion.getLlenadoTipoSangre().getText();
-            String telefono = agregarDonacion.getLlenadoTelefono().getText();
-            Donacion aux = new Donacion()
+            int id;
+            String fecha, rutDonante, rutFlebo;
+            
+            id = Integer.parseInt(agregarDonacion.getLlenadoId().getText());
+            fecha = agregarDonacion.getLlenadoFecha().getText();
+            rutDonante = agregarDonacion.getLlenadoRutDonante().getText();
+            rutFlebo = agregarDonacion.getLlenadoRutFlebotomista().getText();
+            //Donacion aux = new Donacion()
             
             try {
-                if(centro.agregarDonacionACampania(campania, id, fecha, rut, nombre, edad, tipoSangre, telefono)){
+                if(centro.agregarDonacionACampania(campania, id, fecha,rutDonante,rutFlebo)){
                     aviso = new VentanaAviso("La donacion se ha agregado exitosamente.");
                     aviso.getBotonAceptarAviso().addActionListener(this);
                     aviso.setAlwaysOnTop(true);
