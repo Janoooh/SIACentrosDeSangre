@@ -69,5 +69,17 @@ public class Campania {
             
         }
     }
+    public Donacion borrarDonacion(int id){
+        int i;
+        Donacion actual;
+        for(i = 0; i < donaciones.size(); i++){
+            actual = donaciones.get(i);
+            if(actual.getId() == id){
+                donaciones.remove(i);
+                return actual;
+            }
+        }
+        return null; 
+    }
     
 }

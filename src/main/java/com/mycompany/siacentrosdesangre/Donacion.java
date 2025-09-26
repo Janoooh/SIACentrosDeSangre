@@ -77,5 +77,7 @@ public class Donacion {
         System.out.println("\nDonacion ID "+id+"     Fecha:"+fecha);
         ((Donante)donador).mostrarDonante();
     }
+    
 }
+
     

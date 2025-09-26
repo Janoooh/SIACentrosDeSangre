@@ -312,5 +312,41 @@ public class CentroDeSangre {
         }
         return false;
     }
+    
+    public Donacion borrarDonacionDeCampania(int idDonacion, int idCampania){
+        Campania actual = buscarCampania(idCampania);
+        if(actual != null){
+            actual.borrarDonacion(idDonacion);
+        }
+        
+        return null;
+    }
+    
+    public Campania borrarCampania(int id){
+        int i;
+        Campania actual;
+        for(i = 0; i<campanias.size(); i++){
+            actual = campanias.get(i);
+            if(actual.getId()== id){
+                campanias.remove(i);
+                return actual;
+            }
+        }
+        return null;
+    }
+    
+    public Persona borrarPersona(String rut, int rol){
+        int i;
+        Persona actual;
+        for(i = 0; i < personas.size(); i++){
+            actual = personas.get(i);
+            if(actual.getRut().equals(rut) && actual.getTipoPersona() == rol){
+                personas.remove(i);
+                return actual;
+            }
+        }
+        return null;
+    }
+    
 }
 
