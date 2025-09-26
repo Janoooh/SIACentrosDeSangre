@@ -294,14 +294,14 @@ public class CentroDeSangre {
     //public void agregarDonacionEnCampania(Cam)
     
     //metodo que toma todos los valores para crear una donacion, ademas de una campania, necesario para ventana
-    public boolean agregarDonacionACampania(Campania campania, int id, String fecha, String rutDonante, String rutFlebotomista) throws IOException{
+    public boolean agregarDonacionACampania(Campania campania, int id, String fecha, String rutDonante, String rutFlebotomista) throws IOException, NotFoundException{
         Persona donante, flebotomista;
         Donacion nueva;
         if(campania.buscarDonacion(id) == null){
             donante = buscarPersona(rutDonante, 1);
-            if(donante == null)return false;
+            if(donante == null)throw new NotFoundException("El donante con rut "+rutDonante+" no existe.");
             flebotomista = buscarPersona(rutFlebotomista, 2);
-            if(flebotomista == null)return false;
+            if(flebotomista == null)throw new NotFoundException("El flebotomista con rut "+rutFlebotomista+" no existe.");
             
             nueva = new Donacion(id,fecha,donante,flebotomista);
             campania.agregarDonacion(nueva);
@@ -313,16 +313,14 @@ public class CentroDeSangre {
         return false;
     }
     
-    public Donacion borrarDonacionDeCampania(int idDonacion, int idCampania){
+    public Donacion borrarDonacionDeCampania(int idDonacion, int idCampania)throws NotFoundException{
         Campania actual = buscarCampania(idCampania);
-        if(actual != null){
-            actual.borrarDonacion(idDonacion);
-        }
-        
-        return null;
+        if(actual == null) throw new NotFoundException("La campania "+ idCampania+" no se encontro en el sistema.");
+        return actual.borrarDonacion(idDonacion);
+         
     }
     
-    public Campania borrarCampania(int id){
+    public Campania borrarCampania(int id)throws NotFoundException{
         int i;
         Campania actual;
         for(i = 0; i<campanias.size(); i++){
@@ -332,10 +330,10 @@ public class CentroDeSangre {
                 return actual;
             }
         }
-        return null;
+        throw new NotFoundException("La campania "+id+" no se encontro en el sistema.");
     }
     
-    public Persona borrarPersona(String rut, int rol){
+    public Persona borrarPersona(String rut, int rol)throws NotFoundException{
         int i;
         Persona actual;
         for(i = 0; i < personas.size(); i++){
@@ -345,7 +343,9 @@ public class CentroDeSangre {
                 return actual;
             }
         }
-        return null;
+        
+        if(rol == 1)throw new NotFoundException("El donante con rut "+rut+" no se encontro en el sistema.");
+        throw new NotFoundException("El flebotomista con rut "+rut+" no se encontro en el sistema.");
     }
     
 }

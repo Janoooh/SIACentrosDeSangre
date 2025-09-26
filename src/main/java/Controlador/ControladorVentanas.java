@@ -32,6 +32,13 @@ public class ControladorVentanas implements ActionListener{
         main.setVisible(true);
     }
     
+    public void mandarAviso(String msg){
+        aviso = new VentanaAviso(msg);
+        aviso.getBotonAceptarAviso().addActionListener(this);
+        aviso.setAlwaysOnTop(true);
+        aviso.setVisible(true);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent evento) {
         //evento pulsar el boton agregar en la ventana main
@@ -65,17 +72,11 @@ public class ControladorVentanas implements ActionListener{
 
             try {
                 if(centro.agregarCampaniaNueva(Integer.parseInt(id), localidad)){
-                    aviso = new VentanaAviso("La campaña a sido agregada exitosamente.");
-                    aviso.getBotonAceptarAviso().addActionListener(this);
-                    aviso.setAlwaysOnTop(true);
-                    aviso.setVisible(true);
+                    mandarAviso("La campania ha sido creada exitosamente.");
                     agregarCampania.dispose();
                 }
                 else{
-                    aviso = new VentanaAviso("Hay una campania con ese id registrado.");
-                    aviso.getBotonAceptarAviso().addActionListener(this);
-                    aviso.setAlwaysOnTop(true);
-                    aviso.setVisible(true);
+                    mandarAviso("Hay una campania con ese id registrado.");
                 }
             }catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -110,18 +111,17 @@ public class ControladorVentanas implements ActionListener{
         //evento pulsar el boton buscar en la ventana buscar campania
         if(buscarCamp != null && evento.getSource() == buscarCamp.getBotonConfirmarBuscarCamp()){
             int id = Integer.parseInt(buscarCamp.getLlenadoCampania().getText());
-            campania = centro.buscarCampania(id);
-            if(campania != null){
+            
+            try{
+                campania = centro.buscarCampania(id);
+                if(campania == null)throw new NotFoundException("Campania "+id+" no encontrada.");
                 agregarDonacion = new VentanaAgregarDonacion();
                 agregarDonacion.getBotonConfirmarAgreDonacion().addActionListener(this);
                 agregarDonacion.getBotonCancelarAgreDonacion().addActionListener(this);
                 agregarDonacion.setAlwaysOnTop(true);
                 agregarDonacion.setVisible(true);
-            }else{
-                aviso = new VentanaAviso("La campania "+id+" no se encontro.");
-                aviso.getBotonAceptarAviso().addActionListener(this);
-                aviso.setAlwaysOnTop(true);
-                aviso.setVisible(true);
+            }catch(NotFoundException e){
+                mandarAviso(e.getMessage());
             }
             return;
         }
@@ -145,20 +145,16 @@ public class ControladorVentanas implements ActionListener{
             
             try {
                 if(centro.agregarDonacionACampania(campania, id, fecha,rutDonante,rutFlebo)){
-                    aviso = new VentanaAviso("La donacion se ha agregado exitosamente.");
-                    aviso.getBotonAceptarAviso().addActionListener(this);
-                    aviso.setAlwaysOnTop(true);
-                    aviso.setVisible(true);
+                    mandarAviso("La donacion se ha agregado exitosamente.");
                     agregarDonacion.dispose();
                 }
                 else{
-                    aviso = new VentanaAviso("La id dada ya está en el sistema.");
-                    aviso.getBotonAceptarAviso().addActionListener(this);
-                    aviso.setAlwaysOnTop(true);
-                    aviso.setVisible(true);
+                    mandarAviso("La id dad ya existe en el sistema.");
                 }
             } catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            } catch (NotFoundException e){
+                mandarAviso(e.getMessage());
             }
             return;
         }
@@ -197,6 +193,7 @@ public class ControladorVentanas implements ActionListener{
                 centro.agregarStockSangre("AB-", Integer.parseInt(agregarSangre.getLlenarABneg().getText()));
             if(!agregarSangre.getLlenarABpos().getText().isEmpty())
                 centro.agregarStockSangre("AB+", Integer.parseInt(agregarSangre.getLlenarABpos().getText()));
+            mandarAviso("Sangre agregada correctamente.");
             return;
         } 
         

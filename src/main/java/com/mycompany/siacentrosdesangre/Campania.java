@@ -69,7 +69,7 @@ public class Campania {
             
         }
     }
-    public Donacion borrarDonacion(int id){
+    public Donacion borrarDonacion(int id)throws NotFoundException{
         int i;
         Donacion actual;
         for(i = 0; i < donaciones.size(); i++){
@@ -79,7 +79,7 @@ public class Campania {
                 return actual;
             }
         }
-        return null; 
+        throw new NotFoundException("La donacion "+id+" no se encontro en la campania "+this.id); 
     }
     
 }
