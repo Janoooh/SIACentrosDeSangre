@@ -27,9 +27,15 @@ public class Flebotomista extends Persona {
     }
     
     @Override
-    public String[] getInfo(){
-        String[] infoPers = super.getInfo();
-        String[] infoGeneral = {infoPers[0],infoPers[1],infoPers[2],infoPers[3],infoPers[4],especialidad,correo};
+    public String[] getInfo(boolean incluirTipo){
+        String[] infoGeneral;
+        String[] infoPers = super.getInfo(incluirTipo);
+        
+        if(incluirTipo){
+            infoGeneral = new String[]{infoPers[0],infoPers[1],infoPers[2],infoPers[3],infoPers[4],especialidad,correo};
+        }else{
+            infoGeneral = new String[]{infoPers[0],infoPers[1],infoPers[2],infoPers[3],especialidad, correo};
+        }
         return infoGeneral;
     }
     

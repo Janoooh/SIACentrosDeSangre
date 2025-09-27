@@ -43,12 +43,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="botonAgreCampania" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="botonAgreDonacion" max="32767" attributes="0"/>
-                              <Component id="botonAgreFlebo" alignment="0" max="32767" attributes="0"/>
-                              <Component id="botonAgreDonante" alignment="1" max="32767" attributes="0"/>
-                              <Component id="botonAgreSangre1" alignment="1" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="botonAgreDonacion" max="32767" attributes="0"/>
+                          <Component id="botonAgreFlebo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botonAgreDonante" alignment="1" max="32767" attributes="0"/>
+                          <Component id="botonAgreSangre" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Component id="botonAgreAtras" min="-2" max="-2" attributes="0"/>
@@ -75,7 +73,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonAgreFlebo" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="botonAgreSangre1" min="-2" max="-2" attributes="0"/>
+              <Component id="botonAgreSangre" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="12" max="32767" attributes="0"/>
               <Component id="botonAgreAtras" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -120,12 +118,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgreAtrasActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botonAgreSangre1">
+    <Component class="javax.swing.JButton" name="botonAgreSangre">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar Sangre al inventario"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgreSangre1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgreSangreActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonAgreFlebo">

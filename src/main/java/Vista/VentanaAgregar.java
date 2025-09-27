@@ -25,7 +25,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
         botonAgreDonacion = new javax.swing.JButton();
         botonAgreDonante = new javax.swing.JButton();
         botonAgreAtras = new javax.swing.JButton();
-        botonAgreSangre1 = new javax.swing.JButton();
+        botonAgreSangre = new javax.swing.JButton();
         botonAgreFlebo = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
 
@@ -56,10 +56,10 @@ public class VentanaAgregar extends javax.swing.JFrame {
             }
         });
 
-        botonAgreSangre1.setText("Agregar Sangre al inventario");
-        botonAgreSangre1.addActionListener(new java.awt.event.ActionListener() {
+        botonAgreSangre.setText("Agregar Sangre al inventario");
+        botonAgreSangre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgreSangre1ActionPerformed(evt);
+                botonAgreSangreActionPerformed(evt);
             }
         });
 
@@ -88,11 +88,10 @@ public class VentanaAgregar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(botonAgreCampania, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(botonAgreDonacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonAgreFlebo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonAgreDonante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonAgreSangre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(botonAgreDonacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonAgreFlebo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonAgreDonante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonAgreSangre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(56, 56, 56)
                         .addComponent(botonAgreAtras)
                         .addContainerGap())))
@@ -113,7 +112,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botonAgreFlebo)
                 .addGap(18, 18, 18)
-                .addComponent(botonAgreSangre1)
+                .addComponent(botonAgreSangre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(botonAgreAtras)
                 .addContainerGap())
@@ -122,9 +121,9 @@ public class VentanaAgregar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonAgreSangre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgreSangre1ActionPerformed
+    private void botonAgreSangreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgreSangreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonAgreSangre1ActionPerformed
+    }//GEN-LAST:event_botonAgreSangreActionPerformed
 
     private void botonAgreDonanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgreDonanteActionPerformed
         // TODO add your handling code here:
@@ -151,7 +150,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
     }
         
     public JButton getBotonAgreSangre(){
-        return botonAgreDonante;
+        return botonAgreSangre;
     }
         
     public JButton getBotonAgreAtras(){
@@ -196,7 +195,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
     private javax.swing.JButton botonAgreDonacion;
     private javax.swing.JButton botonAgreDonante;
     private javax.swing.JButton botonAgreFlebo;
-    private javax.swing.JButton botonAgreSangre1;
+    private javax.swing.JButton botonAgreSangre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar menuBar;

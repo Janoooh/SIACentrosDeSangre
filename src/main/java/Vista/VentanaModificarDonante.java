@@ -1,6 +1,7 @@
 package Vista;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 public class VentanaModificarDonante extends javax.swing.JFrame {
@@ -13,7 +14,7 @@ public class VentanaModificarDonante extends javax.swing.JFrame {
         llenadoNombre.setText(datosDonante[1]);
         llenadoTelefono.setText(datosDonante[2]);
         llenadoEdad.setText(datosDonante[3]);
-        llenadoTipoSangre.setText(datosDonante[4]);
+        llenadoTipoSangre.setSelectedItem(datosDonante[4]);
     }
 
 
@@ -32,9 +33,9 @@ public class VentanaModificarDonante extends javax.swing.JFrame {
         llenadoNombre = new javax.swing.JTextField();
         llenadoTelefono = new javax.swing.JTextField();
         llenadoEdad = new javax.swing.JTextField();
-        llenadoTipoSangre = new javax.swing.JTextField();
         botonAceptar = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
+        llenadoTipoSangre = new javax.swing.JComboBox<>();
 
         jButton1.setText("jButton1");
 
@@ -56,6 +57,8 @@ public class VentanaModificarDonante extends javax.swing.JFrame {
 
         botonCancelar.setText("Cancelar");
 
+        llenadoTipoSangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,7 +79,7 @@ public class VentanaModificarDonante extends javax.swing.JFrame {
                             .addComponent(llenadoNombre)
                             .addComponent(llenadoTelefono)
                             .addComponent(llenadoEdad)
-                            .addComponent(llenadoTipoSangre)))
+                            .addComponent(llenadoTipoSangre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(115, 115, 115)
                         .addComponent(jLabel11)))
@@ -170,7 +173,7 @@ public class VentanaModificarDonante extends javax.swing.JFrame {
         return llenadoEdad;
     }
     
-    public JTextField getLlenadoTipoSangre(){
+    public JComboBox getLlenadoTipoSangre(){
         return llenadoTipoSangre;
     }
     
@@ -188,6 +191,6 @@ public class VentanaModificarDonante extends javax.swing.JFrame {
     private javax.swing.JTextField llenadoNombre;
     private javax.swing.JTextField llenadoRut;
     private javax.swing.JTextField llenadoTelefono;
-    private javax.swing.JTextField llenadoTipoSangre;
+    private javax.swing.JComboBox<String> llenadoTipoSangre;
     // End of variables declaration//GEN-END:variables
 }

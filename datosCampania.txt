@@ -29,3 +29,6 @@ Puppy
 32*rancagua
 123*rancawa
 21*maxali
+1*Rancagua
+31*Rancagua
+1*Machali

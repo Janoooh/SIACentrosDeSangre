@@ -15,6 +15,7 @@ public class ControladorVentanas implements ActionListener{
     private VentanaAgregarCamp agregarCampania;
     private VentanaAgregarDonacion agregarDonacion;
     private VentanaAgregarDonante agregarDonante;
+    private VentanaAgregarFlebotomista agregarFlebotomista;
     private VentanaAgregarSangre agregarSangre;
     
     private VentanaMostrar mostrar;
@@ -45,6 +46,7 @@ public class ControladorVentanas implements ActionListener{
         main.getBotonMostrarMain().addActionListener(this);
         main.getBotonEliminarMain().addActionListener(this);
         main.getBotonModificarMain().addActionListener(this);
+        main.getBotonSalirMain().addActionListener(this);
         
         main.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         main.setVisible(true);
@@ -64,6 +66,8 @@ public class ControladorVentanas implements ActionListener{
             agregar = new VentanaAgregar();
             agregar.getBotonAgreCampania().addActionListener(this);
             agregar.getBotonAgreDonacion().addActionListener(this);
+            agregar.getBotonAgreDonante().addActionListener(this);
+            agregar.getBotonAgreFlebo().addActionListener(this);
             agregar.getBotonAgreSangre().addActionListener(this);
             agregar.getBotonAgreAtras().addActionListener(this);
             
@@ -198,7 +202,7 @@ public class ControladorVentanas implements ActionListener{
             nombre = agregarDonante.getLlenadoNombre().getText();
             telefono = agregarDonante.getLlenadoTelefono().getText();
             edad = Integer.parseInt(agregarDonante.getLlenadoEdad().getText());
-            tipoSangre = agregarDonante.getLlenadoSangre().getText();
+            tipoSangre = (String)agregarDonante.getLlenadoSangre().getSelectedItem();
             try{
                 centro.agregarPersona(rut, nombre, telefono, edad, 1, tipoSangre);
                 mandarAviso("Persona agregada correctamente.");
@@ -213,6 +217,38 @@ public class ControladorVentanas implements ActionListener{
         //evento pulsar el boton cancelar en la ventana agregar donante
         if(agregarDonante != null && evento.getSource() == agregarDonante.getBotonCancelarAgreDonante()){
             agregarDonante.dispose();
+            return;
+        }
+        
+        if(agregar != null && evento.getSource() == agregar.getBotonAgreFlebo()){
+            agregarFlebotomista = new VentanaAgregarFlebotomista();
+            agregarFlebotomista.getBotonAceptarAgreFlebo().addActionListener(this);
+            agregarFlebotomista.getBotonCancelarAgreFlebo().addActionListener(this);
+            agregarFlebotomista.setAlwaysOnTop(true);
+            agregarFlebotomista.setVisible(true);
+            return;
+        }
+        
+        if(agregarFlebotomista != null && evento.getSource() == agregarFlebotomista.getBotonAceptarAgreFlebo()){
+            String rut, nom, tel, especialidad, correo;
+            int edad;
+            rut = agregarFlebotomista.getLlenadoRut().getText();
+            nom = agregarFlebotomista.getLlenadoNombre().getText();
+            tel = agregarFlebotomista.getLlenadoTelefono().getText();
+            edad = Integer.parseInt(agregarFlebotomista.getLlenadoEdad().getText());
+            especialidad = agregarFlebotomista.getLlenadoEspecialidad().getText();
+            correo = agregarFlebotomista.getLlenadoCorreo().getText();
+            try{
+                centro.agregarPersona(rut, nom, tel, edad, 2, especialidad, correo);
+                mandarAviso("Flebotomista agregado correctamente.");
+            }catch(DataDuplicateException e){
+                mandarAviso(e.getMessage());
+            }
+            return;
+        }
+        
+        if(agregarFlebotomista != null && evento.getSource() == agregarFlebotomista.getBotonCancelarAgreFlebo()){
+            agregarFlebotomista.dispose();
             return;
         }
         
@@ -353,7 +389,7 @@ public class ControladorVentanas implements ActionListener{
         
         //evento boton mostrar donantes ventana mostrar personas
         if(mostrarPersonas != null && evento.getSource() == mostrarPersonas.getBotonMostrarDonantes()){
-            mostrarDonantes = new VentanaMostrarDonantes(centro.datosMostrarPersona(1));
+            mostrarDonantes = new VentanaMostrarDonantes(centro.datosMostrarPersona(1,false));
             mostrarDonantes.getBotonAtrasMostrarDonante().addActionListener(this);
             
             mostrarDonantes.setAlwaysOnTop(true);
@@ -369,7 +405,7 @@ public class ControladorVentanas implements ActionListener{
         
         //evento boton mostrar flebotomistas ventana mostrar personas
         if(mostrarPersonas != null && evento.getSource() == mostrarPersonas.getBotonMostrarFlebotomistas()){
-            mostrarFlebotomistas = new VentanaMostrarFlebotomistas(centro.datosMostrarPersona(2));
+            mostrarFlebotomistas = new VentanaMostrarFlebotomistas(centro.datosMostrarPersona(2, false));
             mostrarFlebotomistas.getBotonAtrasMostrarFlebotomistas().addActionListener(this);
             
             mostrarFlebotomistas.setAlwaysOnTop(true);
@@ -385,7 +421,7 @@ public class ControladorVentanas implements ActionListener{
         
         //evento boton mostrar todos ventana mostrar personas
         if(mostrarPersonas != null && evento.getSource() == mostrarPersonas.getBotonMostrarTodo()){
-            mostrarTodo = new VentanaMostrarTodo(centro.datosMostrarPersona());
+            mostrarTodo = new VentanaMostrarTodo(centro.datosMostrarPersona(true));
             mostrarTodo.getBotonAtrasMostrarTodo().addActionListener(this);
             
             mostrarTodo.setAlwaysOnTop(true);
@@ -493,7 +529,7 @@ public class ControladorVentanas implements ActionListener{
             String rut = buscarPersona.getLlenadoRut().getText();
             persona = centro.buscarPersona(rut, 1);
             if(persona != null){
-                modificarDonante = new VentanaModificarDonante(((Donante)persona).getDatosDonante());
+                modificarDonante = new VentanaModificarDonante(((Donante)persona).getInfo(false));
                 modificarDonante.getBotonAceptar().addActionListener(this);
                 modificarDonante.getBotonCancelar().addActionListener(this);
                 
@@ -510,7 +546,7 @@ public class ControladorVentanas implements ActionListener{
             String nombre = modificarDonante.getLlenadoNombre().getText();
             String telefono = modificarDonante.getLlenadoTelefono().getText();
             int edad= Integer.parseInt(modificarDonante.getLlenadoEdad().getText());
-            String tipoSangre= modificarDonante.getLlenadoTipoSangre().getText();
+            String tipoSangre= (String)modificarDonante.getLlenadoTipoSangre().getSelectedItem();
             
             //falta verificar si todos estan bien, no se que hacer con el tipo de sangre
             if(persona.getRut().equals(rut)){
@@ -563,7 +599,7 @@ public class ControladorVentanas implements ActionListener{
             String rut = buscarPersona.getLlenadoRut().getText();
             persona = centro.buscarPersona(rut, 2);
             if(persona != null){
-                modificarFlebotomista = new VentanaModificarFlebotomista(((Flebotomista)persona).getInfo());
+                modificarFlebotomista = new VentanaModificarFlebotomista(((Flebotomista)persona).getInfo(false));
                 modificarFlebotomista.getBotonAceptar().addActionListener(this);
                 modificarFlebotomista.getBotonCancelar().addActionListener(this);
                 
@@ -620,6 +656,11 @@ public class ControladorVentanas implements ActionListener{
             modificar.dispose();
             modificar = null;
             return;
+        }
+        
+        if(evento.getSource() == main.getBotonSalirMain()){
+            //Aqui va el guardar datos.
+            System.exit(0);
         }
     }
     

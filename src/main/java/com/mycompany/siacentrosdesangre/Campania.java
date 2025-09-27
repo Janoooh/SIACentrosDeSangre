@@ -73,14 +73,14 @@ public class Campania {
             
         }
     }*/
-    public String[][] datosMostrarDonaciones(){
+    public String[][] datosMostrarDonaciones(boolean incluirTipo){
         int x;
         Donacion aux;
         String[][] retorno = new String[donaciones.size()][];
         
         for(x = 0; x < donaciones.size(); x++){
             aux = donaciones.get(x);
-            retorno[x] = aux.getDatosDonacion(id);
+            retorno[x] = aux.getDatosDonacion(id, incluirTipo);
         }
         return retorno;
     }

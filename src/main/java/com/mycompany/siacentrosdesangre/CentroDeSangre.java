@@ -194,7 +194,7 @@ public class CentroDeSangre {
     }
     
     //Entrega los datos de TODAS las donaciones del sistema.
-    public String[][] datosMostrarDonaciones(){
+    public String[][] datosMostrarDonaciones(boolean incluirTipo){
         int nDonaciones, x,y, pos;
         String[][] datosRetorno, datosCampania;
         Campania auxCampania;
@@ -203,7 +203,7 @@ public class CentroDeSangre {
         pos = 0;
         for(x = 0; x < campanias.size(); x++){
             auxCampania = campanias.get(x);
-            datosCampania = auxCampania.datosMostrarDonaciones();
+            datosCampania = auxCampania.datosMostrarDonaciones(incluirTipo);
             for (y = 0; y < datosCampania.length; y++){
                 datosRetorno[pos] = datosCampania[y];
                 pos++;
@@ -227,7 +227,7 @@ public class CentroDeSangre {
     /*Metodo datosMostrarPersona tipo especifico: Encargado
     de recolectar en un arreglo de arreglos String toda la informacion
     de todas las personas de un tipo especificado.*/
-    public String[][] datosMostrarPersona(int tipoPersona){
+    public String[][] datosMostrarPersona(int tipoPersona, boolean incluirTipo){
         int x, pos, nPersonas = contarPersonas(tipoPersona);
         String[][] datosRetorno = new String[nPersonas][];
         Persona aux;
@@ -235,10 +235,10 @@ public class CentroDeSangre {
         for(x = 0; x < personas.size(); x++){
             aux = personas.get(x);
             if(tipoPersona == 1 && aux.getTipoPersona() == 1){
-                datosRetorno[pos] = ((Donante)aux).getDatosDonante();
+                datosRetorno[pos] = ((Donante)aux).getInfo(incluirTipo);
                 pos++;
             }else if(tipoPersona == 2 && aux.getTipoPersona() == 2){
-                datosRetorno[pos] = ((Flebotomista)aux).getInfo();
+                datosRetorno[pos] = ((Flebotomista)aux).getInfo(incluirTipo);
                 pos++;
             }
         }
@@ -248,14 +248,14 @@ public class CentroDeSangre {
     /*Metodo datosMostrarPersona general: Encargado de recolectar
     en un arreglo de arreglos String todos los datos de las personas
     existentes en el arreglo de Personas.*/
-    public String[][] datosMostrarPersona(){
+    public String[][] datosMostrarPersona(boolean incluirTipo){
         int x;
         Persona aux;
         String[][] datosRetorno = new String[personas.size()][];
         
         for(x = 0; x < personas.size(); x++){
             aux = personas.get(x);
-            datosRetorno[x] = aux.getInfo();
+            datosRetorno[x] = aux.getInfo(incluirTipo);
         }
   
         return datosRetorno;

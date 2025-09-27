@@ -15,7 +15,7 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
      * Creates new form VentanaMostrarDonaciones
      */
     public VentanaMostrarDonaciones(CentroDeSangre centro) throws IOException {
-        String[][] donaciones = centro.datosMostrarDonaciones();
+        String[][] donaciones = centro.datosMostrarDonaciones(false);
         initComponents();
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         int x = 0;

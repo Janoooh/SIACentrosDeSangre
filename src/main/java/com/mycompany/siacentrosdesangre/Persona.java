@@ -55,8 +55,18 @@ public class Persona {
         this.tipoPersona = tipoPersona;
     }
     
-    public String[] getInfo(){
+    /*Metodo getInfo: encargado de retornar un arreglo de Strings con
+    toda la informacion de la persona. Recibe un booleano que indica 
+    si se quiere incluir el tipo de persona, o no. En caso de incluirse,
+    se manda como texto el tipo que es, ya sea Donante o Flebotomista.*/
+    public String[] getInfo(boolean incluirTipo){
         String[] info;
+        
+        if(!incluirTipo){
+            info = new String[]{rut,nombre,telefono,String.valueOf(edad)};
+            return info;
+        }
+        
         if(tipoPersona == 1)
             info = new String[]{rut,nombre,telefono,String.valueOf(edad),"Donante"};
         else

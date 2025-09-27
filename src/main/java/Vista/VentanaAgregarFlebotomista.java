@@ -5,19 +5,18 @@
 package Vista;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Usuario
  */
-public class VentanaAgregarDonante extends javax.swing.JFrame {
+public class VentanaAgregarFlebotomista extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaAgregarDonante
+     * Creates new form VentanaAgregarFlebotomista
      */
-    public VentanaAgregarDonante() {
+    public VentanaAgregarFlebotomista() {
         initComponents();
     }
 
@@ -30,6 +29,9 @@ public class VentanaAgregarDonante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
+        botonAceptarAgreFlebo = new javax.swing.JButton();
+        botonCancelarAgreFlebo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         llenadoRut = new javax.swing.JTextField();
@@ -39,14 +41,24 @@ public class VentanaAgregarDonante extends javax.swing.JFrame {
         llenadoTelefono = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         llenadoEdad = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        botonAceptarAgreDonante = new javax.swing.JButton();
-        botonCancelarAgreDonante = new javax.swing.JButton();
-        llenadoSangre = new javax.swing.JComboBox<>();
+        llenadoEspecialidad = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        llenadoCorreo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Agregar donante");
+        jLabel6.setText("Especialidad");
+
+        botonAceptarAgreFlebo.setText("Agregar");
+        botonAceptarAgreFlebo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarAgreFleboActionPerformed(evt);
+            }
+        });
+
+        botonCancelarAgreFlebo.setText("Cancelar");
+
+        jLabel1.setText("Agregar flebotomista");
 
         jLabel2.setText("Rut");
 
@@ -80,18 +92,19 @@ public class VentanaAgregarDonante extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Tipo Sangre");
-
-        botonAceptarAgreDonante.setText("Agregar");
-        botonAceptarAgreDonante.addActionListener(new java.awt.event.ActionListener() {
+        llenadoEspecialidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAceptarAgreDonanteActionPerformed(evt);
+                llenadoEspecialidadActionPerformed(evt);
             }
         });
 
-        botonCancelarAgreDonante.setText("Cancelar");
+        jLabel7.setText("Correo");
 
-        llenadoSangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+" }));
+        llenadoCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                llenadoCorreoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,9 +126,13 @@ public class VentanaAgregarDonante extends javax.swing.JFrame {
                                         .addComponent(jLabel5)
                                         .addComponent(jLabel6))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(llenadoEdad, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                        .addComponent(llenadoSangre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(llenadoEdad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(llenadoEspecialidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(llenadoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
                                 .addGroup(layout.createSequentialGroup()
@@ -128,9 +145,9 @@ public class VentanaAgregarDonante extends javax.swing.JFrame {
                 .addContainerGap(86, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botonAceptarAgreDonante)
+                .addComponent(botonAceptarAgreFlebo)
                 .addGap(43, 43, 43)
-                .addComponent(botonCancelarAgreDonante)
+                .addComponent(botonCancelarAgreFlebo)
                 .addGap(103, 103, 103))
         );
         layout.setVerticalGroup(
@@ -157,11 +174,15 @@ public class VentanaAgregarDonante extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(llenadoSangre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(llenadoEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAceptarAgreDonante)
-                    .addComponent(botonCancelarAgreDonante))
+                    .addComponent(jLabel7)
+                    .addComponent(llenadoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAceptarAgreFlebo)
+                    .addComponent(botonCancelarAgreFlebo))
                 .addGap(15, 15, 15))
         );
 
@@ -184,9 +205,17 @@ public class VentanaAgregarDonante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_llenadoEdadActionPerformed
 
-    private void botonAceptarAgreDonanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarAgreDonanteActionPerformed
+    private void llenadoEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llenadoEspecialidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonAceptarAgreDonanteActionPerformed
+    }//GEN-LAST:event_llenadoEspecialidadActionPerformed
+
+    private void llenadoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llenadoCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_llenadoCorreoActionPerformed
+
+    private void botonAceptarAgreFleboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarAgreFleboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAceptarAgreFleboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,26 +234,42 @@ public class VentanaAgregarDonante extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregarDonante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarFlebotomista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregarDonante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarFlebotomista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregarDonante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarFlebotomista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregarDonante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarFlebotomista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaAgregarDonante().setVisible(true);
+                new VentanaAgregarFlebotomista().setVisible(true);
             }
         });
     }
 
+    public JButton getBotonAceptarAgreFlebo() {
+        return botonAceptarAgreFlebo;
+    }
+
+    public JButton getBotonCancelarAgreFlebo() {
+        return botonCancelarAgreFlebo;
+    }
+
+    public JTextField getLlenadoCorreo() {
+        return llenadoCorreo;
+    }
+
     public JTextField getLlenadoEdad() {
         return llenadoEdad;
+    }
+
+    public JTextField getLlenadoEspecialidad() {
+        return llenadoEspecialidad;
     }
 
     public JTextField getLlenadoNombre() {
@@ -235,37 +280,27 @@ public class VentanaAgregarDonante extends javax.swing.JFrame {
         return llenadoRut;
     }
 
-    public JComboBox getLlenadoSangre() {
-        return llenadoSangre;
-    }
-
     public JTextField getLlenadoTelefono() {
         return llenadoTelefono;
-    }
-
-    public JButton getBotonAceptarAgreDonante() {
-        return botonAceptarAgreDonante;
-    }
-
-    public JButton getBotonCancelarAgreDonante() {
-        return botonCancelarAgreDonante;
     }
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAceptarAgreDonante;
-    private javax.swing.JButton botonCancelarAgreDonante;
+    private javax.swing.JButton botonAceptarAgreFlebo;
+    private javax.swing.JButton botonCancelarAgreFlebo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField llenadoCorreo;
     private javax.swing.JTextField llenadoEdad;
+    private javax.swing.JTextField llenadoEspecialidad;
     private javax.swing.JTextField llenadoNombre;
     private javax.swing.JTextField llenadoRut;
-    private javax.swing.JComboBox<String> llenadoSangre;
     private javax.swing.JTextField llenadoTelefono;
     // End of variables declaration//GEN-END:variables
 }

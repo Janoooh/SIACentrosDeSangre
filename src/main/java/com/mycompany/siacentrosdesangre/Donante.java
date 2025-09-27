@@ -19,7 +19,7 @@ public class Donante extends Persona{
 
     /*Metodo getDatosDonante: Encargado de retornar un arreglo de String
     en donde se guardan todos los datos del donante, uno a uno.*/
-    public String[] getDatosDonante(){
+    /*public String[] getDatosDonante(){
         String[] datos = new String[5];
         datos[0] = getRut();
         datos[1] = getNombre();
@@ -27,7 +27,7 @@ public class Donante extends Persona{
         datos[3] = String.valueOf(getEdad());
         datos[4] = tipoSangre;
         return datos;
-    }
+    }*/
     
     /*Metodo mostrarDonante: Encargado de mostrar la informacion del
     donante por consola.*/
@@ -37,9 +37,16 @@ public class Donante extends Persona{
     }
     
     @Override
-    public String[] getInfo(){
-        String[] infoPers = super.getInfo();
-        String[] infoGeneral = {infoPers[0],infoPers[1],infoPers[2],infoPers[3],infoPers[4],tipoSangre};
+    public String[] getInfo(boolean incluirTipo){
+        String[] infoGeneral;
+        String[] infoPers = super.getInfo(incluirTipo);
+        
+        if(incluirTipo){
+            infoGeneral = new String[]{infoPers[0],infoPers[1],infoPers[2],infoPers[3],infoPers[4],tipoSangre};
+        }else{
+            infoGeneral = new String[]{infoPers[0],infoPers[1],infoPers[2],infoPers[3],tipoSangre};
+        }
+        
         return infoGeneral;
     }
 }
