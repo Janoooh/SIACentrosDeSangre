@@ -49,7 +49,12 @@ public class VentanaAgregar extends javax.swing.JFrame {
             }
         });
 
-        botonAgreAtras.setText("atras");
+        botonAgreAtras.setText("Atrás");
+        botonAgreAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgreAtrasActionPerformed(evt);
+            }
+        });
 
         botonAgreSangre1.setText("Agregar Sangre al inventario");
         botonAgreSangre1.addActionListener(new java.awt.event.ActionListener() {
@@ -81,8 +86,8 @@ public class VentanaAgregar extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(291, 291, 291))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonAgreCampania, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(botonAgreCampania, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(botonAgreDonacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(botonAgreFlebo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -132,6 +137,10 @@ public class VentanaAgregar extends javax.swing.JFrame {
     private void botonAgreDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgreDonacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAgreDonacionActionPerformed
+
+    private void botonAgreAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgreAtrasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgreAtrasActionPerformed
     
     public JButton getBotonAgreCampania(){
         return botonAgreCampania;
