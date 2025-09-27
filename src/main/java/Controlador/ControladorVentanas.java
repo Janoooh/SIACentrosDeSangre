@@ -4,45 +4,48 @@ import Vista.*;
 import com.mycompany.siacentrosdesangre.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import javax.swing.JFrame;
 
 public class ControladorVentanas implements ActionListener{
     private CentroDeSangre centro;
     private VentanaMain main;
     
-    private VentanaAgregar agregar;
-    private VentanaAgregarCamp agregarCampania;
-    private VentanaAgregarDonacion agregarDonacion;
-    private VentanaAgregarDonante agregarDonante;
-    private VentanaAgregarFlebotomista agregarFlebotomista;
-    private VentanaAgregarSangre agregarSangre;
+    private ControladorAgregar agregar;
+    //private VentanaAgregar agregar;
+    //private VentanaAgregarCamp agregarCampania;
+    //private VentanaAgregarDonacion agregarDonacion;
+    //private VentanaAgregarDonante agregarDonante;
+    //private VentanaAgregarFlebotomista agregarFlebotomista;
+    //private VentanaAgregarSangre agregarSangre;
     
-    private VentanaMostrar mostrar;
-    private VentanaMostrarCampanias mostrarCampanias;
-    private VentanaMostrarDonaciones mostrarDonaciones;
-    private VentanaMostrarPersonas mostrarPersonas;
-    private VentanaMostrarDonantes mostrarDonantes;
-    private VentanaMostrarFlebotomistas mostrarFlebotomistas;
-    private VentanaMostrarTodo mostrarTodo;
-    private VentanaMostrarInventarioSangre mostrarInventario;
     
-    private VentanaEliminar eliminar;
-    private VentanaEliminarCampania eliminarCampania;
-    private VentanaEliminarDonacion eliminarDonacion;
-    private VentanaEliminarPersona eliminarPersona;
+    private ControladorMostrar mostrar;
+    //private VentanaMostrar mostrar;
+    //private VentanaMostrarCampanias mostrarCampanias;
+    //private VentanaMostrarDonaciones mostrarDonaciones;
+    //private VentanaMostrarPersonas mostrarPersonas;
+    //private VentanaMostrarDonantes mostrarDonantes;
+    //private VentanaMostrarFlebotomistas mostrarFlebotomistas;
+    //private VentanaMostrarTodo mostrarTodo;
+    //private VentanaMostrarInventarioSangre mostrarInventario;
     
-    private VentanaModificar modificar;
-    private VentanaModificarCampania modificarCampania;
-    private VentanaModificarDonante modificarDonante;
-    private VentanaModificarFlebotomista modificarFlebotomista;
+    private ControladorEliminar eliminar;
+    //private VentanaEliminar eliminar;
+    //private VentanaEliminarPersona eliminarPersona;
     
-    private VentanaBuscarCampania buscarCamp;
-    private VentanaBuscarPersona buscarPersona;
-    private VentanaAviso aviso;
-    private Campania campania;
-    private Persona persona;
-    private int aux;
+    private ControladorModificar modificar;
+    //private VentanaModificar modificar;
+    //private VentanaModificarCampania modificarCampania;
+    //private VentanaModificarDonante modificarDonante;
+    //private VentanaModificarFlebotomista modificarFlebotomista;
+    
+    //private VentanaBuscarCampania buscarCamp;
+    //private VentanaBuscarPersona buscarPersona;
+    //private VentanaBuscarDonacion buscarDonacion;
+    //private VentanaAviso aviso;
+    //private Campania campania;
+    //private Persona persona;
+    //private int aux;
     
     public void iniciar(CentroDeSangre centro){
         this.centro = centro;
@@ -57,18 +60,22 @@ public class ControladorVentanas implements ActionListener{
         main.setVisible(true);
     }
     
+    /*
     public void mandarAviso(String msg){
         aviso = new VentanaAviso(msg);
         aviso.getBotonAceptarAviso().addActionListener(this);
         aviso.setAlwaysOnTop(true);
         aviso.setVisible(true);
-    }
+    }*/
     
     @Override
     public void actionPerformed(ActionEvent evento) {
         //evento pulsar el boton agregar en la ventana main
         if(evento.getSource() == main.getBotonAgregarMain()){
-            agregar = new VentanaAgregar();
+            agregar = new ControladorAgregar();
+            agregar.iniciar(centro);
+            
+            /*agregar = new VentanaAgregar();
             agregar.getBotonAgreCampania().addActionListener(this);
             agregar.getBotonAgreDonacion().addActionListener(this);
             agregar.getBotonAgreDonante().addActionListener(this);
@@ -77,13 +84,17 @@ public class ControladorVentanas implements ActionListener{
             agregar.getBotonAgreAtras().addActionListener(this);
             
             agregar.setAlwaysOnTop(true);
-            agregar.setVisible(true);
+            agregar.setVisible(true);*/
+            
             return;
         }
         
         //evento pulsar el boton mostrar en la ventana main
         if(evento.getSource() == main.getBotonMostrarMain()){
-            mostrar = new VentanaMostrar();
+            mostrar = new ControladorMostrar();
+            mostrar.iniciar(centro);
+            
+            /*mostrar = new VentanaMostrar();
             mostrar.getBotonMostrarCamp().addActionListener(this);
             mostrar.getBotonMostrarDonaciones().addActionListener(this);
             mostrar.getBotonMostrarSangre().addActionListener(this);
@@ -91,30 +102,49 @@ public class ControladorVentanas implements ActionListener{
             mostrar.getBotonAtrasMostrar().addActionListener(this);
             
             mostrar.setAlwaysOnTop(true);
-            mostrar.setVisible(true);
+            mostrar.setVisible(true);*/
+            
             return;
         }
         
-        /*if(evento.getSource() == main.getBotonEliminarMain()){
+        if(evento.getSource() == main.getBotonEliminarMain()){
+            eliminar = new ControladorEliminar();
+            eliminar.iniciar(centro);
+            
+            /*
             eliminar = new VentanaEliminar();
-            eliminar.getBotonElimCampania().addActionListener(this);
-            eliminar.getBotonElimDonacion().addActionListener(this);
-            eliminar.getBotonElimPersona().addActionListener(this);
-            eliminar.getBotonElimAtras().addActionListener(this);
-        }*/
+            eliminar.getBotonEliminarCampania().addActionListener(this);
+            eliminar.getBotonEliminarDonacion().addActionListener(this);
+            eliminar.getBotonEliminarPersona().addActionListener(this);
+            eliminar.getBotonAtras().addActionListener(this);
+            
+            eliminar.setAlwaysOnTop(true);
+            eliminar.setVisible(true);*/
+            
+            return;
+        }
         
         if(evento.getSource() == main.getBotonModificarMain()){
-            modificar = new VentanaModificar();
+            modificar = new ControladorModificar();
+            modificar.iniciar(centro);
+            
+            /*modificar = new VentanaModificar();
             modificar.getBotonModificarCampania().addActionListener(this);
             modificar.getBotonModificarDonante().addActionListener(this);
             modificar.getBotonModificarFlebotomista().addActionListener(this);
             modificar.getBotonAtrasModificar().addActionListener(this);
             
             modificar.setAlwaysOnTop(true);
-            modificar.setVisible(true);
+            modificar.setVisible(true);*/
+            
             return;
         }
         
+        
+        ///////////////////////////////////////////////////////////////////////
+        //                          Agregar                                ////
+        ///////////////////////////////////////////////////////////////////////
+        /*
         //evento pulsar el boton agregar campania en la ventana agregar
         if(agregar != null && evento.getSource() == agregar.getBotonAgreCampania()){
             agregarCampania = new VentanaAgregarCamp();
@@ -349,7 +379,12 @@ public class ControladorVentanas implements ActionListener{
             agregar = null;
             return;
         }
+        */
         
+        ///////////////////////////////////////////////////////////////////////
+        //                          Mostrar                                ////
+        ///////////////////////////////////////////////////////////////////////
+        /*
         //evento pulsar el boton mostrar campanias en la ventana mostrar
         if(mostrar != null && evento.getSource() == mostrar.getBotonMostrarCamp()){
             try {
@@ -486,8 +521,140 @@ public class ControladorVentanas implements ActionListener{
             mostrar = null;
             return;
         }
+        */
+        ///////////////////////////////////////////////////////////////////////
+        //                          Eliminar                               ////
+        ///////////////////////////////////////////////////////////////////////
+        /*
+        if(eliminar != null && evento.getSource() == eliminar.getBotonEliminarCampania()){
+            buscarCamp = new VentanaBuscarCampania();
+            buscarCamp.getBotonConfirmarBuscarCamp().addActionListener(this);
+            buscarCamp.getBotonCancelarBuscarCamp().addActionListener(this);
+            aux = 3;
+            
+            buscarCamp.setAlwaysOnTop(true);
+            buscarCamp.setVisible(true);
+            return;
+        }
         
-        if(modificar != null && evento.getSource() == modificar.getBotonModificarCampania()){
+        if(aux == 3 && eliminar != null && buscarCamp != null && evento.getSource() == buscarCamp.getBotonConfirmarBuscarCamp()){
+            String id = buscarCamp.getLlenadoCampania().getText();
+            int idTrans;
+            try{
+                idTrans = Integer.parseInt(id);
+                centro.borrarCampania(idTrans);
+                mandarAviso("La campania ha sido eliminada exitosamente.");
+                buscarCamp.dispose();
+            }catch(NotFoundException e){
+                mandarAviso(e.getMessage());
+            }catch(NumberFormatException e){
+                mandarAviso("La ID debe ser numerica.");
+            }
+            return;
+        }
+        
+        if(eliminar != null && evento.getSource() == eliminar.getBotonEliminarDonacion()){
+            buscarCamp = new VentanaBuscarCampania();
+            buscarCamp.getBotonConfirmarBuscarCamp().addActionListener(this);
+            buscarCamp.getBotonCancelarBuscarCamp().addActionListener(this);
+            aux = 4;
+            
+            buscarCamp.setAlwaysOnTop(true);
+            buscarCamp.setVisible(true);
+            return;
+        }
+        
+        if(aux == 4 && eliminar != null && buscarCamp != null && evento.getSource() == buscarCamp.getBotonConfirmarBuscarCamp()){
+            String id = buscarCamp.getLlenadoCampania().getText();
+            int idTrans;
+            try{
+                idTrans = Integer.parseInt(id);
+                campania = centro.buscarCampania(idTrans);
+                if(campania == null)throw new NotFoundException("Campania "+id+" no encontrada.");
+                buscarDonacion = new VentanaBuscarDonacion();
+                buscarDonacion.getBotonBuscar().addActionListener(this);
+                buscarDonacion.getBotonCancelar().addActionListener(this);
+                
+                buscarDonacion.setAlwaysOnTop(true);
+                buscarDonacion.setVisible(true);
+                
+            }catch(NotFoundException e){
+                mandarAviso(e.getMessage());
+            }catch(NumberFormatException e){
+                mandarAviso("La ID debe ser numerica.");
+            }
+            return;
+        }
+        
+        if(buscarDonacion != null && evento.getSource() == buscarDonacion.getBotonBuscar()){
+            String id = buscarDonacion.getLlenadoIdDonacion().getText();
+            int idTrans;
+            try{
+                idTrans = Integer.parseInt(id);
+                centro.borrarDonacionDeCampania(idTrans, campania.getId());
+                mandarAviso("La donacion se eliminó correctamente.");
+                buscarDonacion.dispose();
+                buscarCamp.dispose();
+            }catch(NotFoundException e){
+                mandarAviso(e.getMessage());
+            }catch(NumberFormatException e){
+                mandarAviso("La ID debe ser numerica.");
+            }
+            return;
+        }
+        
+        if(buscarDonacion != null && evento.getSource() == buscarDonacion.getBotonCancelar()){
+            buscarDonacion.dispose();
+            return;
+        }
+        
+        if(eliminar != null && evento.getSource() == eliminar.getBotonEliminarPersona()){
+            eliminarPersona = new VentanaEliminarPersona();
+            eliminarPersona.getBotonEliminar().addActionListener(this);
+            eliminarPersona.getBotonCancelar().addActionListener(this);
+            
+            eliminarPersona.setAlwaysOnTop(true);
+            eliminarPersona.setVisible(true);
+            return;
+        }
+        
+        if(eliminarPersona != null && evento.getSource() == eliminarPersona.getBotonEliminar()){
+            Persona eliminado = null;
+            String rut = eliminarPersona.getLlenadoRut().getText();
+            String opcion = (String)eliminarPersona.getOpciones().getSelectedItem();
+            try{
+                if(opcion.equals("Donante"))
+                    eliminado = centro.borrarPersona(rut, 1);
+                else
+                    eliminado = centro.borrarPersona(rut, 2);
+            }catch(NotFoundException e){
+                mandarAviso(e.getMessage());
+            }
+            
+            if(eliminado != null){
+                mandarAviso("El " + opcion + " fue eliminado exitosamente.");
+                eliminarPersona.dispose();
+            }
+            return;
+        }
+              
+        if(eliminarPersona != null && evento.getSource() == eliminarPersona.getBotonCancelar()){
+            eliminarPersona.dispose();
+            return;
+        }
+        
+        if(eliminar != null && evento.getSource() == eliminar.getBotonAtras()){
+            eliminar.dispose();
+            eliminar = null;
+            return;
+        }
+        */
+        
+        
+        ///////////////////////////////////////////////////////////////////////
+        //                          Modificar                             ////
+        ///////////////////////////////////////////////////////////////////////
+        /*if(modificar != null && evento.getSource() == modificar.getBotonModificarCampania()){
             buscarCamp = new VentanaBuscarCampania();
             buscarCamp.getBotonConfirmarBuscarCamp().addActionListener(this);
             buscarCamp.getBotonCancelarBuscarCamp().addActionListener(this);
@@ -709,7 +876,7 @@ public class ControladorVentanas implements ActionListener{
             modificar.dispose();
             modificar = null;
             return;
-        }
+        }*/
         
         if(evento.getSource() == main.getBotonSalirMain()){
             //Aqui va el guardar datos.
