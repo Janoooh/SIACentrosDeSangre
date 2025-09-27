@@ -98,7 +98,7 @@ public class Menu {
                     break;
 
                 case 2:
-                    centro.mostrarDonacionesDeCampanias();
+                    //centro.mostrarDonacionesDeCampanias();
                     break;
 
                 case 3:

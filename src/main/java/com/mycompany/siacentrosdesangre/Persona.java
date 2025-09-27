@@ -54,4 +54,14 @@ public class Persona {
     public void setTipoPersona(int tipoPersona){
         this.tipoPersona = tipoPersona;
     }
+    
+    public String[] getInfo(){
+        String[] info;
+        if(tipoPersona == 1)
+            info = new String[]{rut,nombre,telefono,String.valueOf(edad),"Donante"};
+        else
+            info = new String[]{rut,nombre,telefono,String.valueOf(edad),"Flebotomista"};
+        
+        return info;
+    }
 }

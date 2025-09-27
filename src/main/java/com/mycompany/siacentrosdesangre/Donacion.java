@@ -56,18 +56,10 @@ public class Donacion {
     /*Metodo getDatosDonacionCompleta: Encargado de retornar un
     arreglo de String con toda la informacion de la donacion, osea,
     los datos del donante tambien se guardan uno a uno en el arreglo.*/
-    public String[] getDatosDonacionCompleta(){
-        String[] datos = new String[7];
-        String[] datosDonante;
-        datosDonante = ((Donante)donador).getDatosDonante();
-        datos[0] = String.valueOf(id);
-        datos[1] = fecha;
-        datos[2] = datosDonante[0];
-        datos[3] = datosDonante[1];
-        datos[4] = datosDonante[2];
-        datos[5] = datosDonante[3];
-        datos[6] = datosDonante[4];
-        
+    public String[] getDatosDonacion(int idCamp){
+        String[] infDonante = donador.getInfo();
+        String[] infFlebo = flebotomista.getInfo();
+        String[] datos = {String.valueOf(id),fecha,infDonante[0],infDonante[1],infFlebo[0],infFlebo[1],String.valueOf(idCamp)};
         return datos;
     }
     

@@ -13,6 +13,7 @@ public class ControladorVentanas implements ActionListener{
     private VentanaAgregar agregar;
     private VentanaAgregarCamp agregarCampania;
     private VentanaAgregarDonacion agregarDonacion;
+    private VentanaAgregarDonante agregarDonante;
     private VentanaAgregarSangre agregarSangre;
     private VentanaMostrar mostrar;
     private VentanaMostrarCampanias mostrarCampanias;
@@ -71,15 +72,13 @@ public class ControladorVentanas implements ActionListener{
             String localidad = agregarCampania.getLlenadoLocalidad().getText();
 
             try {
-                if(centro.agregarCampaniaNueva(Integer.parseInt(id), localidad)){
-                    mandarAviso("La campania ha sido creada exitosamente.");
-                    agregarCampania.dispose();
-                }
-                else{
-                    mandarAviso("Hay una campania con ese id registrado.");
-                }
+                centro.agregarCampaniaNueva(Integer.parseInt(id), localidad);
+                mandarAviso("La campania ha sido creada exitosamente.");
+                agregarCampania.dispose();
             }catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }catch(DataDuplicateException e){
+                mandarAviso("Hay una campania con ese id registrado.");
             }
             
             return;
@@ -144,16 +143,14 @@ public class ControladorVentanas implements ActionListener{
             //Donacion aux = new Donacion()
             
             try {
-                if(centro.agregarDonacionACampania(campania, id, fecha,rutDonante,rutFlebo)){
-                    mandarAviso("La donacion se ha agregado exitosamente.");
-                    agregarDonacion.dispose();
-                }
-                else{
-                    mandarAviso("La id dad ya existe en el sistema.");
-                }
+                centro.agregarDonacionACampania(campania, id, fecha,rutDonante,rutFlebo);
+                mandarAviso("La donacion se ha agregado exitosamente.");
+                agregarDonacion.dispose();
             } catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             } catch (NotFoundException e){
+                mandarAviso(e.getMessage());
+            } catch (DataDuplicateException e){
                 mandarAviso(e.getMessage());
             }
             return;
@@ -162,6 +159,43 @@ public class ControladorVentanas implements ActionListener{
         //evento pulsar el boton cancelar en la ventana agregar donacion
         if(agregarDonacion != null && evento.getSource() == agregarDonacion.getBotonCancelarAgreDonacion()){
             agregarDonacion.dispose();
+            return;
+        }
+        
+        //Evento pulsar el boton agregar donante de la ventana agregar.
+        if(agregar != null && evento.getSource() == agregar.getBotonAgreDonante()){
+            agregarDonante = new VentanaAgregarDonante();
+            agregarDonante.getBotonAceptarAgreDonante().addActionListener(this);
+            agregarDonante.getBotonCancelarAgreDonante().addActionListener(this);
+            
+            agregarDonante.setAlwaysOnTop(true);
+            agregarDonante.setVisible(true);
+            return;
+        }
+        
+        if(agregarDonante != null && evento.getSource() == agregarDonante.getBotonAceptarAgreDonante()){
+            String rut, nombre, telefono, tipoSangre;
+            int edad;
+            
+            rut = agregarDonante.getLlenadoRut().getText();
+            nombre = agregarDonante.getLlenadoNombre().getText();
+            telefono = agregarDonante.getLlenadoTelefono().getText();
+            edad = Integer.parseInt(agregarDonante.getLlenadoEdad().getText());
+            tipoSangre = agregarDonante.getLlenadoSangre().getText();
+            try{
+                centro.agregarPersona(rut, nombre, telefono, edad, 1, tipoSangre);
+                mandarAviso("Persona agregada correctamente.");
+            }catch(DataDuplicateException e){
+                mandarAviso(e.getMessage());
+            }catch(Exception e){
+                mandarAviso("Error desconocido.");
+            }
+            return;
+        }
+        
+        //evento pulsar el boton cancelar en la ventana agregar donante
+        if(agregarDonante != null && evento.getSource() == agregarDonante.getBotonCancelarAgreDonante()){
+            agregarDonante.dispose();
             return;
         }
         
@@ -225,7 +259,7 @@ public class ControladorVentanas implements ActionListener{
         //evento pulsar el boton mostrar campanias en la ventana mostrar
         if(mostrar != null && evento.getSource() == mostrar.getBotonMostrarCamp()){
             try {
-                mostrarCampanias = new VentanaMostrarCampanias();
+                mostrarCampanias = new VentanaMostrarCampanias(centro);
             } catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }
@@ -244,8 +278,10 @@ public class ControladorVentanas implements ActionListener{
         
         //evento pulsar el boton mostrar donaciones en la ventana mostrar
         if(mostrar != null && evento.getSource() == mostrar.getBotonMostrarDonaciones()){
+            
             try {
-                mostrarDonaciones = new VentanaMostrarDonaciones();
+                mostrarDonaciones = new VentanaMostrarDonaciones(centro);
+                
             } catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }

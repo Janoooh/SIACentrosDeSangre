@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import com.mycompany.siacentrosdesangre.CentroDeSangre;
 
 public class VentanaMostrarCampanias extends javax.swing.JFrame {
     
@@ -14,15 +15,19 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
      * Creates new form VentanaMostrarCampanias
      * @throws java.io.IOException
      */
-    public VentanaMostrarCampanias() throws IOException {
-        ArrayList<String> datosArchivo = Herramientas.leerArchivo("datosCampania.txt");
+    public VentanaMostrarCampanias(CentroDeSangre centro) throws IOException {
+        //ArrayList<String> datosArchivo = Herramientas.leerArchivo("datosCampania.txt");//array donde cada posicion e¿son todos los datos juntos de cada campania
+        //[[juan*21212*O+], [maria*23131*AB-], ...]
+        String[][] datos = centro.datosMostrarCampanias();
+        int x = 0;
         initComponents();
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        String[] datosLinea;
-        int x = 1;
-        while(x < datosArchivo.size()){
-            datosLinea = datosArchivo.get(x).split("\\*");
-            model.addRow(datosLinea);
+        
+        
+        //por cada posicion del arraylist lo separa y lo pone en otro arreglo 
+        //queda [juan, 12121212, O+] y eso se imprime en la primera fila
+        while(x < datos.length){
+            model.addRow(datos[x]);
             x++;
         }
     }
@@ -52,11 +57,11 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Ubicacion"
+                "Id", "Ubicacion", "N de Donaciones"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

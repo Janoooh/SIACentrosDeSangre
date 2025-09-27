@@ -69,7 +69,7 @@ public class CentroDeSangre {
     una persona al arrayList de personas, especificamente un donante.
     Se encarga de validar que ese donante aun no exista, si es asi, se 
     creara el objeto donante y se guardara en el arrayList de Persona.*/
-    public void agregarPersona(String rut, String nom, String tel, int edad, int tipoPersona, String tipoSangre){
+    public void agregarPersona(String rut, String nom, String tel, int edad, int tipoPersona, String tipoSangre)throws DataDuplicateException{
         Persona buscado, nuevo;
         
         buscado = buscarPersona(rut,tipoPersona);
@@ -77,21 +77,25 @@ public class CentroDeSangre {
         if(buscado == null){
             nuevo = new Donante(rut,nom,tel,edad,tipoPersona,tipoSangre);
             personas.add(nuevo);
+            return;
         }
-        
+        throw new DataDuplicateException("El donante con rut "+rut+" ya existe.");
     }
     
     /*Metodo agregarPersona para flebotomista: Encargado de agregar una
     persona al arrayList de personas, especificamente un flebotomista.
     Se encarga de validar que ese flebotomista no exista, en ese caso,
     crea el objeto flebotomista y lo agrega en el arrayList de persona.*/
-    public void agregarPersona(String rut, String nom, String tel, int edad, int tipoPersona, String especialidad, String correo){
+    public void agregarPersona(String rut, String nom, String tel, int edad, int tipoPersona, String especialidad, String correo)throws DataDuplicateException{
         Persona buscado, nuevo;
         buscado = buscarPersona(rut,tipoPersona);
         if(buscado == null){
             nuevo = new Flebotomista(rut,nom,tel,edad,tipoPersona,especialidad,correo);
             personas.add(nuevo);
+            return;
         }
+        throw new DataDuplicateException("El flebotomista con rut "+rut+" ya existe.");
+        
     }
     
     /*Metodo agregarSangre: Encargado de dar la opcion al usuario para
@@ -189,9 +193,91 @@ public class CentroDeSangre {
         return retorno;
     }
     
+    //Entrega los datos de TODAS las donaciones del sistema.
+    public String[][] datosMostrarDonaciones(){
+        int nDonaciones, x,y, pos;
+        String[][] datosRetorno, datosCampania;
+        Campania auxCampania;
+        nDonaciones = contarDonaciones();
+        datosRetorno = new String[nDonaciones][];
+        pos = 0;
+        for(x = 0; x < campanias.size(); x++){
+            auxCampania = campanias.get(x);
+            datosCampania = auxCampania.datosMostrarDonaciones();
+            for (y = 0; y < datosCampania.length; y++){
+                datosRetorno[pos] = datosCampania[y];
+                pos++;
+            }
+        }
+        return datosRetorno;
+    }
+    
+    public String[][] datosMostrarCampanias(){
+        String[][] datosRetorno = new String[campanias.size()][];
+        Campania auxCampania;
+        int x;
+        
+        for(x = 0; x < campanias.size(); x++){
+            auxCampania = campanias.get(x);
+            datosRetorno[x] = auxCampania.getDatosCampania();
+        }
+        return datosRetorno;
+    }
+    
+    public String[][] datosMostrarPersona(int tipoPersona){
+        int x, pos, nPersonas = contarPersonas(tipoPersona);
+        String[][] datosRetorno = new String[nPersonas][];
+        Persona aux;
+        pos = 0;
+        for(x = 0; x < personas.size(); x++){
+            aux = personas.get(x);
+            if(tipoPersona == 1 && aux.getTipoPersona() == 1){
+                datosRetorno[pos] = ((Donante)aux).getDatosDonante();
+                pos++;
+            }else if(tipoPersona == 2 && aux.getTipoPersona() == 2){
+                datosRetorno[pos] = ((Flebotomista)aux).getInfo();
+                pos++;
+            }
+        }
+        return datosRetorno;
+    }
+    
+    /*Metodo contarPersonas: Encargado de contar cuantas personas
+    existen en el arrayList de personas. Recibe tipoPersona, que 
+    es un entero que representa el tipo que se desea contar. Sigue
+    la logica de la clase, osea si es 1 es donante, y si es 2 es
+    flebotomista. Si el valor es 0, se devuelte el total de personas
+    existentes en el arrayList.*/
+    public int contarPersonas(int tipoPersona){
+        Persona aux;
+        int cont = 0, x;
+        
+        if(tipoPersona == 0)return personas.size();
+        
+        for(x = 0; x < personas.size(); x++){
+            aux = personas.get(x);
+            if(aux.getTipoPersona() == tipoPersona)
+                cont++;
+        }
+        return cont;
+    }
+    
+    //Cuenta la canitdad de donaciones en el centro
+    public int contarDonaciones(){
+        int cont, x;
+        Campania aux;
+        cont = 0;
+        
+        for(x = 0; x < campanias.size(); x++){
+            aux =  campanias.get(x);
+            cont += aux.getSizeDonaciones();
+        }
+        return cont;
+    }
+    
     /*Metodo mostrarDonacionesDeCampanias: Encargado de mostrar todas las
     donaciones existentes, campania por campania.*/
-    public void mostrarDonacionesDeCampanias(){
+    /*public void mostrarDonacionesDeCampanias(){
         int x;
         Campania aux;
         if(campanias.isEmpty())
@@ -203,7 +289,7 @@ public class CentroDeSangre {
             aux = campanias.get(x);
             aux.mostrarDonaciones();
         }
-    }
+    }*/
     
     /*Metodo crearDonacion: Encargado de crear una nueva donacion a traves
     de datos solicitados al usuario por consola. Tras tomar todos los datos,
@@ -277,7 +363,7 @@ public class CentroDeSangre {
     /*Metodo agregarCampaniaNueva: Encargado de crear y agregar una
     campania nueva, ingresada por el usuario a traves de la consola.
     Tambien guarda el nuevo registro en el documento de datos.*/
-    public boolean agregarCampaniaNueva(int id, String localidad) throws IOException{
+    public boolean agregarCampaniaNueva(int id, String localidad) throws IOException,DataDuplicateException{
         String cadena;
         Campania buscado = buscarCampania(id);
         if(buscado == null){
@@ -287,14 +373,14 @@ public class CentroDeSangre {
             Herramientas.guardarEnArchivo(cadena, "datosCampania.txt");
             return true;
         }
-        return false;
+        throw new DataDuplicateException("La campania con id "+id+" ya existe.");
     }
     
     
     //public void agregarDonacionEnCampania(Cam)
     
     //metodo que toma todos los valores para crear una donacion, ademas de una campania, necesario para ventana
-    public boolean agregarDonacionACampania(Campania campania, int id, String fecha, String rutDonante, String rutFlebotomista) throws IOException, NotFoundException{
+    public boolean agregarDonacionACampania(Campania campania, int id, String fecha, String rutDonante, String rutFlebotomista) throws IOException, NotFoundException,DataDuplicateException{
         Persona donante, flebotomista;
         Donacion nueva;
         if(campania.buscarDonacion(id) == null){
@@ -310,7 +396,8 @@ public class CentroDeSangre {
             agregarStockSangre(((Donante)donante).getTipoSangre(), 1);
             return true;
         }
-        return false;
+        
+        throw new DataDuplicateException("La donacion con id "+id+" ya existe.");
     }
     
     public Donacion borrarDonacionDeCampania(int idDonacion, int idCampania)throws NotFoundException{

@@ -26,6 +26,10 @@ public class Flebotomista extends Persona {
         this.correo = correo;
     }
     
-    
+    public String[] getInfo(){
+        String[] infoPers = super.getInfo();
+        String[] infoGeneral = {infoPers[0],infoPers[1],infoPers[2],infoPers[3],infoPers[4],especialidad,correo};
+        return infoGeneral;
+    }
     
 }

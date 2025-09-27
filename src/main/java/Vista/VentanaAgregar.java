@@ -23,8 +23,10 @@ public class VentanaAgregar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         botonAgreCampania = new javax.swing.JButton();
         botonAgreDonacion = new javax.swing.JButton();
-        botonAgreSangre = new javax.swing.JButton();
+        botonAgreDonante = new javax.swing.JButton();
         botonAgreAtras = new javax.swing.JButton();
+        botonAgreSangre1 = new javax.swing.JButton();
+        botonAgreFlebo = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -34,10 +36,34 @@ public class VentanaAgregar extends javax.swing.JFrame {
         botonAgreCampania.setText("Agregar Campania");
 
         botonAgreDonacion.setText("Agregar Donacion");
+        botonAgreDonacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgreDonacionActionPerformed(evt);
+            }
+        });
 
-        botonAgreSangre.setText("Agregar Sangre al inventario");
+        botonAgreDonante.setText("Agregar Donante");
+        botonAgreDonante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgreDonanteActionPerformed(evt);
+            }
+        });
 
         botonAgreAtras.setText("atras");
+
+        botonAgreSangre1.setText("Agregar Sangre al inventario");
+        botonAgreSangre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgreSangre1ActionPerformed(evt);
+            }
+        });
+
+        botonAgreFlebo.setText("Agregar Flebotomista");
+        botonAgreFlebo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgreFleboActionPerformed(evt);
+            }
+        });
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -45,26 +71,26 @@ public class VentanaAgregar extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(jLabel2)
+                .addContainerGap(188, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonAgreAtras))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(291, 291, 291))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonAgreSangre)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(170, 170, 170)
-                                .addComponent(jLabel2)
-                                .addGap(75, 75, 75)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonAgreCampania)
-                    .addComponent(botonAgreDonacion)
-                    .addComponent(jLabel1))
-                .addGap(147, 147, 147))
+                            .addComponent(botonAgreCampania, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(botonAgreDonacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonAgreFlebo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonAgreDonante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonAgreSangre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(56, 56, 56)
+                        .addComponent(botonAgreAtras)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,17 +101,37 @@ public class VentanaAgregar extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(46, 46, 46)
                 .addComponent(botonAgreCampania)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonAgreDonacion)
-                .addGap(37, 37, 37)
-                .addComponent(botonAgreSangre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(botonAgreDonante)
+                .addGap(18, 18, 18)
+                .addComponent(botonAgreFlebo)
+                .addGap(18, 18, 18)
+                .addComponent(botonAgreSangre1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(botonAgreAtras)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonAgreSangre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgreSangre1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgreSangre1ActionPerformed
+
+    private void botonAgreDonanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgreDonanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgreDonanteActionPerformed
+
+    private void botonAgreFleboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgreFleboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgreFleboActionPerformed
+
+    private void botonAgreDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgreDonacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgreDonacionActionPerformed
     
     public JButton getBotonAgreCampania(){
         return botonAgreCampania;
@@ -96,11 +142,19 @@ public class VentanaAgregar extends javax.swing.JFrame {
     }
         
     public JButton getBotonAgreSangre(){
-        return botonAgreSangre;
+        return botonAgreDonante;
     }
         
     public JButton getBotonAgreAtras(){
         return botonAgreAtras;
+    }
+    
+    public JButton getBotonAgreDonante(){
+        return botonAgreDonante;
+    }
+    
+    public JButton getBotonAgreFlebo(){
+        return botonAgreFlebo;
     }
     
     /**
@@ -131,7 +185,9 @@ public class VentanaAgregar extends javax.swing.JFrame {
     private javax.swing.JButton botonAgreAtras;
     private javax.swing.JButton botonAgreCampania;
     private javax.swing.JButton botonAgreDonacion;
-    private javax.swing.JButton botonAgreSangre;
+    private javax.swing.JButton botonAgreDonante;
+    private javax.swing.JButton botonAgreFlebo;
+    private javax.swing.JButton botonAgreSangre1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar menuBar;

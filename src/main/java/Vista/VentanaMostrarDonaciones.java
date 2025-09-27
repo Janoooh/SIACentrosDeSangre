@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import com.mycompany.siacentrosdesangre.CentroDeSangre;
 
 public class VentanaMostrarDonaciones extends javax.swing.JFrame {
     
@@ -13,15 +14,13 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
     /**
      * Creates new form VentanaMostrarDonaciones
      */
-    public VentanaMostrarDonaciones() throws IOException {
-        ArrayList<String> datosArchivo = Herramientas.leerArchivo("datosDonaciones.txt");
+    public VentanaMostrarDonaciones(CentroDeSangre centro) throws IOException {
+        String[][] donaciones = centro.datosMostrarDonaciones();
         initComponents();
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        String[] datosLinea;
         int x = 0;
-        while(x < datosArchivo.size()){
-            datosLinea = datosArchivo.get(x).split("\\*");
-            model.addRow(datosLinea);
+        while(x < donaciones.length){
+            model.addRow(donaciones[x]);
             x++;
         }
     }
@@ -51,11 +50,11 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Fecha", "Rut", "Nombre", "Edad", "Tipo de sangre", "telefono", "Id Campania"
+                "Id", "Fecha", "Rut Donante", "Nombre Donante", "Rut Flebotomista", "Nombre Flebotomista", "Id Campaña"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -73,7 +72,7 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonAtrasMostrarDonaciones)
