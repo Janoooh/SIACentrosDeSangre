@@ -36,6 +36,7 @@ public class Donante extends Persona{
         System.out.println("Tipo Sangre: "+tipoSangre+"    Telefono: "+getTelefono());
     }
     
+    @Override
     public String[] getInfo(){
         String[] infoPers = super.getInfo();
         String[] infoGeneral = {infoPers[0],infoPers[1],infoPers[2],infoPers[3],infoPers[4],tipoSangre};

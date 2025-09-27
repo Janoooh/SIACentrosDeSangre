@@ -224,6 +224,9 @@ public class CentroDeSangre {
         return datosRetorno;
     }
     
+    /*Metodo datosMostrarPersona tipo especifico: Encargado
+    de recolectar en un arreglo de arreglos String toda la informacion
+    de todas las personas de un tipo especificado.*/
     public String[][] datosMostrarPersona(int tipoPersona){
         int x, pos, nPersonas = contarPersonas(tipoPersona);
         String[][] datosRetorno = new String[nPersonas][];
@@ -239,6 +242,22 @@ public class CentroDeSangre {
                 pos++;
             }
         }
+        return datosRetorno;
+    }
+    
+    /*Metodo datosMostrarPersona general: Encargado de recolectar
+    en un arreglo de arreglos String todos los datos de las personas
+    existentes en el arreglo de Personas.*/
+    public String[][] datosMostrarPersona(){
+        int x;
+        Persona aux;
+        String[][] datosRetorno = new String[personas.size()][];
+        
+        for(x = 0; x < personas.size(); x++){
+            aux = personas.get(x);
+            datosRetorno[x] = aux.getInfo();
+        }
+  
         return datosRetorno;
     }
     
