@@ -28,12 +28,15 @@ public class ControladorVentanas implements ActionListener{
     
     private VentanaModificar modificar;
     private VentanaModificarCampania modificarCampania;
-    //private VentanaModificarDonante modificarDonante;
-    //private VentanaModificarFlebotomista modificarFlebotomista;
+    private VentanaModificarDonante modificarDonante;
+    private VentanaModificarFlebotomista modificarFlebotomista;
     
     private VentanaBuscarCampania buscarCamp;
+    private VentanaBuscarPersona buscarPersona;
     private VentanaAviso aviso;
     private Campania campania;
+    private Persona persona;
+    private int aux;
     
     public void iniciar(CentroDeSangre centro){
         this.centro = centro;
@@ -122,7 +125,7 @@ public class ControladorVentanas implements ActionListener{
         }
         
         //evento pulsar el boton buscar en la ventana buscar campania
-        if(buscarCamp != null && evento.getSource() == buscarCamp.getBotonConfirmarBuscarCamp()){
+        if(agregar != null && buscarCamp != null && evento.getSource() == buscarCamp.getBotonConfirmarBuscarCamp()){
             int id = Integer.parseInt(buscarCamp.getLlenadoCampania().getText());
             
             try{
@@ -254,6 +257,7 @@ public class ControladorVentanas implements ActionListener{
         //evento pulsar el boton atras en la ventana agregar
         if(agregar != null && evento.getSource() == agregar.getBotonAgreAtras()){
             agregar.dispose();
+            agregar = null;
             return;
         }
         
@@ -379,7 +383,7 @@ public class ControladorVentanas implements ActionListener{
             return;
         }
         
-        ////evento boton mostrar todos ventana mostrar personas
+        //evento boton mostrar todos ventana mostrar personas
         if(mostrarPersonas != null && evento.getSource() == mostrarPersonas.getBotonMostrarTodo()){
             mostrarTodo = new VentanaMostrarTodo(centro.datosMostrarPersona());
             mostrarTodo.getBotonAtrasMostrarTodo().addActionListener(this);
@@ -389,7 +393,7 @@ public class ControladorVentanas implements ActionListener{
             return;
         }
         
-        ////evento boton atras ventana mostrar todo
+        //evento boton atras ventana mostrar todo
         if(mostrarTodo != null && evento.getSource() == mostrarTodo.getBotonAtrasMostrarTodo()){
             mostrarTodo.dispose();
             return;
@@ -404,6 +408,7 @@ public class ControladorVentanas implements ActionListener{
         //evento pulsar el boton atras en la ventana mostrar
         if(mostrar != null && evento.getSource() == mostrar.getBotonAtrasMostrar()){
             mostrar.dispose();
+            mostrar = null;
             return;
         }
        
@@ -416,6 +421,204 @@ public class ControladorVentanas implements ActionListener{
             
             modificar.setAlwaysOnTop(true);
             modificar.setVisible(true);
+            return;
+        }
+        
+        if(modificar != null && evento.getSource() == modificar.getBotonModificarCampania()){
+            buscarCamp = new VentanaBuscarCampania();
+            buscarCamp.getBotonConfirmarBuscarCamp().addActionListener(this);
+            buscarCamp.getBotonCancelarBuscarCamp().addActionListener(this);
+            
+            buscarCamp.setAlwaysOnTop(true);
+            buscarCamp.setVisible(true);
+            return;
+        }
+        
+        if(modificar != null && buscarCamp != null && evento.getSource() == buscarCamp.getBotonConfirmarBuscarCamp()){
+            int id = Integer.parseInt(buscarCamp.getLlenadoCampania().getText());
+            
+            try{
+                campania = centro.buscarCampania(id);
+                if(campania == null)throw new NotFoundException("Campania "+id+" no encontrada.");
+                modificarCampania = new VentanaModificarCampania(Integer.toString(campania.getId()), campania.getLocalidad());
+                modificarCampania.getBotonAceptar().addActionListener(this);
+                modificarCampania.getBotonAtras().addActionListener(this);
+                modificarCampania.setAlwaysOnTop(true);
+                modificarCampania.setVisible(true);
+            }catch(NotFoundException e){
+                mandarAviso(e.getMessage());
+            }
+            return;
+        }
+        
+        if(modificarCampania != null && evento.getSource() == modificarCampania.getBotonAceptar()){
+            int id = Integer.parseInt(modificarCampania.getLlenadoid().getText());
+            String localidad = modificarCampania.getLlenadoLocalidad().getText();
+            
+            if(campania.getId() == id)
+                campania.setLocalidad(localidad);
+            else{
+                if(centro.buscarCampania(id) == null){
+                    campania.setId(id);
+                    campania.setLocalidad(localidad);
+                }
+                else{
+                    mandarAviso("Esa id ya existe en el sistema.");
+                    return;
+                }
+            }
+            mandarAviso("Campañia modificada correctamente.");
+            modificarCampania.dispose();
+            buscarCamp.dispose();
+            return;
+        }
+        
+        if(modificarCampania != null && evento.getSource() == modificarCampania.getBotonAtras()){
+            modificarCampania.dispose();
+            return;
+        }
+        
+        if(modificar != null && evento.getSource() == modificar.getBotonModificarDonante()){
+            buscarPersona = new VentanaBuscarPersona();
+            buscarPersona.getBotonBuscarPersona().addActionListener(this);
+            buscarPersona.getBotonCancelarBuscarPersona().addActionListener(this);
+            aux = 1;
+            
+            buscarPersona.setAlwaysOnTop(true);
+            buscarPersona.setVisible(true);
+            return;
+        }
+        
+        if(aux == 1 && buscarPersona != null && evento.getSource() == buscarPersona.getBotonBuscarPersona()){
+            String rut = buscarPersona.getLlenadoRut().getText();
+            persona = centro.buscarPersona(rut, 1);
+            if(persona != null){
+                modificarDonante = new VentanaModificarDonante(((Donante)persona).getDatosDonante());
+                modificarDonante.getBotonAceptar().addActionListener(this);
+                modificarDonante.getBotonCancelar().addActionListener(this);
+                
+                modificarDonante.setAlwaysOnTop(true);
+                modificarDonante.setVisible(true);
+            }
+            else
+                mandarAviso("El rut no existe en el sistema.");
+            return;
+        }
+        
+        if(modificarDonante != null && evento.getSource() == modificarDonante.getBotonAceptar()){
+            String rut = modificarDonante.getLlenadoRut().getText();
+            String nombre = modificarDonante.getLlenadoNombre().getText();
+            String telefono = modificarDonante.getLlenadoTelefono().getText();
+            int edad= Integer.parseInt(modificarDonante.getLlenadoEdad().getText());
+            String tipoSangre= modificarDonante.getLlenadoTipoSangre().getText();
+            
+            //falta verificar si todos estan bien, no se que hacer con el tipo de sangre
+            if(persona.getRut().equals(rut)){
+                persona.setNombre(nombre);
+                persona.setTelefono(telefono);
+                persona.setEdad(edad);
+                ((Donante)persona).setTipoSangre(tipoSangre);
+            }
+            else{
+                if(centro.buscarPersona(rut, 1) == null){
+                    persona.setRut(rut);
+                    persona.setNombre(nombre);
+                    persona.setTelefono(telefono);
+                    persona.setEdad(edad);
+                    ((Donante)persona).setTipoSangre(tipoSangre);
+                }
+                else{
+                    mandarAviso("Ese rut ya se encuentra en el sistema.");
+                    return;
+                }
+            }
+            mandarAviso("Donante modificado correctamente.");
+            modificarDonante.dispose();
+            buscarPersona.dispose();
+            return;
+        }
+        
+        if(modificarDonante != null && evento.getSource() == modificarDonante.getBotonCancelar()){
+            modificarDonante.dispose();
+            return;
+        }
+        
+        if(buscarPersona != null && evento.getSource() == buscarPersona.getBotonCancelarBuscarPersona()){
+            buscarPersona.dispose();
+            return;
+        }
+        
+        if(modificar != null && evento.getSource() == modificar.getBotonModificarFlebotomista()){
+            buscarPersona = new VentanaBuscarPersona();
+            buscarPersona.getBotonBuscarPersona().addActionListener(this);
+            buscarPersona.getBotonCancelarBuscarPersona().addActionListener(this);
+            aux = 2;
+            
+            buscarPersona.setAlwaysOnTop(true);
+            buscarPersona.setVisible(true);
+            return;
+        }
+        
+        if(aux == 2 && buscarPersona != null && evento.getSource() == buscarPersona.getBotonBuscarPersona()){
+            String rut = buscarPersona.getLlenadoRut().getText();
+            persona = centro.buscarPersona(rut, 2);
+            if(persona != null){
+                modificarFlebotomista = new VentanaModificarFlebotomista(((Flebotomista)persona).getInfo());
+                modificarFlebotomista.getBotonAceptar().addActionListener(this);
+                modificarFlebotomista.getBotonCancelar().addActionListener(this);
+                
+                modificarFlebotomista.setAlwaysOnTop(true);
+                modificarFlebotomista.setVisible(true);
+            }
+            else
+                mandarAviso("El rut no existe en el sistema.");
+            return;
+        }
+
+        if(modificarFlebotomista != null && evento.getSource() == modificarFlebotomista.getBotonAceptar()){
+            String rut = modificarFlebotomista.getLlenadoRut().getText();
+            String nombre = modificarFlebotomista.getLlenadoNombre().getText();
+            String telefono = modificarFlebotomista.getLlenadoTelefono().getText();
+            int edad= Integer.parseInt(modificarFlebotomista.getLlenadoEdad().getText());
+            String especialidad= modificarFlebotomista.getLlenadoEspecialidad().getText();
+            String correo = modificarFlebotomista.getLlenadoCorreo().getText();
+            
+            //En este tambien faltan ver las verificaciones
+            if(persona.getRut().equals(rut)){
+                persona.setNombre(nombre);
+                persona.setTelefono(telefono);
+                persona.setEdad(edad);
+                ((Flebotomista)persona).setEspecialidad(especialidad);
+                ((Flebotomista)persona).setCorreo(correo);
+            }
+            else{
+                if(centro.buscarPersona(rut, 1) == null){
+                    persona.setRut(rut);
+                    persona.setNombre(nombre);
+                    persona.setTelefono(telefono);
+                    persona.setEdad(edad);
+                    ((Flebotomista)persona).setEspecialidad(especialidad);
+                    ((Flebotomista)persona).setCorreo(correo);
+                }
+                else{
+                    mandarAviso("Ese rut ya se encuentra en el sistema.");
+                    return;
+                }
+            }
+            mandarAviso("Flebotomista modificado correctamente.");
+            modificarFlebotomista.dispose();
+            buscarPersona.dispose();
+            return;
+        }
+        
+        if(modificarFlebotomista != null && evento.getSource() == modificarFlebotomista.getBotonCancelar()){
+            modificarFlebotomista.dispose();
+            return;
+        }
+        
+        if(modificar != null && evento.getSource() == modificar.getBotonAtrasModificar()){
+            modificar.dispose();
+            modificar = null;
             return;
         }
     }
