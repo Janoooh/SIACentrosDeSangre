@@ -1,22 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
 
-/**
- *
- * @author cokej
- */
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 public class VentanaModificarCampania extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaModificarCampania.class.getName());
 
-    /**
-     * Creates new form VentanaModificarCampania
-     */
-    public VentanaModificarCampania() {
+    public VentanaModificarCampania(String id, String Localidad) {
         initComponents();
+        llenadoIdModificarCamp.setText(id);
+        llenadoLocalidadModificarCamp.setText(Localidad);
+        
     }
 
     /**
@@ -28,17 +23,70 @@ public class VentanaModificarCampania extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        llenadoIdModificarCamp = new javax.swing.JTextField();
+        llenadoLocalidadModificarCamp = new javax.swing.JTextField();
+        botonAceptarModificarCamp = new javax.swing.JButton();
+        botonAtrasModificarCamp = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Id");
+
+        jLabel2.setText("Localidad");
+
+        botonAceptarModificarCamp.setText("Aceptar");
+
+        botonAtrasModificarCamp.setText("Atrás");
+
+        jLabel3.setText("Modificar datos campañia");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(llenadoIdModificarCamp, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .addComponent(llenadoLocalidadModificarCamp))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonAtrasModificarCamp)
+                            .addComponent(botonAceptarModificarCamp))
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(126, 126, 126))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel3)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(llenadoIdModificarCamp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(llenadoLocalidadModificarCamp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addComponent(botonAceptarModificarCamp)
+                .addGap(18, 18, 18)
+                .addComponent(botonAtrasModificarCamp)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -65,10 +113,31 @@ public class VentanaModificarCampania extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VentanaModificarCampania().setVisible(true));
+    }
+    
+    public JButton getBotonAceptar(){
+        return botonAceptarModificarCamp;
+    }
+    
+    public JButton getBotonAtras(){
+        return botonAtrasModificarCamp;
+    }
+    
+    public JTextField getLlenadoid(){
+        return llenadoIdModificarCamp;
+    }
+    
+    public JTextField getLlenadoLocalidad(){
+        return llenadoLocalidadModificarCamp;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAceptarModificarCamp;
+    private javax.swing.JButton botonAtrasModificarCamp;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField llenadoIdModificarCamp;
+    private javax.swing.JTextField llenadoLocalidadModificarCamp;
     // End of variables declaration//GEN-END:variables
 }
