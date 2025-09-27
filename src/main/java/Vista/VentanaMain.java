@@ -28,6 +28,9 @@ public class VentanaMain extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botonAgregarMain = new javax.swing.JButton();
         botonMostrarMain = new javax.swing.JButton();
+        botonEliminarMain = new javax.swing.JButton();
+        botonModificarMain = new javax.swing.JButton();
+        botonSalirMain = new javax.swing.JButton();
 
         jMenu2.setText("File");
         jMenuBar1.add(jMenu2);
@@ -49,6 +52,12 @@ public class VentanaMain extends javax.swing.JFrame {
 
         botonMostrarMain.setText("Mostrar");
 
+        botonEliminarMain.setText("Eliminar");
+
+        botonModificarMain.setText("Modificar");
+
+        botonSalirMain.setText("Salir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -56,14 +65,22 @@ public class VentanaMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonMostrarMain)
-                            .addComponent(botonAgregarMain))))
-                .addContainerGap(159, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(131, 131, 131)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(158, 158, 158)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonAgregarMain)
+                                    .addComponent(botonEliminarMain)
+                                    .addComponent(botonMostrarMain)
+                                    .addComponent(botonModificarMain))))
+                        .addGap(0, 153, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonSalirMain)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,9 +89,15 @@ public class VentanaMain extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(61, 61, 61)
                 .addComponent(botonAgregarMain)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addComponent(botonMostrarMain)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(botonEliminarMain)
+                .addGap(18, 18, 18)
+                .addComponent(botonModificarMain)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(botonSalirMain)
+                .addContainerGap())
         );
 
         pack();
@@ -86,6 +109,18 @@ public class VentanaMain extends javax.swing.JFrame {
         
     public JButton getBotonMostrarMain(){
         return botonMostrarMain;
+    }
+    
+    public JButton getBotonEliminarMain(){
+        return botonEliminarMain;
+    }
+    
+    public JButton getBotonModificarMain(){
+        return botonModificarMain;
+    }
+    
+    public JButton getBotonSalirMain(){
+        return botonSalirMain;
     }
     
     public static void main(String args[]) {
@@ -111,7 +146,10 @@ public class VentanaMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarMain;
+    private javax.swing.JButton botonEliminarMain;
+    private javax.swing.JButton botonModificarMain;
     private javax.swing.JButton botonMostrarMain;
+    private javax.swing.JButton botonSalirMain;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

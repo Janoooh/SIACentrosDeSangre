@@ -10,15 +10,27 @@ import javax.swing.JFrame;
 public class ControladorVentanas implements ActionListener{
     private CentroDeSangre centro;
     private VentanaMain main;
+    
     private VentanaAgregar agregar;
     private VentanaAgregarCamp agregarCampania;
     private VentanaAgregarDonacion agregarDonacion;
     private VentanaAgregarDonante agregarDonante;
     private VentanaAgregarSangre agregarSangre;
+    
     private VentanaMostrar mostrar;
     private VentanaMostrarCampanias mostrarCampanias;
     private VentanaMostrarDonaciones mostrarDonaciones;
+    private VentanaMostrarPersonas mostrarPersonas;
+    private VentanaMostrarDonantes mostrarDonantes;
+    private VentanaMostrarFlebotomistas mostrarFlebotomistas;
+    private VentanaMostrarTodo mostrarTodo;
     private VentanaMostrarInventarioSangre mostrarInventario;
+    
+    private VentanaModificar modificar;
+    private VentanaModificarCampania modificarCampania;
+    //private VentanaModificarDonante modificarDonante;
+    //private VentanaModificarFlebotomista modificarFlebotomista;
+    
     private VentanaBuscarCampania buscarCamp;
     private VentanaAviso aviso;
     private Campania campania;
@@ -28,6 +40,8 @@ public class ControladorVentanas implements ActionListener{
         main = new VentanaMain();
         main.getBotonAgregarMain().addActionListener(this);
         main.getBotonMostrarMain().addActionListener(this);
+        main.getBotonEliminarMain().addActionListener(this);
+        main.getBotonModificarMain().addActionListener(this);
         
         main.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         main.setVisible(true);
@@ -249,6 +263,7 @@ public class ControladorVentanas implements ActionListener{
             mostrar.getBotonMostrarCamp().addActionListener(this);
             mostrar.getBotonMostrarDonaciones().addActionListener(this);
             mostrar.getBotonMostrarSangre().addActionListener(this);
+            mostrar.getBotonMostrarPersonas().addActionListener(this);
             mostrar.getBotonAtrasMostrar().addActionListener(this);
             
             mostrar.setAlwaysOnTop(true);
@@ -319,9 +334,88 @@ public class ControladorVentanas implements ActionListener{
             return;
         }
         
+        //evento boton mostrar personas en ventana mostrar
+        if(mostrar != null && evento.getSource() == mostrar.getBotonMostrarPersonas()){
+            mostrarPersonas = new VentanaMostrarPersonas();
+            mostrarPersonas.getBotonMostrarDonantes().addActionListener(this);
+            mostrarPersonas.getBotonMostrarFlebotomistas().addActionListener(this);
+            mostrarPersonas.getBotonMostrarTodo().addActionListener(this);
+            mostrarPersonas.getBotonAtrasMostrarPersonas().addActionListener(this);
+            
+            mostrarPersonas.setAlwaysOnTop(true);
+            mostrarPersonas.setVisible(true);
+            return;
+        }
+        
+        //evento boton mostrar donantes ventana mostrar personas
+        if(mostrarPersonas != null && evento.getSource() == mostrarPersonas.getBotonMostrarDonantes()){
+            mostrarDonantes = new VentanaMostrarDonantes(centro.datosMostrarPersona(1));
+            mostrarDonantes.getBotonAtrasMostrarDonante().addActionListener(this);
+            
+            mostrarDonantes.setAlwaysOnTop(true);
+            mostrarDonantes.setVisible(true);
+            return;
+        }
+        
+        //evento boton atras ventana mostrar donantes
+        if(mostrarDonantes != null && evento.getSource() == mostrarDonantes.getBotonAtrasMostrarDonante()){
+            mostrarDonantes.dispose();
+            return;
+        }
+        
+        //evento boton mostrar flebotomistas ventana mostrar personas
+        if(mostrarPersonas != null && evento.getSource() == mostrarPersonas.getBotonMostrarFlebotomistas()){
+            mostrarFlebotomistas = new VentanaMostrarFlebotomistas(centro.datosMostrarPersona(2));
+            mostrarFlebotomistas.getBotonAtrasMostrarFlebotomistas().addActionListener(this);
+            
+            mostrarFlebotomistas.setAlwaysOnTop(true);
+            mostrarFlebotomistas.setVisible(true);
+            return;
+        }
+        
+        //evento boton atras ventana mostrar flebotomistas
+        if(mostrarFlebotomistas != null && evento.getSource() == mostrarFlebotomistas.getBotonAtrasMostrarFlebotomistas()){
+            mostrarFlebotomistas.dispose();
+            return;
+        }
+        
+        ////evento boton mostrar todos ventana mostrar personas
+        if(mostrarPersonas != null && evento.getSource() == mostrarPersonas.getBotonMostrarTodo()){
+            mostrarTodo = new VentanaMostrarTodo(centro.datosMostrarPersona());
+            mostrarTodo.getBotonAtrasMostrarTodo().addActionListener(this);
+            
+            mostrarTodo.setAlwaysOnTop(true);
+            mostrarTodo.setVisible(true);
+            return;
+        }
+        
+        ////evento boton atras ventana mostrar todo
+        if(mostrarTodo != null && evento.getSource() == mostrarTodo.getBotonAtrasMostrarTodo()){
+            mostrarTodo.dispose();
+            return;
+        }
+        
+        //evento boton atras ventana mostrar personas
+        if(mostrarPersonas != null && evento.getSource() == mostrarPersonas.getBotonAtrasMostrarPersonas()){
+            mostrarPersonas.dispose();
+            return;
+        }
+        
         //evento pulsar el boton atras en la ventana mostrar
         if(mostrar != null && evento.getSource() == mostrar.getBotonAtrasMostrar()){
             mostrar.dispose();
+            return;
+        }
+       
+        if(evento.getSource() == main.getBotonModificarMain()){
+            modificar = new VentanaModificar();
+            modificar.getBotonModificarCampania().addActionListener(this);
+            modificar.getBotonModificarDonante().addActionListener(this);
+            modificar.getBotonModificarFlebotomista().addActionListener(this);
+            modificar.getBotonAtrasModificar().addActionListener(this);
+            
+            modificar.setAlwaysOnTop(true);
+            modificar.setVisible(true);
             return;
         }
     }
