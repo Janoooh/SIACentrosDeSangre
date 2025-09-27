@@ -101,8 +101,6 @@ public class ControladorVentanas implements ActionListener{
             eliminar.getBotonElimDonacion().addActionListener(this);
             eliminar.getBotonElimPersona().addActionListener(this);
             eliminar.getBotonElimAtras().addActionListener(this);
-            
-            eliminar.setAlwaysOnTop(true);
         }*/
         
         if(evento.getSource() == main.getBotonModificarMain()){
@@ -132,15 +130,19 @@ public class ControladorVentanas implements ActionListener{
         if(agregarCampania != null && evento.getSource() == agregarCampania.getBotonConfirmarAgregarCamp()){
             String id = agregarCampania.getLlenadoId().getText();
             String localidad = agregarCampania.getLlenadoLocalidad().getText();
+            int idTrans;
 
             try {
-                centro.agregarCampaniaNueva(Integer.parseInt(id), localidad);
+                idTrans = Integer.parseInt(id);
+                centro.agregarCampaniaNueva(idTrans, localidad);
                 mandarAviso("La campania ha sido creada exitosamente.");
                 agregarCampania.dispose();
             }catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }catch(DataDuplicateException e){
                 mandarAviso("Hay una campania con ese id registrado.");
+            }catch(NumberFormatException e){
+                mandarAviso("La ID debe ser un numero.");
             }
             
             return;
@@ -171,10 +173,11 @@ public class ControladorVentanas implements ActionListener{
         
         //evento pulsar el boton buscar en la ventana buscar campania
         if(agregar != null && buscarCamp != null && evento.getSource() == buscarCamp.getBotonConfirmarBuscarCamp()){
-            int id = Integer.parseInt(buscarCamp.getLlenadoCampania().getText());
-            
+            String id = buscarCamp.getLlenadoCampania().getText();
+            int idTrans;
             try{
-                campania = centro.buscarCampania(id);
+                idTrans = Integer.parseInt(id);
+                campania = centro.buscarCampania(idTrans);
                 if(campania == null)throw new NotFoundException("Campania "+id+" no encontrada.");
                 agregarDonacion = new VentanaAgregarDonacion();
                 agregarDonacion.getBotonConfirmarAgreDonacion().addActionListener(this);
@@ -183,6 +186,8 @@ public class ControladorVentanas implements ActionListener{
                 agregarDonacion.setVisible(true);
             }catch(NotFoundException e){
                 mandarAviso(e.getMessage());
+            }catch(NumberFormatException e){
+                mandarAviso("La ID debe ser numerica.");
             }
             return;
         }
@@ -195,17 +200,18 @@ public class ControladorVentanas implements ActionListener{
         
         //evento pulsar el boton agregar en la ventana agregar donacion
         if(agregarDonacion != null && evento.getSource() == agregarDonacion.getBotonConfirmarAgreDonacion()){
-            int id;
-            String fecha, rutDonante, rutFlebo;
+            int idTrans;
+            String id, fecha, rutDonante, rutFlebo;
             
-            id = Integer.parseInt(agregarDonacion.getLlenadoId().getText());
+            id = agregarDonacion.getLlenadoId().getText();
             fecha = agregarDonacion.getLlenadoFecha().getText();
             rutDonante = agregarDonacion.getLlenadoRutDonante().getText();
             rutFlebo = agregarDonacion.getLlenadoRutFlebotomista().getText();
             //Donacion aux = new Donacion()
             
             try {
-                centro.agregarDonacionACampania(campania, id, fecha,rutDonante,rutFlebo);
+                idTrans = Integer.parseInt(id);
+                centro.agregarDonacionACampania(campania, idTrans, fecha,rutDonante,rutFlebo);
                 mandarAviso("La donacion se ha agregado exitosamente.");
                 agregarDonacion.dispose();
             } catch (IOException ex) {
@@ -214,6 +220,8 @@ public class ControladorVentanas implements ActionListener{
                 mandarAviso(e.getMessage());
             } catch (DataDuplicateException e){
                 mandarAviso(e.getMessage());
+            } catch (NumberFormatException e){
+                mandarAviso("La ID debe ser numerica.");
             }
             return;
         }
@@ -236,21 +244,22 @@ public class ControladorVentanas implements ActionListener{
         }
         
         if(agregarDonante != null && evento.getSource() == agregarDonante.getBotonAceptarAgreDonante()){
-            String rut, nombre, telefono, tipoSangre;
-            int edad;
+            String rut, nombre, telefono, edad, tipoSangre;
+            int edadTrans;
             
             rut = agregarDonante.getLlenadoRut().getText();
             nombre = agregarDonante.getLlenadoNombre().getText();
             telefono = agregarDonante.getLlenadoTelefono().getText();
-            edad = Integer.parseInt(agregarDonante.getLlenadoEdad().getText());
+            edad = agregarDonante.getLlenadoEdad().getText();
             tipoSangre = (String)agregarDonante.getLlenadoSangre().getSelectedItem();
             try{
-                centro.agregarPersona(rut, nombre, telefono, edad, 1, tipoSangre);
+                edadTrans = Integer.parseInt(edad);
+                centro.agregarPersona(rut, nombre, telefono, edadTrans, 1, tipoSangre);
                 mandarAviso("Persona agregada correctamente.");
             }catch(DataDuplicateException e){
                 mandarAviso(e.getMessage());
-            }catch(Exception e){
-                mandarAviso("Error desconocido.");
+            }catch(NumberFormatException e){
+                mandarAviso("La edad debe ser un numero.");
             }
             return;
         }
@@ -271,19 +280,22 @@ public class ControladorVentanas implements ActionListener{
         }
         
         if(agregarFlebotomista != null && evento.getSource() == agregarFlebotomista.getBotonAceptarAgreFlebo()){
-            String rut, nom, tel, especialidad, correo;
-            int edad;
+            String rut, nom, tel, edad, especialidad, correo;
+            int edadTrans;
             rut = agregarFlebotomista.getLlenadoRut().getText();
             nom = agregarFlebotomista.getLlenadoNombre().getText();
             tel = agregarFlebotomista.getLlenadoTelefono().getText();
-            edad = Integer.parseInt(agregarFlebotomista.getLlenadoEdad().getText());
+            edad = agregarFlebotomista.getLlenadoEdad().getText();
             especialidad = agregarFlebotomista.getLlenadoEspecialidad().getText();
             correo = agregarFlebotomista.getLlenadoCorreo().getText();
             try{
-                centro.agregarPersona(rut, nom, tel, edad, 2, especialidad, correo);
+                edadTrans = Integer.parseInt(edad);
+                centro.agregarPersona(rut, nom, tel, edadTrans, 2, especialidad, correo);
                 mandarAviso("Flebotomista agregado correctamente.");
             }catch(DataDuplicateException e){
                 mandarAviso(e.getMessage());
+            }catch(NumberFormatException e){
+                mandarAviso("La edad debe ser un numero.");
             }
             return;
         }
@@ -486,10 +498,11 @@ public class ControladorVentanas implements ActionListener{
         }
         
         if(modificar != null && buscarCamp != null && evento.getSource() == buscarCamp.getBotonConfirmarBuscarCamp()){
-            int id = Integer.parseInt(buscarCamp.getLlenadoCampania().getText());
-            
+            String id = buscarCamp.getLlenadoCampania().getText();
+            int idTrans;
             try{
-                campania = centro.buscarCampania(id);
+                idTrans = Integer.parseInt(id);
+                campania = centro.buscarCampania(idTrans);
                 if(campania == null)throw new NotFoundException("Campania "+id+" no encontrada.");
                 modificarCampania = new VentanaModificarCampania(Integer.toString(campania.getId()), campania.getLocalidad());
                 modificarCampania.getBotonAceptar().addActionListener(this);
@@ -498,27 +511,36 @@ public class ControladorVentanas implements ActionListener{
                 modificarCampania.setVisible(true);
             }catch(NotFoundException e){
                 mandarAviso(e.getMessage());
+            }catch(NumberFormatException e){
+                mandarAviso("La ID debe ser numerica.");
             }
             return;
         }
         
         if(modificarCampania != null && evento.getSource() == modificarCampania.getBotonAceptar()){
-            int id = Integer.parseInt(modificarCampania.getLlenadoid().getText());
+            String id = modificarCampania.getLlenadoid().getText();
             String localidad = modificarCampania.getLlenadoLocalidad().getText();
-            
-            if(campania.getId() == id)
-                campania.setLocalidad(localidad);
-            else{
-                if(centro.buscarCampania(id) == null){
-                    campania.setId(id);
+            int idTrans;
+            try{
+                idTrans = Integer.parseInt(id);
+                if(campania.getId() == idTrans)
                     campania.setLocalidad(localidad);
-                }
                 else{
-                    mandarAviso("Esa id ya existe en el sistema.");
-                    return;
+                    if(centro.buscarCampania(idTrans) == null){
+                        campania.setId(idTrans);
+                        campania.setLocalidad(localidad);
+                    }
+                    else{
+                        mandarAviso("Esa id ya existe en el sistema.");
+                        return;
+                    }
                 }
+                mandarAviso("Campañia modificada correctamente.");
+            }catch(NumberFormatException e){
+                mandarAviso("La ID debe ser un numero.");
+                return;
             }
-            mandarAviso("Campañia modificada correctamente.");
+            
             modificarCampania.dispose();
             buscarCamp.dispose();
             return;
@@ -560,30 +582,38 @@ public class ControladorVentanas implements ActionListener{
             String rut = modificarDonante.getLlenadoRut().getText();
             String nombre = modificarDonante.getLlenadoNombre().getText();
             String telefono = modificarDonante.getLlenadoTelefono().getText();
-            int edad= Integer.parseInt(modificarDonante.getLlenadoEdad().getText());
+            String edad = modificarDonante.getLlenadoEdad().getText();
             String tipoSangre= (String)modificarDonante.getLlenadoTipoSangre().getSelectedItem();
+            int edadTrans;
             
-            //falta verificar si todos estan bien, no se que hacer con el tipo de sangre
-            if(persona.getRut().equals(rut)){
-                persona.setNombre(nombre);
-                persona.setTelefono(telefono);
-                persona.setEdad(edad);
-                ((Donante)persona).setTipoSangre(tipoSangre);
-            }
-            else{
-                if(centro.buscarPersona(rut, 1) == null){
-                    persona.setRut(rut);
+            try{
+                edadTrans = Integer.parseInt(edad);
+                if(persona.getRut().equals(rut)){
                     persona.setNombre(nombre);
                     persona.setTelefono(telefono);
-                    persona.setEdad(edad);
+                    persona.setEdad(edadTrans);
                     ((Donante)persona).setTipoSangre(tipoSangre);
                 }
                 else{
-                    mandarAviso("Ese rut ya se encuentra en el sistema.");
-                    return;
+                    if(centro.buscarPersona(rut, 1) == null){
+                        persona.setRut(rut);
+                        persona.setNombre(nombre);
+                        persona.setTelefono(telefono);
+                        persona.setEdad(edadTrans);
+                        ((Donante)persona).setTipoSangre(tipoSangre);
+                    }
+                    else{
+                        mandarAviso("Ese rut ya se encuentra en el sistema.");
+                        return;
+                    }
                 }
+                mandarAviso("Donante modificado correctamente.");
+
+            }catch(NumberFormatException e){
+                mandarAviso("La edad debe ser un numero.");
             }
-            mandarAviso("Donante modificado correctamente.");
+            
+            //falta verificar si todos estan bien, no se que hacer con el tipo de sangre
             modificarDonante.dispose();
             buscarPersona.dispose();
             return;
@@ -630,33 +660,41 @@ public class ControladorVentanas implements ActionListener{
             String rut = modificarFlebotomista.getLlenadoRut().getText();
             String nombre = modificarFlebotomista.getLlenadoNombre().getText();
             String telefono = modificarFlebotomista.getLlenadoTelefono().getText();
-            int edad= Integer.parseInt(modificarFlebotomista.getLlenadoEdad().getText());
+            String edad = modificarFlebotomista.getLlenadoEdad().getText();
             String especialidad= modificarFlebotomista.getLlenadoEspecialidad().getText();
             String correo = modificarFlebotomista.getLlenadoCorreo().getText();
+            int edadTrans;
             
-            //En este tambien faltan ver las verificaciones
-            if(persona.getRut().equals(rut)){
-                persona.setNombre(nombre);
-                persona.setTelefono(telefono);
-                persona.setEdad(edad);
-                ((Flebotomista)persona).setEspecialidad(especialidad);
-                ((Flebotomista)persona).setCorreo(correo);
-            }
-            else{
-                if(centro.buscarPersona(rut, 1) == null){
-                    persona.setRut(rut);
+            try{
+                edadTrans = Integer.parseInt(edad);
+                if(persona.getRut().equals(rut)){
                     persona.setNombre(nombre);
                     persona.setTelefono(telefono);
-                    persona.setEdad(edad);
+                    persona.setEdad(edadTrans);
                     ((Flebotomista)persona).setEspecialidad(especialidad);
                     ((Flebotomista)persona).setCorreo(correo);
                 }
                 else{
-                    mandarAviso("Ese rut ya se encuentra en el sistema.");
-                    return;
+                    if(centro.buscarPersona(rut, 1) == null){
+                        persona.setRut(rut);
+                        persona.setNombre(nombre);
+                        persona.setTelefono(telefono);
+                        persona.setEdad(edadTrans);
+                        ((Flebotomista)persona).setEspecialidad(especialidad);
+                        ((Flebotomista)persona).setCorreo(correo);
+                    }
+                    else{
+                        mandarAviso("Ese rut ya se encuentra en el sistema.");
+                        return;
+                    }
                 }
+                mandarAviso("Flebotomista modificado correctamente.");
+
+            }catch(NumberFormatException e){
+                mandarAviso("La edad debe ser un numero.");
             }
-            mandarAviso("Flebotomista modificado correctamente.");
+            //En este tambien faltan ver las verificaciones
+            
             modificarFlebotomista.dispose();
             buscarPersona.dispose();
             return;

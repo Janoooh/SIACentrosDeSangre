@@ -13,8 +13,8 @@ public class VentanaModificarFlebotomista extends javax.swing.JFrame {
         llenarNombre.setText(datosFlebotomista[1]);
         llenarTelefono.setText(datosFlebotomista[2]);
         llenarEdad.setText(datosFlebotomista[3]);
-        llenarEspecialidad.setText(datosFlebotomista[5]);
-        llenarCorreo.setText(datosFlebotomista[6]); 
+        llenarEspecialidad.setText(datosFlebotomista[4]);
+        llenarCorreo.setText(datosFlebotomista[5]); 
     }
 
     /**
