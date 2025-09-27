@@ -8,12 +8,12 @@ package Vista;
  *
  * @author rafae
  */
-public class VentanaEliminarCompania extends javax.swing.JPanel {
+public class VentanaEliminarCampania extends javax.swing.JPanel {
 
     /**
      * Creates new form VentanaEliminarCompania
      */
-    public VentanaEliminarCompania() {
+    public VentanaEliminarCampania() {
         initComponents();
     }
 

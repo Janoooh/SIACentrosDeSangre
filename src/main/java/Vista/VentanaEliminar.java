@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author rafae
@@ -27,28 +29,28 @@ public class VentanaEliminar extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        botonElimCampania = new javax.swing.JButton();
+        botonElimPersona = new javax.swing.JButton();
+        botonElimDonacion = new javax.swing.JButton();
+        botonElimAtras = new javax.swing.JButton();
 
         jLabel1.setText("Eliminar");
 
-        jButton1.setText("Eliminar Campania");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonElimCampania.setText("Eliminar Campania");
+        botonElimCampania.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonElimCampaniaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Eliminar Persona");
+        botonElimPersona.setText("Eliminar Persona");
 
-        jButton3.setText("Eliminar Donacion");
+        botonElimDonacion.setText("Eliminar Donacion");
 
-        jButton4.setText("Atrás");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        botonElimAtras.setText("Atrás");
+        botonElimAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                botonElimAtrasActionPerformed(evt);
             }
         });
 
@@ -64,13 +66,13 @@ public class VentanaEliminar extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(botonElimCampania, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonElimDonacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonElimPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(143, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(botonElimAtras)
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
@@ -79,31 +81,49 @@ public class VentanaEliminar extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addGap(51, 51, 51)
-                .addComponent(jButton1)
+                .addComponent(botonElimCampania)
                 .addGap(35, 35, 35)
-                .addComponent(jButton3)
+                .addComponent(botonElimDonacion)
                 .addGap(34, 34, 34)
-                .addComponent(jButton2)
+                .addComponent(botonElimPersona)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(botonElimAtras)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonElimCampaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonElimCampaniaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonElimCampaniaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void botonElimAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonElimAtrasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_botonElimAtrasActionPerformed
+
+    public JButton getBotonElimAtras() {
+        return botonElimAtras;
+    }
+
+    public JButton getBotonElimCampania() {
+        return botonElimCampania;
+    }
+
+    public JButton getBotonElimDonacion() {
+        return botonElimDonacion;
+    }
+
+    public JButton getBotonElimPersona() {
+        return botonElimPersona;
+    }
 
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton botonElimAtras;
+    private javax.swing.JButton botonElimCampania;
+    private javax.swing.JButton botonElimDonacion;
+    private javax.swing.JButton botonElimPersona;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
