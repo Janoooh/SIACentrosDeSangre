@@ -56,7 +56,12 @@ public class VentanaMain extends javax.swing.JFrame {
 
         botonModificarMain.setText("Modificar");
 
-        botonSalirMain.setText("Salir");
+        botonSalirMain.setText("Salir y Guardar");
+        botonSalirMain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirMainActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,6 +107,10 @@ public class VentanaMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSalirMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirMainActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonSalirMainActionPerformed
 
     public JButton getBotonAgregarMain(){
         return botonAgregarMain;

@@ -155,6 +155,23 @@ public class Herramientas {
         escritor.close();
     }
     
+    public static void limpiarArchivo(String ruta){
+        BufferedWriter escritor = null;
+        try{
+            escritor = new BufferedWriter(new FileWriter(ruta,false));
+        }catch(IOException e){
+            System.out.println("Error de limpieza de archivo : "+e.getMessage());
+        }finally{
+            if(escritor != null){
+                try{
+                    escritor.close();
+                }catch(IOException e){
+                    System.out.println("Error al cerrar el archivo : "+e.getMessage());
+                }
+            }
+        }
+    }
+    
     /*Metodo lector: Encargado de leer una entrada por consola del usuario,
     indicandole lo que tiene que ingresar por medio de un String recibido
     por parametro.*/

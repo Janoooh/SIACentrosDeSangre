@@ -103,4 +103,23 @@ public class Campania {
         throw new NotFoundException("La donacion "+id+" no se encontro en la campania "+this.id); 
     }
     
+    public void guardarDonaciones(String rutaDona){
+        Donacion aux;
+        String[] datosCamp, datosFormat;
+        String linea;
+        int x;
+        
+        for(x = 0; x < donaciones.size(); x++){
+            aux = donaciones.get(x);
+            datosCamp = aux.getDatosDonacion(id, false);
+            datosFormat = new String[]{datosCamp[0],datosCamp[1],datosCamp[2],datosCamp[4],datosCamp[6]};
+            linea = String.join("|", datosFormat);
+            try{
+                Herramientas.guardarEnArchivo(linea, rutaDona);
+            }catch(Exception e){
+                System.out.println("ERROR : "+e.getMessage());
+            }
+        }
+    }
+    
 }

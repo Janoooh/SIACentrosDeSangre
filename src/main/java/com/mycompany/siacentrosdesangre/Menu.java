@@ -8,6 +8,7 @@ public class Menu {
     /*Metodo mostrarMenuPrincipal: Encargado de mostrar las opciones
     principales del sistema, permitiendo interactuar con este para poder
     moverse por el programa.*/
+    
     public void mostrarMenuPrincipal(CentroDeSangre centro) throws IOException {
         String opLeida;
         int op = 0;
@@ -64,7 +65,7 @@ public class Menu {
                     break;
 
                 case 3:
-                    centro.agregarSangre();
+                    //centro.agregarSangre();
                     break;
                     
                 case 4:
@@ -114,5 +115,6 @@ public class Menu {
 
             }
         }
-    } 
+    }
+    
 }

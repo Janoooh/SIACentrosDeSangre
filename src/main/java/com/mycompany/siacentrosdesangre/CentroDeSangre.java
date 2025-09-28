@@ -100,7 +100,7 @@ public class CentroDeSangre {
     
     /*Metodo agregarSangre: Encargado de dar la opcion al usuario para
     agregar manualmente bolsas de sangre al inventario.*/
-    public void agregarSangre()throws IOException{
+    /*public void agregarSangre()throws IOException{
         int nSangres;
         String tipoSangre;
         tipoSangre = Herramientas.lector("Ingrese el tipo de sangre: ");
@@ -113,7 +113,7 @@ public class CentroDeSangre {
         else
             this.agregarStockSangre(tipoSangre, nSangres);
          
-    }
+    }*/
 
     /*Metodo buscarCampania: Encargado de buscar una campania
     con cierto id, dentro del ArrayList de campanias. Si la encuentra,
@@ -388,7 +388,7 @@ public class CentroDeSangre {
         if(buscado == null){
             Campania nuevo= new Campania(id ,localidad);
             agregarCampania(nuevo);
-            cadena = id + "*" + localidad;
+            //cadena = id + "*" + localidad;
             //Herramientas.guardarEnArchivo(cadena, "datosCampania.txt");
             return true;
         }
@@ -453,6 +453,58 @@ public class CentroDeSangre {
         if(rol == 1)throw new NotFoundException("El donante con rut "+rut+" no se encontro en el sistema.");
         throw new NotFoundException("El flebotomista con rut "+rut+" no se encontro en el sistema.");
     }
+    
+    public void guardarPersonas(String rutaPers){
+        Persona aux;
+        String[] datosPers;
+        String linea;
+        int x;
+        
+        Herramientas.limpiarArchivo(rutaPers);
+        for(x = 0; x < personas.size(); x++){
+            aux = personas.get(x);
+            datosPers = aux.getInfo(true);
+            if(aux.getTipoPersona() == 1)
+                datosPers[4] = "1";
+            else if(aux.getTipoPersona() == 2)
+                datosPers[4] = "2";
+            
+            linea = String.join("|", datosPers);
+            try{
+                Herramientas.guardarEnArchivo(linea, rutaPers);
+            }catch(Exception e){
+                System.out.println("ERROR : "+e.getMessage());
+            }
+        }
+    }
+    
+    public void guardarCampanias(String rutaCamp){
+        Campania aux;
+        String[] datosCamp;
+        String linea;
+        int x;
+        
+        Herramientas.limpiarArchivo(rutaCamp);
+        for(x = 0; x < campanias.size(); x++){
+            aux = campanias.get(x);
+            datosCamp = aux.getDatosCampania();
+            linea = datosCamp[0] + "|" + datosCamp[1];
+            try{
+                Herramientas.guardarEnArchivo(linea, rutaCamp);
+            }catch(Exception e){
+                System.out.println("ERROR : "+e.getMessage());
+            }
+        }
+    }
+    
+    public void guardarDonaciones(String rutaDona){
+        int x;
+        Herramientas.limpiarArchivo(rutaDona);
+        for(x = 0; x < campanias.size(); x++){
+            campanias.get(x).guardarDonaciones(rutaDona);
+        }
+    }
+    
     
 }
 

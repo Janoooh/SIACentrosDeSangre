@@ -880,6 +880,9 @@ public class ControladorVentanas implements ActionListener{
         
         if(evento.getSource() == main.getBotonSalirMain()){
             //Aqui va el guardar datos.
+            centro.guardarCampanias("datosCampania.txt");
+            centro.guardarPersonas("datosPersona.txt");
+            centro.guardarDonaciones("datosDonacion.txt");
             System.exit(0);
         }
     }

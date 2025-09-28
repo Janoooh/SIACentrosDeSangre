@@ -8,3 +8,5 @@
 22334455-6|Diego Fuentes|976543210|50|2|Kinesiólogo|diego.fuentes@salud.cl
 88997766-2|Isabel Paredes|987667788|35|1|O-
 66778899-0|Rodrigo Morales|932112233|41|2|Paramédico|rodrigo.morales@hospital.cl
+12123434-5|Jorge Muralla|+56 9 88776655|30|1|A+
+34345656-7|Romeo Romero|966677789|67|2|TENS|romeo.romero@mail.cl
