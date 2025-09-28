@@ -1,0 +1,10 @@
+12345678-9|Camilo Salazar|987654321|23|1|O+
+98765432-1|Juan Tapia|123456789|42|2|TENS|juan.tapia@gmail.com
+11222333-4|María González|956478321|30|1|A+
+99887766-5|Felipe Rojas|912345678|45|2|Médico General|felipe.rojas@hospital.cl
+77665544-3|Carla Méndez|987112233|19|1|B-
+55443322-1|Andrés Herrera|999888777|38|2|Enfermero|andres.herrera@clinic.com
+33445566-7|Valentina Soto|934567890|27|1|AB+
+22334455-6|Diego Fuentes|976543210|50|2|Kinesiólogo|diego.fuentes@salud.cl
+88997766-2|Isabel Paredes|987667788|35|1|O-
+66778899-0|Rodrigo Morales|932112233|41|2|Paramédico|rodrigo.morales@hospital.cl

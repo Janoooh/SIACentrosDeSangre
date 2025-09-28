@@ -26,6 +26,91 @@ public class Herramientas {
         return datosArchivo;
     }
     
+    public static void cargarPersonas(CentroDeSangre centro, String rutaPers)throws IOException{
+        ArrayList<String> datosArch;
+        int x;
+        String[] datosLinea;
+        try{
+            datosArch = leerArchivo(rutaPers);
+            for(x = 0; x < datosArch.size(); x++){
+                datosLinea = datosArch.get(x).split("\\|");
+                if(datosLinea.length >= 4){
+                    if(datosLinea[4].equals("1"))
+                        centro.agregarPersona(datosLinea[0], datosLinea[1], datosLinea[2], Integer.parseInt(datosLinea[3]), Integer.parseInt(datosLinea[4]), datosLinea[5]);
+                    if(datosLinea[4].equals("2"))
+                        centro.agregarPersona(datosLinea[0], datosLinea[1], datosLinea[2], Integer.parseInt(datosLinea[3]), Integer.parseInt(datosLinea[4]), datosLinea[5],datosLinea[6]);
+                }
+            }
+        }catch(FileNotFoundException e){
+            System.out.println("LA RUTA "+rutaPers+" NO ES VALIDA.");
+            System.exit(1);
+        }catch(NumberFormatException e){
+            System.out.println("SE LEYO UN DATO ERRONEO.");
+            System.exit(1);
+        }catch(Exception e){
+            System.out.println("Error:"+e.getMessage());
+            System.exit(1);
+        }
+        return;
+    }
+    
+    public static void cargarCampanias(CentroDeSangre centro, String rutaCamp){
+        ArrayList<String> datosArch;
+        int x;
+        String[] datosLinea;
+        try{
+            datosArch = leerArchivo(rutaCamp);
+            for(x = 0; x < datosArch.size(); x++){
+                datosLinea = datosArch.get(x).split("\\|");
+                centro.agregarCampaniaNueva(Integer.parseInt(datosLinea[0]), datosLinea[1]);
+            }
+        }catch(FileNotFoundException e){
+            System.out.println("LA RUTA "+rutaCamp+" NO ES VALIDA.");
+            System.exit(1);
+        }catch(NumberFormatException e){
+            System.out.println("SE LEYO UN DATO ERRONEO.");
+            System.exit(1);
+        }catch(Exception e){
+            System.out.println("Error:"+e.getMessage());
+            System.exit(1);
+        }
+        return;
+    }
+    
+    public static void cargarDonaciones(CentroDeSangre centro, String rutaDona){
+        ArrayList<String> datosArch;
+        int x;
+        Campania aux;
+        String[] datosLinea;
+        Persona donante, flebo;
+        try{
+            datosArch = leerArchivo(rutaDona);
+            for(x = 0; x < datosArch.size(); x++){
+                datosLinea = datosArch.get(x).split("\\|");
+                aux = centro.buscarCampania(Integer.parseInt(datosLinea[4]));
+                if(aux == null)throw new NotFoundException("No se encontro la campaña "+datosLinea[4]+".");
+                donante = centro.buscarPersona(datosLinea[2], 1);
+                if(donante == null)throw new NotFoundException("No se encontro el donante con rut "+datosLinea[2]+".");
+                flebo = centro.buscarPersona(datosLinea[3], 2);
+                if(flebo == null)throw new NotFoundException("No se encontro el flebotomista con rut "+datosLinea[3]+".");
+                aux.agregarDonacion(new Donacion(Integer.parseInt(datosLinea[0]),datosLinea[1],donante,flebo));
+            }
+        }catch(FileNotFoundException e){
+            System.out.println("LA RUTA "+rutaDona+" NO ES VALIDA.");
+            System.exit(1);
+        }catch(NumberFormatException e){
+            System.out.println("SE LEYO UN DATO ERRONEO.");
+            System.exit(1);
+        }catch(NotFoundException e){
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }catch(Exception e){
+            System.out.println("Error:"+e.getMessage());
+            System.exit(1);
+        }
+        return;
+    }
+    
     /*Metodo cargarDatos: Encargado de procesar los distintos archivos de datos
     que usa el sistema, pasando la informacion de ahi a el objeto CentroDeSangre.
     Primero obtiene el nombre y las campanias de datosCampania, para despues obtener

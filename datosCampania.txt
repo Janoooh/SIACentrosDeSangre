@@ -1,36 +1,3 @@
-Puppy
-31*Rancagua
-27*Calera
-15*Viña del mar
-40*Casablanca
-22*Santiago
-369*Puerto Montt
-95*Quillota
-666*Villa Alemana
-13*juan
-132*d
-1*d
-1*ss
-1*dd
-2*e21
-1*213
-1*dd
-12*dd
-13*3
-2*13
-313*123
-1*juan
-1*juan
-32*rancagua
-32*rancagua
-32*rancagua
-32*rancagua
-32*rancagua
-32*rancagua
-123*rancawa
-21*maxali
-1*Rancagua
-31*Rancagua
-1*Machali
--2*sDA
-1*ads
+1|Quilpue
+2|Rengo
+3|Coltauco

@@ -12,7 +12,9 @@ public class SIACentrosDeSangre {
         //Se cargan la informacion guardada en los archivos de texto.
         //Herramientas.cargarDatos(centro, "datosCampania.txt","datosDonaciones.txt"); 
         //menusConsola.mostrarMenuPrincipal(centro); //Se ejecutan los menu.
-        
+        Herramientas.cargarPersonas(centro, "datosPersona.txt");
+        Herramientas.cargarCampanias(centro, "datosCampania.txt");
+        Herramientas.cargarDonaciones(centro, "datosDonacion.txt");
         ControladorVentanas ventanas = new ControladorVentanas();
         ventanas.iniciar(centro);
     }

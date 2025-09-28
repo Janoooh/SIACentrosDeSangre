@@ -389,7 +389,7 @@ public class CentroDeSangre {
             Campania nuevo= new Campania(id ,localidad);
             agregarCampania(nuevo);
             cadena = id + "*" + localidad;
-            Herramientas.guardarEnArchivo(cadena, "datosCampania.txt");
+            //Herramientas.guardarEnArchivo(cadena, "datosCampania.txt");
             return true;
         }
         throw new DataDuplicateException("La campania con id "+id+" ya existe.");
