@@ -113,6 +113,11 @@ public class Donacion {
         ((Donante)donador).mostrarDonante();
     }
     
-}
-
+    public void desvincularPersona(Persona persona){
+        if(donador != null && donador.equals(persona))
+            donador = null;
+        if(flebotomista != null && flebotomista.equals(persona))
+            flebotomista = null;
+    }
     
+}

@@ -159,5 +159,14 @@ public class Campania {
             }
         }
     }
+    public void desvincularPersonaDeDonacion(Persona persona){
+        Donacion actual;
+        int i;
+        for(i = 0; i < donaciones.size(); i++){
+            actual = donaciones.get(i);
+            actual.desvincularPersona(persona);
+        }
+        
+    }
     
 }

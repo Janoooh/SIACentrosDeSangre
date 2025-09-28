@@ -489,12 +489,23 @@ public class CentroDeSangre {
      * @return objeto Persona que fue eliminado del arrayList personas
      * @throws NotFoundException excepcion en caso de que la persona con el rut buscado no exista en el sistema.
      */
-    public Persona borrarPersona(String rut, int rol)throws NotFoundException{
+    
+          
+    private void desvincular(Persona persona){
         int i;
+        Campania actual;
+        for(i = 0; i<campanias.size(); i++){
+            actual = campanias.get(i);
+            actual.desvincularPersonaDeDonacion(persona);
+        }
+    }
+    public Persona borrarPersona(String rut, int rol)throws NotFoundException{
+        int i, j;
         Persona actual;
         for(i = 0; i < personas.size(); i++){
             actual = personas.get(i);
             if(actual.getRut().equals(rut) && actual.getTipoPersona() == rol){
+                desvincular(actual);
                 personas.remove(i);
                 return actual;
             }
