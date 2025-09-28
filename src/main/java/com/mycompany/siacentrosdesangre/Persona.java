@@ -1,12 +1,24 @@
 package com.mycompany.siacentrosdesangre;
 
+/**
+ * Clase que contiene los datos básicos para representar una persona.
+ * clase padre de {@link Donante}, {@link Flebotomista}. 
+ */
 public class Persona {
     private String rut;
     private String nombre;
     private String telefono;
     private int edad;
-    private int tipoPersona; //1-Donante 2-Flebotomista
+    private int tipoPersona;
     
+    /**
+     * Crea una persona con todos los datos especificados
+     * @param rut es la forma de identificacion usada para las personas.
+     * @param nombre nombre de la persona.
+     * @param telefono numero de telefono que se le quiere asociar a la persona.
+     * @param edad edad de la persona.
+     * @param tipoPersona hay dos tipos donantes(1) o flebotomistas(2).
+     */
     public Persona(String rut, String nombre, String telefono, int edad, int tipoPersona){
         this.rut = rut;
         this.nombre = nombre;
@@ -54,11 +66,13 @@ public class Persona {
     public void setTipoPersona(int tipoPersona){
         this.tipoPersona = tipoPersona;
     }
-    
-    /*Metodo getInfo: encargado de retornar un arreglo de Strings con
-    toda la informacion de la persona. Recibe un booleano que indica 
-    si se quiere incluir el tipo de persona, o no. En caso de incluirse,
-    se manda como texto el tipo que es, ya sea Donante o Flebotomista.*/
+
+    /**
+     * método que toma los datos de una persona y los pasa a un arreglo de cadenas. 
+     * Ej: {"11.222.333-4", "Juan Ramirez", "98776622", "33", "Donante"}
+     * @param incluirTipo variable de control de flujo. Si es true returna todos los datos de la persona, si es false excluye el tipo de esa persona(último dato).
+     * @return cadena con los datos de la persona.
+     */
     public String[] getInfo(boolean incluirTipo){
         String[] info;
         

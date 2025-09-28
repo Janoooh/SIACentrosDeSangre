@@ -1,15 +1,27 @@
 package com.mycompany.siacentrosdesangre;
 import java.util.ArrayList;
 
+/**
+ * Clase que representa una campaña de sangre.
+ * Es una actividad organizada por una entidad para incentivar a donar sangre.
+ */
 public class Campania {
     private int id;
     private String localidad;
     private ArrayList<Donacion> donaciones;
     
+    /**
+     * Método constructor vacío, solo crea el arrayList para las donaciones.
+     */
     public Campania(){
         this.donaciones = new ArrayList<>();
     }
     
+    /**
+     * Método constructor para la creación de una campaña de sangre.
+     * @param id identificador de la campaña en el sistema.
+     * @param localidad indica la localidad donde se ubica esta campaña.
+     */
     public Campania(int id, String localidad){
         this.id = id;
         this.localidad = localidad;
@@ -46,9 +58,12 @@ public class Campania {
         return donaciones.size();
     }
     
-    /*Metodo buscarDonacion: Encargado de buscar una donacion en el 
-    ArrayList de donaciones, con una id pasada por parametro. Si la encuentra,
-    retorna una referencia a ese objeto, sino, un null.*/
+    /**
+     * busca una donación dentro de la campaña. 
+     * Recorre el ArrayList de donaciones y va preguntando a cada Donacion si tienen el mismo id que el buscado.
+     * @param buscado representa el identificador de una donación.
+     * @return una referencia a la donación que contiene el identificador dado. Si no está en la campaña retorna null.
+     */
     public Donacion buscarDonacion(int buscado){
         int i;
         for(i = 0; i < donaciones.size(); i ++){
@@ -73,6 +88,16 @@ public class Campania {
             
         }
     }*/
+    
+    /**
+     * Método para tener todos los datos de todas las donaciones en una arreglo de arreglos de cadenas.
+     * Ej: {{"11.222.333-4", "Juan Ramirez", "98776622", "33", "Donante", "O-"}, {"99.888.777-6", "Maria Constanza", "9323231", "45", "Donante", "AB-"}, ...}.
+     * Ocupa el tamaño del arrayList que contiene las donaciones para crear un arreglo. Recorre el arrayList de donaciones
+     * y para cada donacion saca sus datos en forma de arreglo de cadenas, esos arreglos de cadenas se les van almacenando
+     * en cada una de las posiciones del arreglo nuevo.
+     * @param incluirTipo variable para incluir el tipo de persona dentro del arreglo.
+     * @return arreglo de arreglos de cadenas con los datos de todas las donaciones
+     */
     public String[][] datosMostrarDonaciones(boolean incluirTipo){
         int x;
         Donacion aux;
@@ -85,11 +110,23 @@ public class Campania {
         return retorno;
     }
     
+    /**
+     * Método que devuelve los datos de la campaña en un arreglo de cadenas. Id, localidad y cantidad de donaciones.
+     * Ej: {"1", "Quillota", "5"}.
+     * @return cadena con los datos de la campaña y la cantidad de donaciones en esa campaña.
+     */
     public String[] getDatosCampania(){
         String[] retorno = {String.valueOf(id),localidad,String.valueOf(donaciones.size())};
         return retorno;
     }
     
+    /**
+     * Borra una donacion del ArrayList de donaciones.
+     * Recorre el arrayList buscando la donacion que tenga el mismo id que el buscado.
+     * @param id el identificador de la donacion buscada.
+     * @return una referencia a la donacion eliminada. Si no se encuentra tira una excepción.
+     * @throws NotFoundException Excepcion en el caso de que no haya ninguna donación con el id dado.
+     */
     public Donacion borrarDonacion(int id)throws NotFoundException{
         int i;
         Donacion actual;
@@ -102,6 +139,7 @@ public class Campania {
         }
         throw new NotFoundException("La donacion "+id+" no se encontro en la campania "+this.id); 
     }
+    
     
     public void guardarDonaciones(String rutaDona){
         Donacion aux;

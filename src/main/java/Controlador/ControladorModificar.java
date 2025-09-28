@@ -182,7 +182,6 @@ public class ControladorModificar implements ActionListener{
                 mandarAviso("La edad debe ser un numero.");
             }
             
-            //falta verificar si todos estan bien, no se que hacer con el tipo de sangre
             modificarDonante.dispose();
             buscarPersona.dispose();
             return;
@@ -267,7 +266,6 @@ public class ControladorModificar implements ActionListener{
             }catch(NumberFormatException e){
                 mandarAviso("La edad debe ser un numero.");
             }
-            //En este tambien faltan ver las verificaciones
             
             modificarFlebotomista.dispose();
             buscarPersona.dispose();

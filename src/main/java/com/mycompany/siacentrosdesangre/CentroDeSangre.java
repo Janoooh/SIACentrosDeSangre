@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+ * Clase que representa una entidad que organiza campañas de donación de sangre.
+ */
 public class CentroDeSangre {
     private String nombre;
     private ArrayList<Campania> campanias;
@@ -51,8 +53,13 @@ public class CentroDeSangre {
             return null;
     }
  
-    /*Metodo buscarPersona: encargado de buscar a una persona
-    en el arrayList de persona, con un rut y un tipo dados.*/
+    /**
+     * Método que busca una persona que coincida con un rut y un rol expecifico.
+     * Recorre el ArrayList de persona buscando una que tenga tanto el rut como el rol dado.
+     * @param rut identificador de la persona buscada
+     * @param tipoPersona tipo de persona. Donante (1) o Flebotomista(2)
+     * @return el objeto Persona buscado. Si no lo encuentra retorna null.
+     */
     public Persona buscarPersona(String rut, int tipoPersona){
         int x;
         Persona aux;
@@ -65,10 +72,19 @@ public class CentroDeSangre {
         return null;
     }
     
-    /*Metodo agregarPersona para donante: Encargado de agregar
-    una persona al arrayList de personas, especificamente un donante.
-    Se encarga de validar que ese donante aun no exista, si es asi, se 
-    creara el objeto donante y se guardara en el arrayList de Persona.*/
+    /**
+     * Método para agregar una persona, pensado especificamente para un donante.
+     * Llama al método para buscar una persona dentro del arrayList.
+     * Se crea un nuevo donante pasandole todos los datos al constructor y luego
+     * se agrega al arrayList de personas.
+     * @param rut identificador de la persona.
+     * @param nom nombre de la persona.
+     * @param tel número de teléfono de la persona.
+     * @param edad edad de la persona.
+     * @param tipoPersona indica el tipo de persona. En este caso es Donante(1).
+     * @param tipoSangre indica el tipo de sangre del donante.
+     * @throws DataDuplicateException excepcion en caso de que el rut ya esté registrado como donante en el sistema.
+     */
     public void agregarPersona(String rut, String nom, String tel, int edad, int tipoPersona, String tipoSangre)throws DataDuplicateException{
         Persona buscado, nuevo;
         
@@ -82,10 +98,20 @@ public class CentroDeSangre {
         throw new DataDuplicateException("El donante con rut "+rut+" ya existe.");
     }
     
-    /*Metodo agregarPersona para flebotomista: Encargado de agregar una
-    persona al arrayList de personas, especificamente un flebotomista.
-    Se encarga de validar que ese flebotomista no exista, en ese caso,
-    crea el objeto flebotomista y lo agrega en el arrayList de persona.*/
+    /**
+     * Método para agregar una persona (sobrecarga), pensado para un flebotomista.
+     * Llama al método para buscar una persona por su rut y su tipo.
+     * Se crea un nuevo Flebotomista pasandole todos los datos al constructor y luego
+     * se agrega al arrayList de personas.
+     * @param rut identificador de la persona.
+     * @param nom nombre de la persona.
+     * @param tel número de teléfono de la persona.
+     * @param edad edad de la persona.
+     * @param tipoPersona indica el tipo de persona. En este caso es Flebotomista(2).
+     * @param especialidad indica la especialidad del encargado de extraer sangre.
+     * @param correo indica el correo del especialista.
+     * @throws DataDuplicateException excepcion en caso de que ya exista un flebotomista con ese rut.
+     */
     public void agregarPersona(String rut, String nom, String tel, int edad, int tipoPersona, String especialidad, String correo)throws DataDuplicateException{
         Persona buscado, nuevo;
         buscado = buscarPersona(rut,tipoPersona);
@@ -419,6 +445,15 @@ public class CentroDeSangre {
         throw new DataDuplicateException("La donacion con id "+id+" ya existe.");
     }
     
+    /**
+     * Método que elimina una donacion de una campaña.
+     * Llama al método para buscar la campania, si existe en el sistema, entonces llama al método del objeto campania
+     * para eliminar la donacion.
+     * @param idDonacion identificador de la donacion buscada.
+     * @param idCampania identificador de la campaña
+     * @return el objeto Donacion eliminado.
+     * @throws NotFoundException Excepcion en caso que no haya una campaña con el id dado.
+     */
     public Donacion borrarDonacionDeCampania(int idDonacion, int idCampania)throws NotFoundException{
         Campania actual = buscarCampania(idCampania);
         if(actual == null) throw new NotFoundException("La campania "+ idCampania+" no se encontro en el sistema.");
@@ -426,6 +461,14 @@ public class CentroDeSangre {
          
     }
     
+    /**
+     * Método para eliminar una campaña del arrayList que almacena campañas.
+     * Recorre el ArrayList campanias buscando si existe un objeto Campania con un id que coincida con el buscado.
+     * Si existe lo elimina del arraylist campanias y lo retorna.
+     * @param id identificador de la campaña buscada.
+     * @return el objeto Campania eliminado.
+     * @throws NotFoundException excepcion en caso que no exista una campaña con el id dado.
+     */
     public Campania borrarCampania(int id)throws NotFoundException{
         int i;
         Campania actual;
@@ -439,6 +482,15 @@ public class CentroDeSangre {
         throw new NotFoundException("La campania "+id+" no se encontro en el sistema.");
     }
     
+    /**
+     * Método para eliminar una persona del arrayList de personas.
+     * Recorre el arrayList de personas buscando una Persona que coincida con el rut y el tipo dado.
+     * Si existe lo retorna.
+     * @param rut identificador de la persona.
+     * @param rol identifica el tipo de persona. Donante = 1 ; Flebotomista = 2.
+     * @return objeto Persona que fue eliminado del arrayList personas
+     * @throws NotFoundException excepcion en caso de que la persona con el rut buscado no exista en el sistema.
+     */
     public Persona borrarPersona(String rut, int rol)throws NotFoundException{
         int i;
         Persona actual;
