@@ -5,6 +5,7 @@ import com.mycompany.siacentrosdesangre.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ControladorAgregar implements ActionListener{
     private CentroDeSangre centro;
@@ -249,23 +250,38 @@ public class ControladorAgregar implements ActionListener{
         
         //evento pulsar el boton aceptar en la ventana agregar sangre
         if(agregarSangre != null && evento.getSource() == agregarSangre.getBotonAceptarAgreSangre()){
+            String[] inputs = {"-","-","-","-","-","-","-","-"};
+            String[] sangres = {"O-","O+","A-","A+","B-","B+","AB-","AB+"};
+            int[] numTrans = new int[8];
+            int x;
             try{
                 if(!agregarSangre.getLlenarOneg().getText().isEmpty())
-                    centro.agregarStockSangre("O-", Integer.parseInt(agregarSangre.getLlenarOneg().getText()));
+                    inputs[0] = agregarSangre.getLlenarOneg().getText();
                 if(!agregarSangre.getLlenarOpos().getText().isEmpty())
-                    centro.agregarStockSangre("O+", Integer.parseInt(agregarSangre.getLlenarOpos().getText()));
+                    inputs[1] = agregarSangre.getLlenarOpos().getText();
                 if(!agregarSangre.getLlenarAneg().getText().isEmpty())
-                    centro.agregarStockSangre("A-", Integer.parseInt(agregarSangre.getLlenarAneg().getText()));
+                    inputs[2] = agregarSangre.getLlenarAneg().getText();
                 if(!agregarSangre.getLlenarApos().getText().isEmpty())
-                    centro.agregarStockSangre("A+", Integer.parseInt(agregarSangre.getLlenarApos().getText()));
+                    inputs[3] = agregarSangre.getLlenarApos().getText();
                 if(!agregarSangre.getLlenarBneg().getText().isEmpty())
-                    centro.agregarStockSangre("B-", Integer.parseInt(agregarSangre.getLlenarBneg().getText()));
+                    inputs[4] = agregarSangre.getLlenarBneg().getText();
                 if(!agregarSangre.getLlenarBpos().getText().isEmpty())
-                    centro.agregarStockSangre("B+", Integer.parseInt(agregarSangre.getLlenarBpos().getText()));
+                    inputs[5] = agregarSangre.getLlenarBpos().getText();
                 if(!agregarSangre.getLlenarABneg().getText().isEmpty())
-                    centro.agregarStockSangre("AB-", Integer.parseInt(agregarSangre.getLlenarABneg().getText()));
+                    inputs[6] = agregarSangre.getLlenarABneg().getText();
                 if(!agregarSangre.getLlenarABpos().getText().isEmpty())
-                    centro.agregarStockSangre("AB+", Integer.parseInt(agregarSangre.getLlenarABpos().getText()));
+                    inputs[7] = agregarSangre.getLlenarABpos().getText();
+                   
+                for(x = 0; x < inputs.length; x++)
+                    if(inputs[x] != "-")
+                        numTrans[x] = Integer.parseInt(inputs[x]);
+                    else
+                        numTrans[x] = 0;
+                
+                for(x = 0; x < numTrans.length; x++)
+                    centro.agregarStockSangre(sangres[x], numTrans[x]);
+                
+                    
                 mandarAviso("Sangre agregada correctamente.");
             }catch(NumberFormatException e){
                 mandarAviso("La cantidad debe ser un numero.");
