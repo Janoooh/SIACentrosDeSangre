@@ -26,7 +26,12 @@ public class VentanaEliminar extends javax.swing.JFrame {
 
         botonEliminarDonacion.setText("Eliminar donacion");
 
-        botonEliminarPersona.setText("eliminar persona del sistema");
+        botonEliminarPersona.setText("Eliminar persona del sistema");
+        botonEliminarPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarPersonaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Eliminar datos");
 
@@ -46,15 +51,13 @@ public class VentanaEliminar extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(botonAtras)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonEliminarDonacion)
-                    .addComponent(botonEliminarCampania))
-                .addContainerGap(123, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonEliminarPersona)
+                .addContainerGap(128, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(botonEliminarCampania, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(botonEliminarDonacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonEliminarPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
@@ -75,6 +78,10 @@ public class VentanaEliminar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarPersonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarPersonaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,20 +4,25 @@ import Vista.*;
 import com.mycompany.siacentrosdesangre.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class ControladorModificar implements ActionListener{
     private CentroDeSangre centro;
     private VentanaModificar modificar;
     private VentanaModificarCampania modificarCampania;
+    private VentanaModificarDonacion modificarDonacion;
     private VentanaModificarDonante modificarDonante;
     private VentanaModificarFlebotomista modificarFlebotomista;
     
     private VentanaBuscarCampania buscarCamp;
     private VentanaBuscarPersona buscarPersona;
+    private VentanaBuscarCampYDona buscarCampDona;
     private VentanaAviso aviso;
     private Campania campania;
-    private Persona persona;
+    private Persona persona, donante, flebo;
+    private Donacion donacion;
     private boolean flag;//true = modificar donante ; false = modificar flebotomista
     
     
@@ -25,6 +30,7 @@ public class ControladorModificar implements ActionListener{
         this.centro = centro;
         modificar = new VentanaModificar();
         modificar.getBotonModificarCampania().addActionListener(this);
+        modificar.getBotonModificarDonacion().addActionListener(this);
         modificar.getBotonModificarDonante().addActionListener(this);
         modificar.getBotonModificarFlebotomista().addActionListener(this);
         modificar.getBotonAtrasModificar().addActionListener(this);
@@ -117,6 +123,93 @@ public class ControladorModificar implements ActionListener{
             return;
         }
         
+        //pulsar boton modificar donacion ventana principal
+        if(evento.getSource() == modificar.getBotonModificarDonacion()){
+            buscarCampDona = new VentanaBuscarCampYDona();
+            buscarCampDona.getBotonConfirmarBuscarCampYDona().addActionListener(this);
+            buscarCampDona.getBotonCancelarBuscarCampYDona().addActionListener(this);
+            
+            buscarCampDona.setAlwaysOnTop(true);
+            buscarCampDona.setVisible(true);
+            return;
+        }
+        
+        //Boton confirmar en buscar campania y donacion.
+        if(buscarCampDona != null && evento.getSource() == buscarCampDona.getBotonConfirmarBuscarCampYDona()){
+            int idCamp, idDonacion;
+            
+            try{
+                idCamp = Integer.parseInt(buscarCampDona.getLlenadoCampania().getText());
+                idDonacion = Integer.parseInt(buscarCampDona.getLlenadoDonacion().getText());
+                campania = centro.buscarCampania(idCamp);
+                if(campania == null)throw new NotFoundException("Campania "+idCamp+" no encontrada.");
+                donacion = campania.buscarDonacion(idDonacion);
+                if(donacion == null)throw new NotFoundException("Donacion "+idDonacion+" no encontrada.");
+                
+                modificarDonacion = new VentanaModificarDonacion(donacion.getDatosDonacion(idCamp, false));
+                modificarDonacion.getBotonModificarDonaAceptar().addActionListener(this);
+                modificarDonacion.getBotonModificarDonaCancelar().addActionListener(this);
+                
+                modificarDonacion.setAlwaysOnTop(true);
+                modificarDonacion.setVisible(true);
+            }catch(NumberFormatException e){
+                mandarAviso("Las IDs deben ser numeros.");
+            } catch (NotFoundException e) {
+                mandarAviso(e.getMessage());
+            } catch(Exception e){
+                System.out.println("ERROR : "+e.getMessage());
+            }
+            
+            return;
+        }
+        
+        //Boton cancelar en buscar camp y dona.
+        if(buscarCampDona != null && evento.getSource() == buscarCampDona.getBotonCancelarBuscarCampYDona()){
+            buscarCampDona.dispose();
+            return;
+        }
+        
+        //Boton aceptar en modificar donacion.
+        if(modificarDonacion != null && evento.getSource() == modificarDonacion.getBotonModificarDonaAceptar()){
+            try{
+                donacion.setId(Integer.parseInt(modificarDonacion.getLlenadoId().getText()));
+                donacion.setFecha(modificarDonacion.getLlenadoFecha().getText());
+                
+                if(modificarDonacion.getLlenadoRutDonante().getText().equals("NOT DATA FOUND"))
+                    donante = null;
+                else{  
+                    donante = centro.buscarPersona(modificarDonacion.getLlenadoRutDonante().getText(), 1);
+                    if(donante == null)throw new NotFoundException("El donante con rut "+modificarDonacion.getLlenadoRutDonante().getText()+" no existe.");
+                }
+                
+                if(modificarDonacion.getLlenadoRutFlebo().getText().equals("NOT DATA FOUND"))
+                    flebo = null;
+                else{
+                    flebo = centro.buscarPersona(modificarDonacion.getLlenadoRutFlebo().getText(), 2);
+                    if(flebo == null)throw new NotFoundException("El flebotomista con rut "+modificarDonacion.getLlenadoRutFlebo().getText()+" no existe.");
+                }
+                donacion.setDonador(donante);
+                donacion.setFlebotomista(flebo);
+                
+                mandarAviso("Donacion modificada exitosamente.");
+                modificarDonacion.dispose();
+                buscarCampDona.dispose();
+            }catch(NumberFormatException e){
+                mandarAviso("La ID debe ser numerica");
+            }catch(NotFoundException e){
+                mandarAviso(e.getMessage());
+            }
+            
+            return;
+        }
+        
+        //Boton cancelar en modificar donacion.
+        if(modificarDonacion != null && evento.getSource() == modificarDonacion.getBotonModificarDonaCancelar()){
+            modificarDonacion.dispose();
+            buscarCampDona.dispose();
+            return;
+        }
+        
         //pulsar boton modificar donante ventana principal
         if(evento.getSource() == modificar.getBotonModificarDonante()){
             buscarPersona = new VentanaBuscarPersona();
@@ -180,6 +273,7 @@ public class ControladorModificar implements ActionListener{
 
             }catch(NumberFormatException e){
                 mandarAviso("La edad debe ser un numero.");
+                return;
             }
             
             modificarDonante.dispose();
@@ -265,6 +359,7 @@ public class ControladorModificar implements ActionListener{
 
             }catch(NumberFormatException e){
                 mandarAviso("La edad debe ser un numero.");
+                return;
             }
             
             modificarFlebotomista.dispose();

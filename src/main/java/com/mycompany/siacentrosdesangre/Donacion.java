@@ -48,7 +48,7 @@ public class Donacion {
         this.fecha = fecha;
     }
 
-    public void setDonador(Donante donador) {
+    public void setDonador(Persona donador) {
         this.donador = donador;
     }
     

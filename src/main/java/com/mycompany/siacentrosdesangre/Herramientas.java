@@ -112,9 +112,7 @@ public class Herramientas {
                 aux = centro.buscarCampania(Integer.parseInt(datosLinea[4]));
                 if(aux == null)throw new NotFoundException("No se encontro la campaña "+datosLinea[4]+".");
                 donante = centro.buscarPersona(datosLinea[2], 1);
-                if(donante == null)throw new NotFoundException("No se encontro el donante con rut "+datosLinea[2]+".");
                 flebo = centro.buscarPersona(datosLinea[3], 2);
-                if(flebo == null)throw new NotFoundException("No se encontro el flebotomista con rut "+datosLinea[3]+".");
                 aux.agregarDonacion(new Donacion(Integer.parseInt(datosLinea[0]),datosLinea[1],donante,flebo));
             }
         }catch(FileNotFoundException e){
@@ -122,9 +120,6 @@ public class Herramientas {
             System.exit(1);
         }catch(NumberFormatException e){
             System.out.println("SE LEYO UN DATO ERRONEO.");
-            System.exit(1);
-        }catch(NotFoundException e){
-            System.out.println(e.getMessage());
             System.exit(1);
         }catch(Exception e){
             System.out.println("Error:"+e.getMessage());
