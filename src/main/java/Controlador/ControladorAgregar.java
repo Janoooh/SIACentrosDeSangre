@@ -5,7 +5,7 @@ import com.mycompany.siacentrosdesangre.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 public class ControladorAgregar implements ActionListener{
     private CentroDeSangre centro;

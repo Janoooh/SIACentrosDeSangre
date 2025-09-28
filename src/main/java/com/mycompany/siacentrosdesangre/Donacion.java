@@ -88,9 +88,21 @@ public class Donacion {
      * @return arreglo de cadenas con los datos de la donacion.
      */
     public String[] getDatosDonacion(int idCamp, boolean incluirTipo){
-        String[] infDonante = donador.getInfo(incluirTipo);
-        String[] infFlebo = flebotomista.getInfo(incluirTipo);
-        String[] datos = {String.valueOf(id),fecha,infDonante[0],infDonante[1],infFlebo[0],infFlebo[1],String.valueOf(idCamp)};
+        String[] infDonante, infFlebo, datos;
+        if(donador == null && flebotomista == null){
+            datos = new String[]{String.valueOf(id),fecha,"NOT DATA FOUND","NOT DATA FOUND","NOT DATA FOUND","NOT DATA FOUND",String.valueOf(idCamp)};
+        }else if(donador != null && flebotomista == null){
+            infDonante = donador.getInfo(incluirTipo);
+            datos = new String[]{String.valueOf(id),fecha,infDonante[0],infDonante[1],"NOT DATA FOUND","NOT DATA FOUND",String.valueOf(idCamp)};
+        }else if(donador == null && flebotomista != null){
+            infFlebo = flebotomista.getInfo(incluirTipo);
+            datos = new String[]{String.valueOf(id),fecha,"NOT DATA FOUND","NOT DATA FOUND",infFlebo[0],infFlebo[1],String.valueOf(idCamp)};
+        }else{
+            infDonante = donador.getInfo(incluirTipo);
+            infFlebo = flebotomista.getInfo(incluirTipo);
+            datos = new String[]{String.valueOf(id),fecha,infDonante[0],infDonante[1],infFlebo[0],infFlebo[1],String.valueOf(idCamp)};
+        }
+        
         return datos;
     }
     
