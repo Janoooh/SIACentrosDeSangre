@@ -3,6 +3,9 @@ package Vista;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+/**
+ * Ventana encargada que muestra buscar donacion.
+ */
 public class VentanaBuscarDonacion extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaBuscarDonacion.class.getName());

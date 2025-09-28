@@ -29,6 +29,10 @@
                   <Component id="jScrollPane1" alignment="0" pref="655" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="botonAceptar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="botonBuscar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="botonAtrasMostrarDonante" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -42,7 +46,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="botonAtrasMostrarDonante" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botonAtrasMostrarDonante" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -105,6 +113,16 @@
     <Component class="javax.swing.JButton" name="botonAtrasMostrarDonante">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonBuscar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonAceptar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
     </Component>
   </SubComponents>

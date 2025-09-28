@@ -9,6 +9,7 @@ public class VentanaMostrarFlebotomistas extends javax.swing.JFrame {
 
     public VentanaMostrarFlebotomistas(String [][]flebotomistas) {
         initComponents();
+        botonAceptar.setVisible(false);
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         int x = 0;
         while(x < flebotomistas.length){
@@ -16,7 +17,15 @@ public class VentanaMostrarFlebotomistas extends javax.swing.JFrame {
             x++;
         }
     }
-
+    
+    public VentanaMostrarFlebotomistas(String []flebotomista) {
+        initComponents();
+        botonBuscar.setVisible(false);
+        botonAtrasMostrarFlebotomistas.setVisible(false);
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.addRow(flebotomista);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +38,8 @@ public class VentanaMostrarFlebotomistas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         botonAtrasMostrarFlebotomistas = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
+        botonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,12 +55,20 @@ public class VentanaMostrarFlebotomistas extends javax.swing.JFrame {
 
         botonAtrasMostrarFlebotomistas.setText("Atrás");
 
+        botonBuscar.setText("Buscar");
+
+        botonAceptar.setText("Aceptar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonAceptar)
+                .addGap(18, 18, 18)
+                .addComponent(botonBuscar)
+                .addGap(18, 18, 18)
                 .addComponent(botonAtrasMostrarFlebotomistas)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -63,7 +82,10 @@ public class VentanaMostrarFlebotomistas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonAtrasMostrarFlebotomistas)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAtrasMostrarFlebotomistas)
+                    .addComponent(botonBuscar)
+                    .addComponent(botonAceptar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -96,9 +118,19 @@ public class VentanaMostrarFlebotomistas extends javax.swing.JFrame {
     public JButton getBotonAtrasMostrarFlebotomistas(){
         return botonAtrasMostrarFlebotomistas;
     }
+    
+    public JButton getBotonBuscar(){
+        return botonBuscar;
+    }
+    
+    public JButton getBotonAceptar(){
+        return botonAceptar;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonAtrasMostrarFlebotomistas;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

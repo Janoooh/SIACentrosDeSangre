@@ -586,7 +586,7 @@ public class CentroDeSangre {
     Metodo propio del negocio para encontrar las Campanias con mas donaciones sobre cierto umbral, este metodo nos sirve para ver en que zonas son mas efectivas 
     las campanias de donaciones de sangre segun el umbral establecido.
     */
-    public ArrayList<Campania> mejoresCampanias(int umbral){
+    public ArrayList<Campania> campaniasSobreUmbral(int umbral){
         int i, cantidad;
         ArrayList<Campania> listaMejores = new ArrayList<>();
         Campania actual;

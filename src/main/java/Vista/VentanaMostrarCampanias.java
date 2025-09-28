@@ -15,12 +15,12 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
      * Creates new form VentanaMostrarCampanias
      * @throws java.io.IOException
      */
-    public VentanaMostrarCampanias(CentroDeSangre centro) throws IOException {
+    public VentanaMostrarCampanias(String [][]datos){
         //ArrayList<String> datosArchivo = Herramientas.leerArchivo("datosCampania.txt");//array donde cada posicion e¿son todos los datos juntos de cada campania
         //[[juan*21212*O+], [maria*23131*AB-], ...]
-        String[][] datos = centro.datosMostrarCampanias();
         int x = 0;
         initComponents();
+        botonAceptar.setVisible(false);
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         
         
@@ -32,10 +32,26 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
         }
     }
     
+        public VentanaMostrarCampanias(String []datos){
+        initComponents();
+        botonBuscar.setVisible(false);
+        botonAtrasMostrarCamp.setVisible(false);
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.addRow(datos);
+        
+    }
+    
     public JButton getBotonAtrasMostrarCamp(){
         return botonAtrasMostrarCamp;
     }
-
+    
+    public JButton getBotonBuscarCamp(){
+        return botonBuscar;
+    }
+    
+    public JButton getBotonAceptar(){
+        return botonAceptar;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +64,8 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         botonAtrasMostrarCamp = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
+        botonAceptar = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,6 +89,10 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         botonAtrasMostrarCamp.setText("Atras");
+
+        botonBuscar.setText("Buscar");
+
+        botonAceptar.setText("Aceptar");
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,6 +105,10 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonAceptar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonBuscar)
+                .addGap(18, 18, 18)
                 .addComponent(botonAtrasMostrarCamp)
                 .addContainerGap())
         );
@@ -92,7 +118,10 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonAtrasMostrarCamp))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAtrasMostrarCamp)
+                    .addComponent(botonBuscar)
+                    .addComponent(botonAceptar)))
         );
 
         pack();
@@ -123,7 +152,9 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonAtrasMostrarCamp;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JMenuBar menuBar;

@@ -9,6 +9,7 @@ public class VentanaMostrarDonantes extends javax.swing.JFrame {
 
     public VentanaMostrarDonantes(String [][]donantes) {
         initComponents();
+        botonAceptar.setVisible(false);
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         int x = 0;
         while(x < donantes.length){
@@ -16,6 +17,14 @@ public class VentanaMostrarDonantes extends javax.swing.JFrame {
             x++;
         }
 
+    }
+    
+    public VentanaMostrarDonantes(String[]donante) {
+        initComponents();
+        botonAtrasMostrarDonante.setVisible(false);
+        botonBuscar.setVisible(false);
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.addRow(donante);
     }
 
     /**
@@ -30,6 +39,8 @@ public class VentanaMostrarDonantes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         botonAtrasMostrarDonante = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
+        botonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +56,10 @@ public class VentanaMostrarDonantes extends javax.swing.JFrame {
 
         botonAtrasMostrarDonante.setText("Atrás");
 
+        botonBuscar.setText("Buscar");
+
+        botonAceptar.setText("Aceptar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,6 +70,10 @@ public class VentanaMostrarDonantes extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonAceptar)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonAtrasMostrarDonante)))
                 .addContainerGap())
         );
@@ -64,7 +83,10 @@ public class VentanaMostrarDonantes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonAtrasMostrarDonante))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAtrasMostrarDonante)
+                    .addComponent(botonBuscar)
+                    .addComponent(botonAceptar)))
         );
 
         pack();
@@ -96,8 +118,18 @@ public class VentanaMostrarDonantes extends javax.swing.JFrame {
         return botonAtrasMostrarDonante;
     }
     
+    public JButton getBotonAceptar(){
+        return botonAceptar;
+    }
+    
+    public JButton getBotonBuscar(){
+        return botonBuscar;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonAtrasMostrarDonante;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

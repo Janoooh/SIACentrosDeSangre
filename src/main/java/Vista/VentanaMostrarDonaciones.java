@@ -1,22 +1,22 @@
 package Vista;
 
-import com.mycompany.siacentrosdesangre.Herramientas;
-import java.io.IOException;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
-import com.mycompany.siacentrosdesangre.CentroDeSangre;
 
+/**
+ * Ventana encargada de mostrar los datos donantes, o de un solo donante.
+ */
 public class VentanaMostrarDonaciones extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaMostrarDonaciones.class.getName());
 
     /**
-     * Creates new form VentanaMostrarDonaciones
+     * Inicia la ventana con una tabla que contiene todos los datos de la donaciones en filas.
+     * @param donaciones arreglo de arreglos de cadenas.
      */
-    public VentanaMostrarDonaciones(CentroDeSangre centro) throws IOException {
-        String[][] donaciones = centro.datosMostrarDonaciones(false);
+    public VentanaMostrarDonaciones(String [][]donaciones){
         initComponents();
+        botonAceptar.setVisible(false);
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         int x = 0;
         while(x < donaciones.length){
@@ -25,8 +25,28 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * crea la ventana para mostrar los datos de un donante. solo uno.
+     * @param donacion un arreglo de cadenas.
+     */
+    public VentanaMostrarDonaciones(String []donacion){
+        initComponents();
+        botonAtrasMostrarDonaciones.setVisible(false);
+        botonBuscar.setVisible(false);
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.addRow(donacion);
+    }
+    
     public JButton getBotonAtrasMostrarDonaciones(){
         return botonAtrasMostrarDonaciones;
+    }
+    
+    public JButton getBotonBuscar(){
+        return botonBuscar;
+    }
+    
+    public JButton getBotonAceptar(){
+        return botonAceptar;
     }
     
     /**
@@ -41,6 +61,8 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         botonAtrasMostrarDonaciones = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
+        botonAceptar = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,6 +86,10 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         botonAtrasMostrarDonaciones.setText("Atras");
+
+        botonBuscar.setText("Buscar");
+
+        botonAceptar.setText("Aceptar");
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -75,6 +101,10 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonAceptar)
+                .addGap(18, 18, 18)
+                .addComponent(botonBuscar)
+                .addGap(18, 18, 18)
                 .addComponent(botonAtrasMostrarDonaciones)
                 .addContainerGap())
         );
@@ -83,7 +113,10 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(botonAtrasMostrarDonaciones)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAtrasMostrarDonaciones)
+                    .addComponent(botonBuscar)
+                    .addComponent(botonAceptar))
                 .addContainerGap())
         );
 
@@ -115,7 +148,9 @@ public class VentanaMostrarDonaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonAtrasMostrarDonaciones;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JMenuBar menuBar;

@@ -34,6 +34,10 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="botonAceptar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="botonBuscar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonAtrasMostrarDonaciones" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -44,7 +48,11 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jScrollPane1" min="-2" pref="277" max="-2" attributes="0"/>
               <EmptySpace pref="8" max="32767" attributes="0"/>
-              <Component id="botonAtrasMostrarDonaciones" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botonAtrasMostrarDonaciones" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -120,6 +128,16 @@
     <Component class="javax.swing.JButton" name="botonAtrasMostrarDonaciones">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atras"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonBuscar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonAceptar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
     </Component>
   </SubComponents>
