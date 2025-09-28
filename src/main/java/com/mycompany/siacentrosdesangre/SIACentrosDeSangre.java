@@ -15,6 +15,7 @@ public class SIACentrosDeSangre {
         Herramientas.cargarPersonas(centro, "datosPersona.txt");
         Herramientas.cargarCampanias(centro, "datosCampania.txt");
         Herramientas.cargarDonaciones(centro, "datosDonacion.txt");
+        Herramientas.cargarSangre(centro, "datosSangre.txt");
         ControladorVentanas ventanas = new ControladorVentanas();
         ventanas.iniciar(centro);
     }

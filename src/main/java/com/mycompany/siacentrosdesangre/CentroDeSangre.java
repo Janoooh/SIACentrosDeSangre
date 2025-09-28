@@ -183,9 +183,9 @@ public class CentroDeSangre {
     del HashMap stockSangre.*/
     public void crearStockSangre() throws IOException{
         int x;
-        ArrayList<String> datosArchivo = Herramientas.leerArchivo("tiposDeSangre.txt");
-        for(x = 0; x < datosArchivo.size() ; x ++){
-            this.agregarStockSangre(datosArchivo.get(x));
+        String[] sangres = {"O-","O+","A-","A+","B-","B+","AB-","AB+"};
+        for(x = 0; x < sangres.length ; x ++){
+            this.agregarStockSangre(sangres[x]);
         }
     }
     
@@ -205,16 +205,14 @@ public class CentroDeSangre {
     
     
     //metodo para mostrar la tabla del stock de sangre
-    public ArrayList<String> mostrStockSangre(CentroDeSangre centro) throws IOException{
-        int i;
-        ArrayList<String> datosArchivo = Herramientas.leerArchivo("tiposDeSangre.txt");
+    public ArrayList<String> mostrarStockSangre(CentroDeSangre centro, String rutaSangre){
+        int i, cantidad;
+        String[] sangres = {"O-","O+","A-","A+","B-","B+","AB-","AB+"};
         ArrayList<String> retorno = new ArrayList<>();
-        String sangre;
-        int cantidad;
-        for(i= 0; i < datosArchivo.size() ; i ++){
-            sangre = datosArchivo.get(i);
-            cantidad = getStockSangre(sangre);
-            retorno.add(sangre + "*" + Integer.toString(cantidad));
+        
+        for(i= 0; i < sangres.length ; i++){
+            cantidad = getStockSangre(sangres[i]);
+            retorno.add(sangres[i] + "*" + Integer.toString(cantidad));
         }
         return retorno;
     }
@@ -554,6 +552,21 @@ public class CentroDeSangre {
         Herramientas.limpiarArchivo(rutaDona);
         for(x = 0; x < campanias.size(); x++){
             campanias.get(x).guardarDonaciones(rutaDona);
+        }
+    }
+    
+    public void guardarSangres(String rutaSangre){
+        String[] sangres = {"O-","O+","A-","A+","B-","B+","AB-","AB+"};
+        int x;
+        
+        Herramientas.limpiarArchivo(rutaSangre);
+        try{
+            for(x = 0; x < sangres.length; x++){
+                System.out.println(getStockSangre(sangres[x]));
+                Herramientas.guardarEnArchivo(String.valueOf(getStockSangre(sangres[x])), rutaSangre);
+            }
+        }catch(Exception e){
+            System.out.println("ERROR : "+e.getMessage());
         }
     }
     

@@ -78,7 +78,7 @@ public class ControladorMostrar implements ActionListener{
         if(mostrar != null && evento.getSource() == mostrar.getBotonMostrarSangre()){
             
             try {
-                mostrarInventario = new VentanaMostrarInventarioSangre(centro.mostrStockSangre(centro));
+                mostrarInventario = new VentanaMostrarInventarioSangre(centro.mostrarStockSangre(centro,"datosSangre.txt"));
             } catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }

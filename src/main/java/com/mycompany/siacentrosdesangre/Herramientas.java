@@ -26,6 +26,28 @@ public class Herramientas {
         return datosArchivo;
     }
     
+    public static void cargarSangre(CentroDeSangre centro, String rutaSangre)throws IOException{
+        ArrayList<String> datosArch;
+        String[] sangre = {"O-","O+","A-","A+","B-","B+","AB-","AB+"};
+        int x;
+        
+        try{
+            datosArch = leerArchivo(rutaSangre);
+            for(x = 0; x < datosArch.size(); x++)
+                centro.agregarStockSangre(sangre[x], Integer.parseInt(datosArch.get(x)));
+            
+        }catch(FileNotFoundException e){
+            System.out.println("LA RUTA "+rutaSangre+" NO ES VALIDA.");
+            System.exit(1);
+        }catch(NumberFormatException e){
+            System.out.println("SE LEYO UN DATO ERRONEO.");
+            System.exit(1);
+        }catch(Exception e){
+            System.out.println("Error:"+e.getMessage());
+            System.exit(1);
+        }
+    }
+    
     public static void cargarPersonas(CentroDeSangre centro, String rutaPers)throws IOException{
         ArrayList<String> datosArch;
         int x;

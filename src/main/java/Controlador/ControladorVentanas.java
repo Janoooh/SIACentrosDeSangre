@@ -883,6 +883,7 @@ public class ControladorVentanas implements ActionListener{
             centro.guardarCampanias("datosCampania.txt");
             centro.guardarPersonas("datosPersona.txt");
             centro.guardarDonaciones("datosDonacion.txt");
+            centro.guardarSangres("datosSangre.txt");
             System.exit(0);
         }
     }
