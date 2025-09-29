@@ -44,12 +44,6 @@ public class Campania {
         donaciones.add(nuevo);
     }
     
-    //necesario para crear por ventana
-    /*public void agregarDonacion(int id, String fecha, String rut, String nombre, int edad, String tipoSangre, String telefono){
-        //Donacion nuevo = new Donacion (id, fecha, rut, nombre, edad, tipoSangre, telefono);
-        //donaciones.add(nuevo);
-    }*/
-    
     public String getLocalidad() {
         return localidad;
     }
@@ -72,22 +66,6 @@ public class Campania {
         }
         return null;
     }
-    
-    /*Metodo mostrarDonaciones: Encargado de mostrar por consola
-    todas las donaciones existentes en esta campania.*/
-    /*public void mostrarDonaciones(){
-        int x;
-        Donacion aux;
-        System.out.println("\nCampania en "+localidad+" - ID "+id +" - "+donaciones.size()+" Registro(s)");
-        if(donaciones.isEmpty())
-            System.out.println("No existen donaciones en esta campania.");
-        
-        for(x = 0; x < donaciones.size() ; x++){
-            aux = donaciones.get(x);
-            aux.mostrarDonacion();
-            
-        }
-    }*/
     
     /**
      * Método para tener todos los datos de todas las donaciones en una arreglo de arreglos de cadenas.

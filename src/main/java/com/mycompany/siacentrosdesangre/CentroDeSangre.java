@@ -124,23 +124,6 @@ public class CentroDeSangre {
         
     }
     
-    /*Metodo agregarSangre: Encargado de dar la opcion al usuario para
-    agregar manualmente bolsas de sangre al inventario.*/
-    /*public void agregarSangre()throws IOException{
-        int nSangres;
-        String tipoSangre;
-        tipoSangre = Herramientas.lector("Ingrese el tipo de sangre: ");
-        while(!stockSangre.containsKey(tipoSangre.toUpperCase()))
-            tipoSangre = Herramientas.lector("El tipo de sangre no existe, ingrese un tipo correcto: ");
-        
-        nSangres = Integer.parseInt(Herramientas.lector("Ingrese la cantidad de bolsas de sangre: "));
-        if(nSangres <= 0)
-            System.out.println("El valor ingresado es invalido.");
-        else
-            this.agregarStockSangre(tipoSangre, nSangres);
-         
-    }*/
-
     /*Metodo buscarCampania: Encargado de buscar una campania
     con cierto id, dentro del ArrayList de campanias. Si la encuentra,
     retorna una referencia a esa campania, sino, un null.*/
@@ -317,76 +300,6 @@ public class CentroDeSangre {
         }
         return cont;
     }
-    
-    /*Metodo mostrarDonacionesDeCampanias: Encargado de mostrar todas las
-    donaciones existentes, campania por campania.*/
-    /*public void mostrarDonacionesDeCampanias(){
-        int x;
-        Campania aux;
-        if(campanias.isEmpty())
-            System.out.println("No existen campanias en el centro de sangre.");
-        else
-            System.out.println("Donaciones por campania en centro "+nombre+".");
-        
-        for(x = 0; x < campanias.size() ; x++){
-            aux = campanias.get(x);
-            aux.mostrarDonaciones();
-        }
-    }*/
-    
-    /*Metodo crearDonacion: Encargado de crear una nueva donacion a traves
-    de datos solicitados al usuario por consola. Tras tomar todos los datos,
-    retorna un objeto de clase Donacion con sus atributos rellenos.*/
-    /*public Donacion crearDonacion(int idDonacion) throws IOException{
-        String fecha = Herramientas.lector("Ingrese fecha de la donacion(Formato DD/MM/AAAA): ");
-        String rut = Herramientas.lector("Ingrese RUT del donante: ");
-        String nombre = Herramientas.lector("Ingrese el nombre del donante: ");
-        int edad = Integer.parseInt(Herramientas.lector("Ingrese la edad del donante: "));
-        String tipoSangre = Herramientas.lector("Ingrese el tipo de sangre del donante: ");
-        while(!stockSangre.containsKey(tipoSangre.toUpperCase()))
-            tipoSangre = Herramientas.lector("El tipo de sangre no existe, ingrese un tipo correcto: ");
-        
-        String numeroTelefonico = Herramientas.lector("Ingrese el numero de telefono del donante: ");
-        
-        Donante persona = new Donante(rut, nombre, edad, tipoSangre, numeroTelefonico);
-        
-        Donacion donacion = new Donacion(idDonacion, fecha, persona);
-        return donacion;
-    }*/
-    
-    
-    /*Metodo agregarDonacion: Encargado de ofrecer la opcion al usuario
-    para agregar una nueva donacion a una campania en especifico. Si
-    la campania existe, y la donacion presenta un id nuevo, se
-    procedera a crear el objeto clase Donacion. Finalmente, la donacion
-    se agrega en la campania correspondiente, ademas de guardar el nuevo
-    registro en el documento de datos.*/
-    /*public void agregarDonacion() throws IOException{
-        String idLeida = Herramientas.lector("Ingrese la ID de la campania(Numerica): ");
-        String idDonacion, cadena;
-        String[] dDonacion;
-        int idTransformada;
-        Donacion donante, nuevo;
-        Campania camp = this.buscarCampania(Integer.parseInt(idLeida));
-        if(camp != null){
-            idDonacion = Herramientas.lector("Ingrese la ID de la donacion(Numerica): ");
-            idTransformada = Integer.parseInt(idDonacion);
-            donante = camp.buscarDonacion(idTransformada);
-            if(donante == null){
-                nuevo = crearDonacion(idTransformada);
-                camp.agregarDonacion(nuevo);
-                dDonacion = nuevo.getDatosDonacionCompleta(); 
-                cadena = dDonacion[0]+"*"+dDonacion[1]+"*"+dDonacion[2]+"*"+dDonacion[3]+"*"+dDonacion[4]+"*"+dDonacion[5]+"*"+dDonacion[6]+"*"+idLeida;
-                Herramientas.guardarEnArchivo(cadena, "datosDonaciones.txt");
-                System.out.println("Donacion agregada correctamente al sistema.");
-                this.agregarStockSangre(nuevo.getDonador().getTipoSangre(), 1);
-            }else{
-                System.out.println("El rut ingresado ya existe.");
-            }
-        }else{
-            System.out.println("La campania con id "+idLeida+" no existe.");
-        }
-    }*/
     
     /*Metodo agregarDonacion: A diferencia del anterior agregarDonacion, este
     no solicita datos al usuario, pues ya le llegan por parametors la informacion

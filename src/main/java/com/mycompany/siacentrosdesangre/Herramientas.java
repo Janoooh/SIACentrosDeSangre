@@ -128,41 +128,6 @@ public class Herramientas {
         return;
     }
     
-    /*Metodo cargarDatos: Encargado de procesar los distintos archivos de datos
-    que usa el sistema, pasando la informacion de ahi a el objeto CentroDeSangre.
-    Primero obtiene el nombre y las campanias de datosCampania, para despues obtener
-    las donaciones de datosDonaciones.*/
-    /*public static void cargarDatos(CentroDeSangre centro, String rutaCamp, String rutaDona)throws IOException{
-        ArrayList<String> datos;
-        datos = Herramientas.leerArchivo(rutaCamp);
-        Campania auxCampania;
-        Donacion auxDonacion;
-        Donante auxDonante;
-        String[] datosLinea;
-        int x = 1; //Parte en 1 por que el 0 es el nombre del centro.
-        //Lectura del nombre del centro de sangre.
-        centro.setNombre(datos.get(0));
-        //Lectura de las campanias.
-        while(x < datos.size()){
-            datosLinea = datos.get(x).split("\\*");
-            auxCampania = new Campania(Integer.parseInt(datosLinea[0]), datosLinea[1]);
-            centro.agregarCampania(auxCampania);
-            x++;
-        }
-        
-        //Lectura de las donaciones
-        datos = Herramientas.leerArchivo(rutaDona);
-        x = 0;//Reiniciamos el indice.
-        while(x < datos.size()){
-            datosLinea = datos.get(x).split("\\*");
-            auxDonante = new Donante(datosLinea[2],datosLinea[3],Integer.parseInt(datosLinea[4]),datosLinea[5],datosLinea[6]);
-            auxDonacion = new Donacion(Integer.parseInt(datosLinea[0]),datosLinea[1],auxDonante);
-            centro.agregarDonacion(auxDonacion,Integer.parseInt(datosLinea[7]),datosLinea[5]);
-            x++;
-        }
-        
-    }*/
-    
     /*Metodo guardarEnArchivo: Encargado de escribir en un archivo con ruta dada
     una cadena pasada por parametro. Su funcion es traspasar los datos del sistema a
     los documentos .txt.*/

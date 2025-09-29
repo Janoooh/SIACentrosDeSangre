@@ -29,18 +29,6 @@ public class Donante extends Persona{
     public String getTipoSangre() {
         return tipoSangre;
     }
-
-    /*Metodo getDatosDonante: Encargado de retornar un arreglo de String
-    en donde se guardan todos los datos del donante, uno a uno.*/
-    /*public String[] getDatosDonante(){
-        String[] datos = new String[5];
-        datos[0] = getRut();
-        datos[1] = getNombre();
-        datos[2] = getTelefono();
-        datos[3] = String.valueOf(getEdad());
-        datos[4] = tipoSangre;
-        return datos;
-    }*/
     
     /*Metodo mostrarDonante: Encargado de mostrar la informacion del
     donante por consola.*/
