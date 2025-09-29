@@ -6,7 +6,7 @@ import java.io.*;
 public class SIACentrosDeSangre {
 
     public static void main(String[] args) throws IOException {
-        CentroDeSangre centro = new CentroDeSangre(""); 
+        CentroDeSangre centro = new CentroDeSangre("CubiDonaciones"); 
         //Menu menusConsola = new Menu(); 
         centro.crearStockSangre(); //Se crea el stock de sangre del centro.
         //Se cargan la informacion guardada en los archivos de texto.

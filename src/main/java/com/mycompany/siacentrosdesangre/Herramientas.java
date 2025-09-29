@@ -26,6 +26,8 @@ public class Herramientas {
         return datosArchivo;
     }
     
+    /*Metodo cargarSangre: Encargado de traspasar la informacion de un
+    archivo con datos del stock de sangre al objeto de clase CentroDeSangre.*/
     public static void cargarSangre(CentroDeSangre centro, String rutaSangre)throws IOException{
         ArrayList<String> datosArch;
         String[] sangre = {"O-","O+","A-","A+","B-","B+","AB-","AB+"};
@@ -48,6 +50,8 @@ public class Herramientas {
         }
     }
     
+    /*Metodo cargarPersonas: Encargado de pasar la informacion de un
+    archivo de datos de personas a un objeto de clase CentroDeSangre.*/
     public static void cargarPersonas(CentroDeSangre centro, String rutaPers)throws IOException{
         ArrayList<String> datosArch;
         int x;
@@ -76,6 +80,8 @@ public class Herramientas {
         return;
     }
     
+    /*Metodo cargarCampanias: Encargado de transpasar la informacion
+    de un archivo de campanias a un objeto de clase CentroDeSangre.*/
     public static void cargarCampanias(CentroDeSangre centro, String rutaCamp){
         ArrayList<String> datosArch;
         int x;
@@ -99,6 +105,8 @@ public class Herramientas {
         return;
     }
     
+    /*Metodo cargarDonaciones: Encargado de traspasar la informacion
+    de un archivo de donaciones, a un objeto de clase CentroDeSangre.*/
     public static void cargarDonaciones(CentroDeSangre centro, String rutaDona){
         ArrayList<String> datosArch;
         int x;
@@ -137,6 +145,8 @@ public class Herramientas {
         escritor.close();
     }
     
+    /*Metodo limpiarArchivo: Encargado de limpiar/recrear un archivo
+    con ruta dada por parametro.*/
     public static void limpiarArchivo(String ruta){
         BufferedWriter escritor = null;
         try{
@@ -153,18 +163,7 @@ public class Herramientas {
             }
         }
     }
-    
-    /*Metodo lector: Encargado de leer una entrada por consola del usuario,
-    indicandole lo que tiene que ingresar por medio de un String recibido
-    por parametro.*/
-    public static String lector(String mensaje) throws IOException{
-        String cadena;
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print(mensaje);
-        cadena = lector.readLine();
-        return cadena;
-    }
-    
+   
     
     
 }

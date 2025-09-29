@@ -1,0 +1,11 @@
+Nombre del centro;CubiDonaciones
+Cantidad de Campanias;2
+Cantidad de Donantes;5
+Cantidad de Flebotomistas;6
+Cantidad TOTAL de Personas;11
+Cantidad de Donaciones;1
+Campanias con MAYOR cantidad de Donaciones: 1;ID;LOCALIDAD
+;1;Coltauco
+Campanias y su % representativo de Donaciones;ID;LOCALIDAD;CANT DONACIONES; %REPRESENTATIVO
+;1;Coltauco;1;100.0
+;2;Talca;0;0.0

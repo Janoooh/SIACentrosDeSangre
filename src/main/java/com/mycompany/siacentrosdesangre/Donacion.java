@@ -106,13 +106,9 @@ public class Donacion {
         return datos;
     }
     
-    /*Metodo mostrarDonacion: Encargado de mostrar la id y fecha de la
-    donacion, ademas de la informacion del donante.*/
-    public void mostrarDonacion(){
-        System.out.println("\nDonacion ID "+id+"     Fecha:"+fecha);
-        ((Donante)donador).mostrarDonante();
-    }
-    
+    /*Metodo desvincularPersona: Encargado de hacer null
+    los campos correspondientes a una persona que se quiere 
+    desvincular de la donacion.*/
     public void desvincularPersona(Persona persona){
         if(donador != null && donador.equals(persona))
             donador = null;

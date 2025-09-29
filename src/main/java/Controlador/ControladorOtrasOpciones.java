@@ -36,6 +36,13 @@ public class ControladorOtrasOpciones implements ActionListener {
             campSobreUmbral.setVisible(true);
             return;
         }
+        
+        if(evento.getSource() == opciones.getBotonGenerarReporteCsv()){
+            centro.generarReporteCsv("reporteEstadistico.csv");
+            aviso = ControladorVentanas.mandarAviso("Reporte generado, visualizar en la carpeta inicial del programa.",this);
+            return;
+        }
+        
         //Boton para volver atras, en ventana opciones.
         if(evento.getSource() == opciones.getBotonOtrasOpcionesVolver()){
             opciones.dispose();

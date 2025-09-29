@@ -187,7 +187,8 @@ public class CentroDeSangre {
     }
     
     
-    //metodo para mostrar la tabla del stock de sangre
+    /*Metodo mostrarStockSangre: Encargado de crear un ArrayList de cadenas,
+    donde cada cadena representa una relacion de tipoSangre-cantidadDisponible.*/
     public ArrayList<String> mostrarStockSangre(CentroDeSangre centro, String rutaSangre){
         int i, cantidad;
         String[] sangres = {"O-","O+","A-","A+","B-","B+","AB-","AB+"};
@@ -200,7 +201,9 @@ public class CentroDeSangre {
         return retorno;
     }
     
-    //Entrega los datos de TODAS las donaciones del sistema.
+    /*Metodo datosMostrarDonaciones: Encargado de crear y llenar
+    un arreglo de arreglos de String, donde cada uno de esos arreglos
+    tiene los datos de las Donaciones en string.*/
     public String[][] datosMostrarDonaciones(boolean incluirTipo){
         int nDonaciones, x,y, pos;
         String[][] datosRetorno, datosCampania;
@@ -219,6 +222,9 @@ public class CentroDeSangre {
         return datosRetorno;
     }
     
+    /*Metodo datosMostrarCampanias: Encargado de crear y llenar
+    un arreglo de arreglos string, donde cada uno de esos arreglos
+    guarda los datos en String de las campanias.*/
     public String[][] datosMostrarCampanias(){
         String[][] datosRetorno = new String[campanias.size()][];
         Campania auxCampania;
@@ -332,10 +338,8 @@ public class CentroDeSangre {
         throw new DataDuplicateException("La campania con id "+id+" ya existe.");
     }
     
-    
-    //public void agregarDonacionEnCampania(Cam)
-    
-    //metodo que toma todos los valores para crear una donacion, ademas de una campania, necesario para ventana
+    /*metodo que toma todos los valores para crear una donacion, ademas de una campania, 
+    necesario para ventana*/
     public boolean agregarDonacionACampania(Campania campania, int id, String fecha, String rutDonante, String rutFlebotomista) throws IOException, NotFoundException,DataDuplicateException{
         Persona donante, flebotomista;
         Donacion nueva;
@@ -404,6 +408,8 @@ public class CentroDeSangre {
      */
     
           
+    /*Metodo desvincular: Encargado de desvincular a una persona
+    de una donacion.*/
     private void desvincular(Persona persona){
         int i;
         Campania actual;
@@ -412,6 +418,11 @@ public class CentroDeSangre {
             actual.desvincularPersonaDeDonacion(persona);
         }
     }
+    
+    /*Metodo borrarPersona: Encargado de quitar del sistema a
+    una persona con cierto rol, los cuales son especificados por
+    los parametros rut y rol. Usa desvincular para quitar su presencia
+    en los posibles registros(Donaciones) que existan de ellos.*/
     public Persona borrarPersona(String rut, int rol)throws NotFoundException{
         int i, j;
         Persona actual;
@@ -428,6 +439,10 @@ public class CentroDeSangre {
         throw new NotFoundException("El flebotomista con rut "+rut+" no se encontro en el sistema.");
     }
     
+    /*Metodo guardarPersonas: Encargado de guardar los datos de 
+    las personas del sistema en el archivo de la ruta
+    dada por parametro. Permite la persistencia de datos para 
+    los registros de persona.*/
     public void guardarPersonas(String rutaPers){
         Persona aux;
         String[] datosPers;
@@ -452,6 +467,9 @@ public class CentroDeSangre {
         }
     }
     
+    /*Metodo guardarCampanias: Encargado de guardar las donaciones
+    del sistema en el archivo de la ruta dada por parametro. Permite
+    la persistencia de datos para las campanias.*/
     public void guardarCampanias(String rutaCamp){
         Campania aux;
         String[] datosCamp;
@@ -471,6 +489,9 @@ public class CentroDeSangre {
         }
     }
     
+    /*Metodo guardarDonaciones: Encargado de guardar las donaciones
+    del sistema en el archivo dado por la ruta pasada por parametro.
+    Permite la persistencia de datos de las donaciones.*/
     public void guardarDonaciones(String rutaDona){
         int x;
         Herramientas.limpiarArchivo(rutaDona);
@@ -479,16 +500,18 @@ public class CentroDeSangre {
         }
     }
     
+    /*Metodo guardarSangres: Encargado de escribir en la ruta dada la
+    cantida de sangre que existe en el stock. Permite la persistencia
+    de datos para el stock de sangre.*/
     public void guardarSangres(String rutaSangre){
         String[] sangres = {"O-","O+","A-","A+","B-","B+","AB-","AB+"};
         int x;
         
         Herramientas.limpiarArchivo(rutaSangre);
         try{
-            for(x = 0; x < sangres.length; x++){
-                System.out.println(getStockSangre(sangres[x]));
+            for(x = 0; x < sangres.length; x++)
                 Herramientas.guardarEnArchivo(String.valueOf(getStockSangre(sangres[x])), rutaSangre);
-            }
+            
         }catch(Exception e){
             System.out.println("ERROR : "+e.getMessage());
         }
@@ -496,7 +519,8 @@ public class CentroDeSangre {
     
     
     /*
-    Metodo propio del negocio para encontrar las Campanias con mas donaciones sobre cierto umbral, este metodo nos sirve para ver en que zonas son mas efectivas 
+    Metodo propio del negocio para encontrar las Campanias con mas donaciones sobre cierto umbral, este metodo 
+    nos sirve para ver en que zonas son mas efectivas 
     las campanias de donaciones de sangre segun el umbral establecido.
     */
     public String[][] campaniasSobreUmbral(int umbral){
@@ -520,6 +544,104 @@ public class CentroDeSangre {
         
         
         return datosRetorno;
+    }
+    
+    /*Metodo getMayorCantDonaciones: Encargado de obtener la cantidad
+    de mayor numero de donaciones entre todas las campanias. Devuelve
+    dicha cantidad en un int.*/
+    public int getMayorCantDonaciones(){
+        int x , nDonaciones, mayor = 0;
+        Campania aux;
+        for(x = 0; x < campanias.size(); x++){
+            aux = campanias.get(x);
+            nDonaciones = aux.getSizeDonaciones();
+            if(nDonaciones > mayor){
+                mayor = nDonaciones;
+            }
+        }
+        return mayor;
+    }
+    
+    /*Metodo getCampaniasMayorDonacion: Encargado de obtener
+    las campanias con mayor numero de donaciones. Devuelve un
+    ArrayList de campanias, que son las que tienen el mayor numero
+    de donaciones.*/
+    public ArrayList<Campania> getCampaniasMayorDonaciones(){
+        ArrayList<Campania> retorno = new ArrayList<Campania>();
+        Campania aux;
+        int x, mayor;
+        mayor = getMayorCantDonaciones();
+        
+        for(x = 0; x < campanias.size(); x++){
+            aux = campanias.get(x);
+            if(aux.getSizeDonaciones() == mayor)
+                retorno.add(aux);
+        }
+        
+        return retorno;
+    }
+    
+    /*Metodo generarReporteCsv: Encargado de crear el reporte csv
+    en la ruta que le llega por parametro. Realiza distintos informes
+    de estadistica sobre el centro de sangre, en los que se destaca
+    el mostrar las campanias con mas donaciones, y el porcentaje
+    de donaciones que representa cada campania en el sistema.*/
+    public void generarReporteCsv(String rutaReporte){
+        String linea;
+        int x, mayorCantidad, nDonaciones;
+        ArrayList<Campania> campaniasMayorDona;
+        float porcentaje;
+        Campania auxCamp;
+        try{
+            Herramientas.limpiarArchivo(rutaReporte);
+            
+            linea = "Nombre del centro;"+nombre;
+            Herramientas.guardarEnArchivo(linea, rutaReporte);
+            
+            linea = "Cantidad de Campanias;"+campanias.size();
+            Herramientas.guardarEnArchivo(linea, rutaReporte);
+            
+            linea = "Cantidad de Donantes;"+contarPersonas(1);
+            Herramientas.guardarEnArchivo(linea, rutaReporte);
+            
+            linea = "Cantidad de Flebotomistas;"+contarPersonas(2);
+            Herramientas.guardarEnArchivo(linea, rutaReporte);
+            
+            linea = "Cantidad TOTAL de Personas;"+contarPersonas(0);
+            Herramientas.guardarEnArchivo(linea, rutaReporte);
+            
+            nDonaciones = contarDonaciones();
+            linea = "Cantidad de Donaciones;"+nDonaciones;
+            Herramientas.guardarEnArchivo(linea, rutaReporte);
+            
+            mayorCantidad = getMayorCantDonaciones();
+            campaniasMayorDona = getCampaniasMayorDonaciones();
+            linea = "Campanias con MAYOR cantidad de Donaciones: "+mayorCantidad+";ID;LOCALIDAD";
+            Herramientas.guardarEnArchivo(linea,rutaReporte);
+            
+            for(x = 0; x < campaniasMayorDona.size(); x++){
+                auxCamp = campaniasMayorDona.get(x);
+                linea = ";"+auxCamp.getId()+";"+auxCamp.getLocalidad();
+                Herramientas.guardarEnArchivo(linea, rutaReporte);
+            }
+            
+            linea = "Campanias y su % representativo de Donaciones;ID;LOCALIDAD;CANT DONACIONES; %REPRESENTATIVO";
+            Herramientas.guardarEnArchivo(linea, rutaReporte);
+            
+            for(x = 0; x < campanias.size();x++){
+                auxCamp = campanias.get(x);
+                porcentaje = (auxCamp.getSizeDonaciones()/(float)nDonaciones) * 100;
+                linea = ";"+auxCamp.getId()+";"+auxCamp.getLocalidad()+";"+auxCamp.getSizeDonaciones()+";"+porcentaje;
+                Herramientas.guardarEnArchivo(linea, rutaReporte);
+            }
+            
+            return;
+            
+        }catch(IOException e){
+            System.out.println("Error al escribir en archivo :"+e.getMessage());
+        }catch(Exception e){
+            System.out.println("ERROR :"+e.getMessage());
+        }
     }
     
     

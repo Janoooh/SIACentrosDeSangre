@@ -30,13 +30,6 @@ public class Donante extends Persona{
         return tipoSangre;
     }
     
-    /*Metodo mostrarDonante: Encargado de mostrar la informacion del
-    donante por consola.*/
-    public void mostrarDonante(){
-        System.out.println("Rut: "+getRut()+"   Nombre: "+getNombre()+"   Edad: "+getEdad());
-        System.out.println("Tipo Sangre: "+tipoSangre+"    Telefono: "+getTelefono());
-    }
-    
     /**
      * Método sobrecargado que permite retornar los datos de un donante y agregarlos a un arreglo de cadenas.
      * Ej: {"11.222.333-4", "Juan Ramirez", "98776622", "33", "Donante", "O-"}

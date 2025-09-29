@@ -119,6 +119,8 @@ public class Campania {
     }
     
     
+    /*Metodo guardarDonaciones: Encargado de guardar la informacion del
+    sistema en un archivo con ruta dada por parametro.*/
     public void guardarDonaciones(String rutaDona){
         Donacion aux;
         String[] datosCamp, datosFormat;
@@ -137,6 +139,9 @@ public class Campania {
             }
         }
     }
+    
+    /*Metodo desvincularPersonaDeDonacion: Encargado de quitar a una
+    persona de una donacion.*/
     public void desvincularPersonaDeDonacion(Persona persona){
         Donacion actual;
         int i;
