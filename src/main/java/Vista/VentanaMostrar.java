@@ -25,6 +25,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
         botonMostrarInventarioSangre = new javax.swing.JButton();
         botonAtrasMostrar = new javax.swing.JButton();
         botonMostrarPersonasSistema = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,6 +39,8 @@ public class VentanaMostrar extends javax.swing.JFrame {
         botonAtrasMostrar.setText("Atrás");
 
         botonMostrarPersonasSistema.setText("Mostrar personas registradas");
+
+        jLabel1.setText("Mostrar datos");
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -45,38 +48,38 @@ public class VentanaMostrar extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonAtrasMostrar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonMostrarDonaciones)
-                            .addComponent(botonMostrarCamp))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonMostrarInventarioSangre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonMostrarPersonasSistema, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonMostrarDonaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonMostrarCamp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 111, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonMostrarInventarioSangre)
-                    .addComponent(botonMostrarPersonasSistema))
-                .addGap(108, 108, 108))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonAtrasMostrar)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(21, 21, 21)
                 .addComponent(botonMostrarCamp)
                 .addGap(18, 18, 18)
                 .addComponent(botonMostrarDonaciones)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(botonMostrarInventarioSangre)
                 .addGap(18, 18, 18)
                 .addComponent(botonMostrarPersonasSistema)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(botonAtrasMostrar)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -133,6 +136,7 @@ public class VentanaMostrar extends javax.swing.JFrame {
     private javax.swing.JButton botonMostrarDonaciones;
     private javax.swing.JButton botonMostrarInventarioSangre;
     private javax.swing.JButton botonMostrarPersonasSistema;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 

@@ -70,7 +70,7 @@ public class ControladorMostrar implements ActionListener{
     public void actionPerformed(ActionEvent evento) {
         //evento pulsar el boton mostrar campanias en la ventana mostrar
         if(evento.getSource() == mostrar.getBotonMostrarCamp()){
-            mostrarCampanias = new VentanaMostrarCampanias(centro.datosMostrarCampanias());
+            mostrarCampanias = new VentanaMostrarCampanias(centro.datosMostrarCampanias(),true);
             mostrarCampanias.getBotonAtrasMostrarCamp().addActionListener(this);
             mostrarCampanias.getBotonBuscarCamp().addActionListener(this);
             

@@ -38,7 +38,7 @@ public class VentanaAgregarSangre extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Agregar sangre al stock");
+        jLabel1.setText("Ingrese las cantidades de sangre para agregar al stock:");
 
         jLabel2.setText("O-");
 
@@ -76,30 +76,25 @@ public class VentanaAgregarSangre extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
-                .addGap(26, 26, 26)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(llenarAneg, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(llenarApos)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(llenarOpos)
-                                    .addComponent(llenarOneg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                                    .addComponent(llenarBneg, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(llenarBpos, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(llenarABneg, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(llenarABpos, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(110, 110, 110)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonAceptarAgreSangre)
-                            .addComponent(botonCancelarAgreSangre))
-                        .addGap(16, 16, 16))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(17, 17, 17))))
+                    .addComponent(llenarAneg, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                    .addComponent(llenarApos)
+                    .addComponent(llenarOpos, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(llenarBneg)
+                    .addComponent(llenarBpos)
+                    .addComponent(llenarABneg)
+                    .addComponent(llenarABpos)
+                    .addComponent(llenarOneg))
+                .addGap(110, 110, 110)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botonAceptarAgreSangre)
+                    .addComponent(botonCancelarAgreSangre))
+                .addGap(16, 16, 16))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

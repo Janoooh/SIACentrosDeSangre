@@ -34,9 +34,9 @@
                       <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="botonCancelarBuscarPersona" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonBuscarPersona" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="botonCancelarBuscarPersona" max="32767" attributes="0"/>
+                          <Component id="botonBuscarPersona" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                   </Group>
@@ -63,7 +63,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese rut de la persona"/>
+        <Property name="text" type="java.lang.String" value="Ingrese RUT de la persona"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="llenadoRutBuscarPersona">

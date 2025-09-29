@@ -28,13 +28,6 @@ public class ControladorEliminar implements ActionListener{
         eliminar.setVisible(true);
     }
     
-    public void mandarAviso(String msg){
-        aviso = new VentanaAviso(msg);
-        aviso.getBotonAceptarAviso().addActionListener(this);
-        aviso.setAlwaysOnTop(true);
-        aviso.setVisible(true);
-    }
-    
     
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -58,12 +51,15 @@ public class ControladorEliminar implements ActionListener{
             try{
                 idTrans = Integer.parseInt(id);
                 centro.borrarCampania(idTrans);
-                mandarAviso("La campania ha sido eliminada exitosamente.");
+                aviso = ControladorVentanas.mandarAviso("La campania ha sido eliminada exitosamente.",this);
                 buscarCamp.dispose();
             }catch(NotFoundException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             }catch(NumberFormatException e){
-                mandarAviso("La ID debe ser numerica.");
+                aviso = ControladorVentanas.mandarAviso("La ID debe ser numerica.",this);
+            }catch(Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             return;
         }
@@ -102,9 +98,12 @@ public class ControladorEliminar implements ActionListener{
                 buscarDonacion.setVisible(true);
                 
             }catch(NotFoundException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             }catch(NumberFormatException e){
-                mandarAviso("La ID debe ser numerica.");
+                aviso = ControladorVentanas.mandarAviso("La ID debe ser numerica.",this);
+            }catch(Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             return;
         }
@@ -116,13 +115,16 @@ public class ControladorEliminar implements ActionListener{
             try{
                 idTrans = Integer.parseInt(id);
                 centro.borrarDonacionDeCampania(idTrans, campania.getId());
-                mandarAviso("La donacion se eliminó correctamente.");
+                aviso = ControladorVentanas.mandarAviso("La donacion se eliminó correctamente.",this);
                 buscarDonacion.dispose();
                 buscarCamp.dispose();
             }catch(NotFoundException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             }catch(NumberFormatException e){
-                mandarAviso("La ID debe ser numerica.");
+                aviso = ControladorVentanas.mandarAviso("La ID debe ser numerica.",this);
+            }catch(Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             return;
         }
@@ -155,11 +157,14 @@ public class ControladorEliminar implements ActionListener{
                 else
                     eliminado = centro.borrarPersona(rut, 2);
             }catch(NotFoundException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
+            }catch(Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             
             if(eliminado != null){
-                mandarAviso("El " + opcion + " fue eliminado exitosamente.");
+                aviso = ControladorVentanas.mandarAviso("El " + opcion + " fue eliminado exitosamente.",this);
                 eliminarPersona.dispose();
             }
             return;

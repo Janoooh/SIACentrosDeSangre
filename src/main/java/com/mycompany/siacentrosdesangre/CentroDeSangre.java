@@ -586,18 +586,27 @@ public class CentroDeSangre {
     Metodo propio del negocio para encontrar las Campanias con mas donaciones sobre cierto umbral, este metodo nos sirve para ver en que zonas son mas efectivas 
     las campanias de donaciones de sangre segun el umbral establecido.
     */
-    public ArrayList<Campania> campaniasSobreUmbral(int umbral){
+    public String[][] campaniasSobreUmbral(int umbral){
         int i, cantidad;
-        ArrayList<Campania> listaMejores = new ArrayList<>();
+        ArrayList<String[]> listaMejores = new ArrayList<>();
         Campania actual;
+        String[][] datosRetorno;
+        String[] datosCamp;
         
         for(i = 0; i < campanias.size(); i++){
             actual = campanias.get(i);
             cantidad = actual.getSizeDonaciones();
-            if(cantidad > umbral)
-                listaMejores.add(actual);
+            if(cantidad > umbral){
+                datosCamp = new String[]{String.valueOf(actual.getId()),actual.getLocalidad(),String.valueOf(cantidad)};
+                listaMejores.add(datosCamp);
+            }
         }
-        return listaMejores;
+        datosRetorno = new String[listaMejores.size()][];
+        for(i = 0; i < listaMejores.size(); i++)
+            datosRetorno[i] = listaMejores.get(i);
+        
+        
+        return datosRetorno;
     }
     
     

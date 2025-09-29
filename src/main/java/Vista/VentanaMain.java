@@ -31,6 +31,8 @@ public class VentanaMain extends javax.swing.JFrame {
         botonEliminarMain = new javax.swing.JButton();
         botonModificarMain = new javax.swing.JButton();
         botonSalirMain = new javax.swing.JButton();
+        botonOtrasOpciones = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         jMenu2.setText("File");
         jMenuBar1.add(jMenu2);
@@ -46,7 +48,7 @@ public class VentanaMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Centro de sangre SIA");
+        jLabel1.setText("Sistema de informacion");
 
         botonAgregarMain.setText("Agregar");
 
@@ -63,36 +65,46 @@ public class VentanaMain extends javax.swing.JFrame {
             }
         });
 
+        botonOtrasOpciones.setText("Otras opciones");
+
+        jLabel2.setText("CENTRO DE SANGRE");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(131, 131, 131)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(158, 158, 158)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonAgregarMain)
-                                    .addComponent(botonEliminarMain)
-                                    .addComponent(botonMostrarMain)
-                                    .addComponent(botonModificarMain))))
-                        .addGap(0, 153, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonSalirMain)))
+                        .addComponent(botonSalirMain))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonOtrasOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonModificarMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonEliminarMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonMostrarMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonAgregarMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 138, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabel1))
+                .addGap(136, 136, 136))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addGap(61, 61, 61)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(21, 21, 21)
                 .addComponent(botonAgregarMain)
                 .addGap(18, 18, 18)
                 .addComponent(botonMostrarMain)
@@ -100,7 +112,9 @@ public class VentanaMain extends javax.swing.JFrame {
                 .addComponent(botonEliminarMain)
                 .addGap(18, 18, 18)
                 .addComponent(botonModificarMain)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botonOtrasOpciones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(botonSalirMain)
                 .addContainerGap())
         );
@@ -111,6 +125,10 @@ public class VentanaMain extends javax.swing.JFrame {
     private void botonSalirMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirMainActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonSalirMainActionPerformed
+
+    public JButton getBotonOtrasOpciones() {
+        return botonOtrasOpciones;
+    }
 
     public JButton getBotonAgregarMain(){
         return botonAgregarMain;
@@ -158,8 +176,10 @@ public class VentanaMain extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminarMain;
     private javax.swing.JButton botonModificarMain;
     private javax.swing.JButton botonMostrarMain;
+    private javax.swing.JButton botonOtrasOpciones;
     private javax.swing.JButton botonSalirMain;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;

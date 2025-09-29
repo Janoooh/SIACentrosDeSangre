@@ -35,13 +35,6 @@ public class ControladorAgregar implements ActionListener{
         agregar.setVisible(true);
     }
     
-    public void mandarAviso(String msg){
-        aviso = new VentanaAviso(msg);
-        aviso.getBotonAceptarAviso().addActionListener(this);
-        aviso.setAlwaysOnTop(true);
-        aviso.setVisible(true);
-    }
-    
     @Override
     public void actionPerformed(ActionEvent evento) {
         //evento pulsar el boton agregar campania en la ventana agregar
@@ -64,14 +57,17 @@ public class ControladorAgregar implements ActionListener{
             try {
                 idTrans = Integer.parseInt(id);
                 centro.agregarCampaniaNueva(idTrans, localidad);
-                mandarAviso("La campania ha sido creada exitosamente.");
+                aviso = ControladorVentanas.mandarAviso("La campania ha sido creada exitosamente.",this);
                 agregarCampania.dispose();
             }catch (IOException ex) {
                 System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }catch(DataDuplicateException e){
-                mandarAviso("Hay una campania con ese id registrado.");
+                aviso = ControladorVentanas.mandarAviso("Hay una campania con ese id registrado.",this);
             }catch(NumberFormatException e){
-                mandarAviso("La ID debe ser un numero.");
+                aviso = ControladorVentanas.mandarAviso("La ID debe ser un numero.",this);
+            }catch(Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             
             return;
@@ -114,9 +110,12 @@ public class ControladorAgregar implements ActionListener{
                 agregarDonacion.setAlwaysOnTop(true);
                 agregarDonacion.setVisible(true);
             }catch(NotFoundException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             }catch(NumberFormatException e){
-                mandarAviso("La ID debe ser numerica.");
+                aviso = ControladorVentanas.mandarAviso("La ID debe ser numerica.",this);
+            }catch(Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             return;
         }
@@ -141,16 +140,20 @@ public class ControladorAgregar implements ActionListener{
             try {
                 idTrans = Integer.parseInt(id);
                 centro.agregarDonacionACampania(campania, idTrans, fecha,rutDonante,rutFlebo);
-                mandarAviso("La donacion se ha agregado exitosamente.");
+                aviso = ControladorVentanas.mandarAviso("La donacion se ha agregado exitosamente.",this);
                 agregarDonacion.dispose();
             } catch (IOException ex) {
-                System.getLogger(ControladorVentanas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                System.out.println("ERROR DE IO :"+ex.getMessage());
+                System.exit(1);
             } catch (NotFoundException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             } catch (DataDuplicateException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             } catch (NumberFormatException e){
-                mandarAviso("La ID debe ser numerica.");
+                aviso = ControladorVentanas.mandarAviso("La ID debe ser numerica.",this);
+            } catch (Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             return;
         }
@@ -185,11 +188,14 @@ public class ControladorAgregar implements ActionListener{
             try{
                 edadTrans = Integer.parseInt(edad);
                 centro.agregarPersona(rut, nombre, telefono, edadTrans, 1, tipoSangre);
-                mandarAviso("Persona agregada correctamente.");
+                aviso = ControladorVentanas.mandarAviso("Persona agregada correctamente.",this);
             }catch(DataDuplicateException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             }catch(NumberFormatException e){
-                mandarAviso("La edad debe ser un numero.");
+                aviso = ControladorVentanas.mandarAviso("La edad debe ser un numero.",this);
+            }catch(Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             return;
         }
@@ -223,11 +229,14 @@ public class ControladorAgregar implements ActionListener{
             try{
                 edadTrans = Integer.parseInt(edad);
                 centro.agregarPersona(rut, nom, tel, edadTrans, 2, especialidad, correo);
-                mandarAviso("Flebotomista agregado correctamente.");
+                aviso = ControladorVentanas.mandarAviso("Flebotomista agregado correctamente.",this);
             }catch(DataDuplicateException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             }catch(NumberFormatException e){
-                mandarAviso("La edad debe ser un numero.");
+                aviso = ControladorVentanas.mandarAviso("La edad debe ser un numero.",this);
+            }catch(Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             return;
         }
@@ -282,9 +291,12 @@ public class ControladorAgregar implements ActionListener{
                     centro.agregarStockSangre(sangres[x], numTrans[x]);
                 
                     
-                mandarAviso("Sangre agregada correctamente.");
+                aviso = ControladorVentanas.mandarAviso("Sangre agregada correctamente.",this);
             }catch(NumberFormatException e){
-                mandarAviso("La cantidad debe ser un numero.");
+                aviso = ControladorVentanas.mandarAviso("La cantidad debe ser un numero.",this);
+            }catch(Exception e){
+                System.out.println("ERROR :"+e.getMessage());
+                System.exit(1);
             }
             return;
         } 

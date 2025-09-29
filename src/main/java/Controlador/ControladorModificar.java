@@ -4,8 +4,6 @@ import Vista.*;
 import com.mycompany.siacentrosdesangre.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class ControladorModificar implements ActionListener{
@@ -37,13 +35,6 @@ public class ControladorModificar implements ActionListener{
             
         modificar.setAlwaysOnTop(true);
         modificar.setVisible(true);
-    }
-    
-    public void mandarAviso(String msg){
-        aviso = new VentanaAviso(msg);
-        aviso.getBotonAceptarAviso().addActionListener(this);
-        aviso.setAlwaysOnTop(true);
-        aviso.setVisible(true);
     }
     
     @Override
@@ -80,9 +71,9 @@ public class ControladorModificar implements ActionListener{
                 modificarCampania.setAlwaysOnTop(true);
                 modificarCampania.setVisible(true);
             }catch(NotFoundException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             }catch(NumberFormatException e){
-                mandarAviso("La ID debe ser numerica.");
+                aviso = ControladorVentanas.mandarAviso("La ID debe ser numerica.",this);
             }
             return;
         }
@@ -108,13 +99,13 @@ public class ControladorModificar implements ActionListener{
                         campania.setLocalidad(localidad);
                     }
                     else{
-                        mandarAviso("Esa id ya existe en el sistema.");
+                        aviso = ControladorVentanas.mandarAviso("Esa id ya existe en el sistema.",this);
                         return;
                     }
                 }
-                mandarAviso("Campañia modificada correctamente.");
+                aviso = ControladorVentanas.mandarAviso("Campañia modificada correctamente.",this);
             }catch(NumberFormatException e){
-                mandarAviso("La ID debe ser un numero.");
+                aviso = ControladorVentanas.mandarAviso("La ID debe ser un numero.",this);
                 return;
             }
             
@@ -153,9 +144,9 @@ public class ControladorModificar implements ActionListener{
                 modificarDonacion.setAlwaysOnTop(true);
                 modificarDonacion.setVisible(true);
             }catch(NumberFormatException e){
-                mandarAviso("Las IDs deben ser numeros.");
+                aviso = ControladorVentanas.mandarAviso("Las IDs deben ser numeros.",this);
             } catch (NotFoundException e) {
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             } catch(Exception e){
                 System.out.println("ERROR : "+e.getMessage());
             }
@@ -191,13 +182,13 @@ public class ControladorModificar implements ActionListener{
                 donacion.setDonador(donante);
                 donacion.setFlebotomista(flebo);
                 
-                mandarAviso("Donacion modificada exitosamente.");
+                aviso = ControladorVentanas.mandarAviso("Donacion modificada exitosamente.",this);
                 modificarDonacion.dispose();
                 buscarCampDona.dispose();
             }catch(NumberFormatException e){
-                mandarAviso("La ID debe ser numerica");
+                aviso = ControladorVentanas.mandarAviso("La ID debe ser numerica",this);
             }catch(NotFoundException e){
-                mandarAviso(e.getMessage());
+                aviso = ControladorVentanas.mandarAviso(e.getMessage(),this);
             }
             
             return;
@@ -235,7 +226,7 @@ public class ControladorModificar implements ActionListener{
                 modificarDonante.setVisible(true);
             }
             else
-                mandarAviso("El rut no existe en el sistema.");
+                aviso = ControladorVentanas.mandarAviso("El rut no existe en el sistema.",this);
             return;
         }
         
@@ -265,14 +256,14 @@ public class ControladorModificar implements ActionListener{
                         ((Donante)persona).setTipoSangre(tipoSangre);
                     }
                     else{
-                        mandarAviso("Ese rut ya se encuentra en el sistema.");
+                        aviso = ControladorVentanas.mandarAviso("Ese rut ya se encuentra en el sistema.",this);
                         return;
                     }
                 }
-                mandarAviso("Donante modificado correctamente.");
+                aviso = ControladorVentanas.mandarAviso("Donante modificado correctamente.",this);
 
             }catch(NumberFormatException e){
-                mandarAviso("La edad debe ser un numero.");
+                aviso = ControladorVentanas.mandarAviso("La edad debe ser un numero.",this);
                 return;
             }
             
@@ -318,7 +309,7 @@ public class ControladorModificar implements ActionListener{
                 modificarFlebotomista.setVisible(true);
             }
             else
-                mandarAviso("El rut no existe en el sistema.");
+                aviso = ControladorVentanas.mandarAviso("El rut no existe en el sistema.",this);
             return;
         }
         
@@ -351,14 +342,14 @@ public class ControladorModificar implements ActionListener{
                         ((Flebotomista)persona).setCorreo(correo);
                     }
                     else{
-                        mandarAviso("Ese rut ya se encuentra en el sistema.");
+                        aviso = ControladorVentanas.mandarAviso("Ese rut ya se encuentra en el sistema.",this);
                         return;
                     }
                 }
-                mandarAviso("Flebotomista modificado correctamente.");
+                aviso = ControladorVentanas.mandarAviso("Flebotomista modificado correctamente.",this);
 
             }catch(NumberFormatException e){
-                mandarAviso("La edad debe ser un numero.");
+                aviso = ControladorVentanas.mandarAviso("La edad debe ser un numero.",this);
                 return;
             }
             

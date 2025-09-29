@@ -31,9 +31,9 @@ public class VentanaAgregarCamp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("id");
+        jLabel1.setText("ID");
 
-        jLabel2.setText("localidad");
+        jLabel2.setText("Localidad");
 
         jLabel3.setText("Agregar campania");
 

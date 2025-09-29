@@ -1,5 +1,7 @@
 package Vista;
 
+import javax.swing.JButton;
+
 public class VentanaOtrasOpciones extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaOtrasOpciones.class.getName());
@@ -20,21 +22,66 @@ public class VentanaOtrasOpciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        botonObtenerCampaniasUmbral = new javax.swing.JButton();
+        botonGenerarReporteCsv = new javax.swing.JButton();
+        botonOtrasOpcionesVolver = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Otras opciones");
+
+        botonObtenerCampaniasUmbral.setText("Obtener campanias sobre umbral");
+        botonObtenerCampaniasUmbral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonObtenerCampaniasUmbralActionPerformed(evt);
+            }
+        });
+
+        botonGenerarReporteCsv.setText("Generar reporte estadistico en csv");
+
+        botonOtrasOpcionesVolver.setText("Volver");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonObtenerCampaniasUmbral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonGenerarReporteCsv, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))))
+                .addContainerGap(95, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(botonOtrasOpcionesVolver)
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addGap(37, 37, 37)
+                .addComponent(botonObtenerCampaniasUmbral)
+                .addGap(18, 18, 18)
+                .addComponent(botonGenerarReporteCsv)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addComponent(botonOtrasOpcionesVolver)
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonObtenerCampaniasUmbralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonObtenerCampaniasUmbralActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonObtenerCampaniasUmbralActionPerformed
 
     /**
      * @param args the command line arguments
@@ -61,6 +108,24 @@ public class VentanaOtrasOpciones extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new VentanaOtrasOpciones().setVisible(true));
     }
 
+    public JButton getBotonGenerarReporteCsv() {
+        return botonGenerarReporteCsv;
+    }
+
+    public JButton getBotonObtenerCampaniasUmbral() {
+        return botonObtenerCampaniasUmbral;
+    }
+
+    public JButton getBotonOtrasOpcionesVolver() {
+        return botonOtrasOpcionesVolver;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonGenerarReporteCsv;
+    private javax.swing.JButton botonObtenerCampaniasUmbral;
+    private javax.swing.JButton botonOtrasOpcionesVolver;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,12 +15,13 @@ public class VentanaMostrarCampanias extends javax.swing.JFrame {
      * Creates new form VentanaMostrarCampanias
      * @throws java.io.IOException
      */
-    public VentanaMostrarCampanias(String [][]datos){
+    public VentanaMostrarCampanias(String[][]datos, boolean mostrarBuscar){
         //ArrayList<String> datosArchivo = Herramientas.leerArchivo("datosCampania.txt");//array donde cada posicion e¿son todos los datos juntos de cada campania
         //[[juan*21212*O+], [maria*23131*AB-], ...]
         int x = 0;
         initComponents();
         botonAceptar.setVisible(false);
+        botonBuscar.setVisible(mostrarBuscar);
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         
         

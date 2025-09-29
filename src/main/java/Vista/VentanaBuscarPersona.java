@@ -27,7 +27,7 @@ public class VentanaBuscarPersona extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Ingrese rut de la persona");
+        jLabel1.setText("Ingrese RUT de la persona");
 
         botonCancelarBuscarPersona.setText("Cancelar");
 
@@ -46,9 +46,9 @@ public class VentanaBuscarPersona extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(121, 121, 121))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonCancelarBuscarPersona, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonBuscarPersona, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(botonCancelarBuscarPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonBuscarPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(156, 156, 156))))
         );
         layout.setVerticalGroup(

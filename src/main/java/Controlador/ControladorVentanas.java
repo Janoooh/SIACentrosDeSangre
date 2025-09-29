@@ -16,6 +16,7 @@ public class ControladorVentanas implements ActionListener{
     private ControladorMostrar mostrar;
     private ControladorEliminar eliminar;
     private ControladorModificar modificar;
+    private ControladorOtrasOpciones otrasOp;
     
     /**
      * Inicia la ventana principal.
@@ -28,10 +29,19 @@ public class ControladorVentanas implements ActionListener{
         main.getBotonMostrarMain().addActionListener(this);
         main.getBotonEliminarMain().addActionListener(this);
         main.getBotonModificarMain().addActionListener(this);
+        main.getBotonOtrasOpciones().addActionListener(this);
         main.getBotonSalirMain().addActionListener(this);
         
         main.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         main.setVisible(true);
+    }
+    
+    public static VentanaAviso mandarAviso(String msg, ActionListener listener){
+        VentanaAviso aviso = new VentanaAviso(msg);
+        aviso.getBotonAceptarAviso().addActionListener(listener);
+        aviso.setAlwaysOnTop(true);
+        aviso.setVisible(true);
+        return aviso;
     }
     
     /**
@@ -63,6 +73,12 @@ public class ControladorVentanas implements ActionListener{
         if(evento.getSource() == main.getBotonModificarMain()){
             modificar = new ControladorModificar();
             modificar.iniciar(centro);
+            return;
+        }
+        
+        if(evento.getSource() == main.getBotonOtrasOpciones()){
+            otrasOp = new ControladorOtrasOpciones();
+            otrasOp.iniciar(centro);
             return;
         }
         

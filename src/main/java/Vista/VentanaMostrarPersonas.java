@@ -18,6 +18,7 @@ public class VentanaMostrarPersonas extends javax.swing.JFrame {
         botonMostrarFlebotomistas = new javax.swing.JButton();
         botonMostrarTodo = new javax.swing.JButton();
         botonAtrasMostrarPersonas = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -28,6 +29,8 @@ public class VentanaMostrarPersonas extends javax.swing.JFrame {
         botonMostrarTodo.setText("Mostrar todo");
 
         botonAtrasMostrarPersonas.setText("Atrás");
+
+        jLabel1.setText("Mostrar personas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -40,22 +43,23 @@ public class VentanaMostrarPersonas extends javax.swing.JFrame {
                         .addComponent(botonAtrasMostrarPersonas))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
-                        .addComponent(botonMostrarFlebotomistas)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonMostrarDonantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonMostrarFlebotomistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonMostrarTodo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 121, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botonMostrarDonantes)
-                .addGap(137, 137, 137))
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(botonMostrarTodo)
+                .addGap(154, 154, 154)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
                 .addComponent(botonMostrarDonantes)
                 .addGap(18, 18, 18)
                 .addComponent(botonMostrarFlebotomistas)
@@ -114,5 +118,6 @@ public class VentanaMostrarPersonas extends javax.swing.JFrame {
     private javax.swing.JButton botonMostrarDonantes;
     private javax.swing.JButton botonMostrarFlebotomistas;
     private javax.swing.JButton botonMostrarTodo;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

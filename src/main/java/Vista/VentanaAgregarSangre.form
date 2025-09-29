@@ -40,37 +40,28 @@
                   <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="llenarAneg" pref="91" max="32767" attributes="0"/>
-                          <Component id="llenarApos" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="llenarOpos" max="32767" attributes="0"/>
-                                  <Component id="llenarOneg" alignment="0" pref="72" max="32767" attributes="0"/>
-                                  <Component id="llenarBneg" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="llenarBpos" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="llenarABneg" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="llenarABpos" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="botonAceptarAgreSangre" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonCancelarAgreSangre" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="llenarAneg" pref="93" max="32767" attributes="0"/>
+                  <Component id="llenarApos" max="32767" attributes="0"/>
+                  <Component id="llenarOpos" alignment="1" max="32767" attributes="0"/>
+                  <Component id="llenarBneg" alignment="0" max="32767" attributes="0"/>
+                  <Component id="llenarBpos" alignment="0" max="32767" attributes="0"/>
+                  <Component id="llenarABneg" alignment="0" max="32767" attributes="0"/>
+                  <Component id="llenarABpos" alignment="0" max="32767" attributes="0"/>
+                  <Component id="llenarOneg" alignment="0" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="botonAceptarAgreSangre" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonCancelarAgreSangre" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -143,7 +134,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar sangre al stock"/>
+        <Property name="text" type="java.lang.String" value="Ingrese las cantidades de sangre para agregar al stock:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
